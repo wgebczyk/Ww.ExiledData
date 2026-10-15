@@ -17,7 +17,7 @@ public sealed class MappingStore : IDisposable
     /// Bump when the tables change, adding an upgrade step in <see cref="CreateSchema"/>. Versions before 4 (none,
     /// unknown, or the scan-role design) create the tables from scratch, dropping any old ones.
     /// </summary>
-    public const int SchemaVersion = 4;
+    public const int SchemaVersion = 5;
     private const string Module = "mapping";
 
     private readonly SqliteConnection _connection;
@@ -352,6 +352,22 @@ public sealed class MappingStore : IDisposable
         return result;
     }
 
+    /// <summary>The Analyze tab's layout of the session; <see cref="AnalyzeLayout.Empty"/> when none is stored.</summary>
+    public AnalyzeLayout LoadAnalyzeLayout(Guid sessionId)
+    {
+        using var cmd = Command("SELECT layout FROM map_analyze WHERE session_id = $s");
+        Set(cmd, "$s", Db(sessionId));
+        return AnalyzeLayout.FromJson(cmd.ExecuteScalar() as string);
+    }
+
+    public void SaveAnalyzeLayout(Guid sessionId, AnalyzeLayout layout)
+    {
+        using var cmd = Command("INSERT INTO map_analyze (session_id, layout) VALUES ($s, $l) ON CONFLICT (session_id) DO UPDATE SET layout = excluded.layout");
+        Set(cmd, "$s", Db(sessionId));
+        Set(cmd, "$l", layout.ToJson());
+        cmd.ExecuteNonQuery();
+    }
+
     /// <summary>Ids of the sessions with a scan left active (by an app exit).</summary>
     public IReadOnlyList<Guid> SessionsWithActiveScans()
     {
@@ -388,6 +404,15 @@ public sealed class MappingStore : IDisposable
         if (version < 4)
             CreateTables(connection, tx);
 
+        // Version 5 added the Analyze tab's per-session layout.
+        if (version < 5)
+            Execute(connection, """
+                CREATE TABLE IF NOT EXISTS map_analyze (
+                    session_id  TEXT    NOT NULL PRIMARY KEY REFERENCES sessions (id) ON DELETE CASCADE,
+                    layout      TEXT    NOT NULL
+                );
+                """, tx);
+
         Execute(connection, "INSERT INTO module_schema (module, version) VALUES ($m, $v) ON CONFLICT (module) DO UPDATE SET version = excluded.version",
             tx, ("$m", Module), ("$v", SchemaVersion));
         tx.Commit();
@@ -397,6 +422,7 @@ public sealed class MappingStore : IDisposable
     private static void CreateTables(SqliteConnection connection, SqliteTransaction tx)
     {
         Execute(connection, """
+            DROP TABLE IF EXISTS map_analyze;
             DROP TABLE IF EXISTS map_adjustments;
             DROP TABLE IF EXISTS map_notes;
             DROP TABLE IF EXISTS map_tags;

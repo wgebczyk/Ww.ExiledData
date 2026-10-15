@@ -28,7 +28,7 @@
   </Styles.Resources>
 
   <!--
-    ModeTab (Gather amber / Analyse blue): a classic tab on the header line. The active tab takes the page background
+    ModeTab (Gather amber / Analyze blue): a classic tab on the header line. The active tab takes the page background
     and covers the header's bottom line, so it connects to the content, with a 3 px top accent in the mode color.
     The text label always shows: color is never the only cue.
   -->
@@ -75,10 +75,10 @@
   <Style Selector="RadioButton.modetab.gather:checked /template/ Border#PART_Accent">
     <Setter Property="Background" Value="{DynamicResource AmberAccentBrush}" />
   </Style>
-  <Style Selector="RadioButton.modetab.analyse:checked">
+  <Style Selector="RadioButton.modetab.analyze:checked">
     <Setter Property="Foreground" Value="{DynamicResource BlueTextBrush}" />
   </Style>
-  <Style Selector="RadioButton.modetab.analyse:checked /template/ Border#PART_Accent">
+  <Style Selector="RadioButton.modetab.analyze:checked /template/ Border#PART_Accent">
     <Setter Property="Background" Value="{DynamicResource BlueFillBrush}" />
   </Style>
 
@@ -137,7 +137,7 @@
     <Setter Property="Height" Value="16" />
   </Style>
 
-  <!-- FilterChip (Analyse scope): blue tint, with a small remove button -->
+  <!-- FilterChip (Analyze scope): blue tint, with a small remove button -->
   <Style Selector="Border.filterchip">
     <Setter Property="Background" Value="{DynamicResource BlueTintBrush}" />
     <Setter Property="BorderBrush" Value="{DynamicResource BlueTintLineBrush}" />
@@ -176,12 +176,66 @@
     <Setter Property="VerticalAlignment" Value="Center" />
   </Style>
 
-  <!-- Per run chart -->
-  <Style Selector="c|BarChart">
+  <!-- Analyze charts: bars and group A blue, the running total amber, group B orange (outlined / dashed) -->
+  <Style Selector="c|AnalyzeChart">
     <Setter Property="BarBrush" Value="{DynamicResource BlueFillBrush}" />
-    <Setter Property="AverageBrush" Value="{DynamicResource TextMutedBrush}" />
+    <Setter Property="LineBrush" Value="{DynamicResource AmberAccentBrush}" />
+    <Setter Property="BBrush" Value="{DynamicResource DeltaDownBrush}" />
     <Setter Property="LabelBrush" Value="{DynamicResource TextMutedBrush}" />
-    <Setter Property="FontFamily" Value="{StaticResource MonoFont}" />
+    <Setter Property="GridBrush" Value="{DynamicResource LineBrush}" />
+  </Style>
+
+  <!-- A / B group markers: A filled blue, B outlined orange (the letter, not only the color) -->
+  <Style Selector="Border.groupA, Border.groupB">
+    <Setter Property="Width" Value="20" />
+    <Setter Property="Height" Value="20" />
+    <Setter Property="CornerRadius" Value="{StaticResource ChipRadius}" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+  <Style Selector="Border.groupA">
+    <Setter Property="Background" Value="{DynamicResource BlueFillBrush}" />
+  </Style>
+  <Style Selector="Border.groupB">
+    <Setter Property="BorderBrush" Value="{DynamicResource DeltaDownBrush}" />
+    <Setter Property="BorderThickness" Value="1.5" />
+  </Style>
+  <Style Selector="Border.groupA TextBlock, Border.groupB TextBlock">
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="FontWeight" Value="Bold" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+  <Style Selector="Border.groupA TextBlock">
+    <Setter Property="Foreground" Value="{DynamicResource BgChromeBrush}" />
+  </Style>
+  <Style Selector="Border.groupB TextBlock">
+    <Setter Property="Foreground" Value="{DynamicResource DeltaDownBrush}" />
+  </Style>
+  <Style Selector="TextBlock.groupB">
+    <Setter Property="Foreground" Value="{DynamicResource DeltaDownBrush}" />
+  </Style>
+
+  <!-- "A: 5 runs vs B: 4 runs": plain, amber for small samples, red when a side is empty -->
+  <Style Selector="Border.splitcount">
+    <Setter Property="Background" Value="{DynamicResource PanelRaisedBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LineStrongBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{StaticResource ControlRadius}" />
+    <Setter Property="Padding" Value="10,5" />
+  </Style>
+  <Style Selector="Border.splitcount.small">
+    <Setter Property="Background" Value="{DynamicResource AmberTintBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource AmberTintLineBrush}" />
+  </Style>
+  <Style Selector="Border.splitcount.empty">
+    <Setter Property="Background" Value="{DynamicResource DangerTintBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource DangerLineBrush}" />
+  </Style>
+  <Style Selector="Border.splitcount TextBlock.note">
+    <Setter Property="Foreground" Value="{DynamicResource AmberTextBrush}" />
+  </Style>
+  <Style Selector="Border.splitcount.empty TextBlock.note">
+    <Setter Property="Foreground" Value="{DynamicResource DangerTextBrush}" />
   </Style>
 
   <!-- Include checkbox of the runs table: blue accent -->

@@ -403,7 +403,7 @@ public sealed class MapSession(Guid sessionId)
         return Do(new SetupKindEdit(itemId, item.Kind, kind));
     }
 
-    /// <summary>Excludes a run from the Analyse statistics (or includes it again).</summary>
+    /// <summary>Excludes a run from the Analyze statistics (or includes it again).</summary>
     public bool SetRunExcluded(Guid runId, bool excluded)
     {
         var run = FindRun(runId) ?? throw new InvalidOperationException("Run not found.");

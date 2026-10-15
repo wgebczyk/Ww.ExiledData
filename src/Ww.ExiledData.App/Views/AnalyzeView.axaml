@@ -1,0 +1,293 @@
+<!-- Analyze tab of a mapping session: mode and unit, currencies and runs (left), value charts (right). -->
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Ww.ExiledData.App.ViewModels"
+             xmlns:c="using:Ww.ExiledData.App.Controls"
+             x:Class="Ww.ExiledData.App.Views.AnalyzeView"
+             x:DataType="vm:AnalyzeViewModel">
+
+  <UserControl.Resources>
+    <!-- A chart card: title, summary, legend; in A vs B a per run chart and a running total chart -->
+    <DataTemplate x:Key="ChartCard" x:DataType="vm:AnalyzeChartViewModel">
+      <Border Classes="card" Padding="16,12">
+        <StackPanel Spacing="8">
+          <Grid ColumnDefinitions="Auto,Auto,Auto,*,Auto" ColumnSpacing="10">
+            <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="15" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="1" Classes="mono secondary" FontSize="13" Text="{Binding SummaryText}" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="2" Classes="mono" Classes.up="{Binding IsUp}" Classes.down="{Binding IsDown}" FontSize="13"
+                       Text="{Binding ChangeText}" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="3" Classes="muted small" Text="{Binding LegendText}" HorizontalAlignment="Right" VerticalAlignment="Center"
+                       TextTrimming="CharacterEllipsis" />
+            <StackPanel Grid.Column="4" Orientation="Horizontal" Spacing="4" IsVisible="{Binding IsCustom}">
+              <Button Classes="ui icon small" Command="{Binding EditCommand}" ToolTip.Tip="Change the currencies" AutomationProperties.Name="Change the currencies">
+                <c:StrokeIcon Classes="small" Data="{StaticResource IconRename}" />
+              </Button>
+              <Button Classes="ui icon small" Command="{Binding RemoveCommand}" ToolTip.Tip="Remove the chart" AutomationProperties.Name="Remove the chart">
+                <c:StrokeIcon Classes="small" Data="{StaticResource IconClose}" />
+              </Button>
+            </StackPanel>
+          </Grid>
+          <TextBlock Classes="muted small" Text="{Binding ChartCaption}" IsVisible="{Binding HasCaptions}" />
+          <c:AnalyzeChart Data="{Binding Chart}" Height="170" />
+          <TextBlock Classes="muted small" Text="{Binding Chart2Caption}" IsVisible="{Binding HasChart2}" Margin="0,6,0,0" />
+          <c:AnalyzeChart Data="{Binding Chart2}" Height="170" IsVisible="{Binding HasChart2}" />
+        </StackPanel>
+      </Border>
+    </DataTemplate>
+  </UserControl.Resources>
+
+  <Grid RowDefinitions="Auto,16,*">
+
+    <!-- Mode, the A group (A vs B), the used runs or the split, and the value unit -->
+    <Border Grid.Row="0" Classes="card" Padding="16,10">
+      <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="16">
+        <Border Classes="segmented" VerticalAlignment="Center">
+          <StackPanel Orientation="Horizontal">
+            <RadioButton Classes="segment" GroupName="analyzemode" Content="ALL" IsChecked="{Binding IsAll}" />
+            <RadioButton Classes="segment" GroupName="analyzemode" Content="A vs B" IsChecked="{Binding IsCompare}" />
+          </StackPanel>
+        </Border>
+
+        <!-- A = the runs matching every filter (AND); B = the rest. No filter: halves. -->
+        <WrapPanel Grid.Column="1" ItemSpacing="8" LineSpacing="6" VerticalAlignment="Center" IsVisible="{Binding IsCompare}">
+          <Border Classes="groupA"><TextBlock Text="A" /></Border>
+          <TextBlock Classes="muted" Text="=" VerticalAlignment="Center" />
+          <Border Classes="filterchip neutral" IsVisible="{Binding ShowHalves}" ToolTip.Tip="No filter: the used runs split in run order">
+            <TextBlock Text="{Binding FirstHalfText}" />
+          </Border>
+          <ItemsControl ItemsSource="{Binding AFilters}">
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <WrapPanel ItemSpacing="8" LineSpacing="6" />
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+              <DataTemplate x:DataType="vm:FilterChipViewModel">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <Border Classes="filterchip">
+                    <StackPanel Orientation="Horizontal">
+                      <TextBlock Text="{Binding Text}" />
+                      <Button Classes="chipx" Content="✕" Command="{Binding RemoveCommand}" ToolTip.Tip="Remove the filter" />
+                    </StackPanel>
+                  </Border>
+                  <TextBlock Classes="label" Text="AND" VerticalAlignment="Center" />
+                </StackPanel>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+          <Button Classes="addchip" Content="+ filter" Command="{Binding AddAFilterAskCommand}" FontSize="13" Padding="9,4"
+                  ToolTip.Tip="A = the used runs matching every filter: tags (&quot;rituals &gt;= 5&quot;, &quot;!died&quot;) or a run range (&quot;runs 5-23&quot;)" />
+          <Border Width="1" Height="20" Background="{DynamicResource LineBrush}" Margin="4,0" />
+          <Border Classes="groupB"><TextBlock Text="B" /></Border>
+          <TextBlock Classes="muted" Text="=" VerticalAlignment="Center" />
+          <Border Classes="filterchip neutral" IsVisible="{Binding ShowHalves}">
+            <TextBlock Text="{Binding SecondHalfText}" />
+          </Border>
+          <TextBlock Classes="muted" Text="the other used runs" VerticalAlignment="Center" IsVisible="{Binding HasAFilters}" />
+        </WrapPanel>
+
+        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+          <StackPanel Orientation="Horizontal" Spacing="5" VerticalAlignment="Center" IsVisible="{Binding IsAll}">
+            <TextBlock Classes="mono blue" FontWeight="SemiBold" FontSize="15" Text="{Binding UsedText}" VerticalAlignment="Center" />
+            <TextBlock Classes="muted" Text="{Binding ScopeText}" VerticalAlignment="Center" />
+          </StackPanel>
+          <Border Classes="splitcount" Classes.small="{Binding IsSplitSmall}" Classes.empty="{Binding IsSplitEmpty}" IsVisible="{Binding IsCompare}"
+                  ToolTip.Tip="Fewer than 10 runs on a side: differences can be noise">
+            <StackPanel Orientation="Horizontal" Spacing="6">
+              <TextBlock Classes="mono blue" FontWeight="SemiBold" FontSize="13" Text="{Binding SplitAText}" VerticalAlignment="Center" />
+              <TextBlock Classes="muted" FontSize="13" Text="vs" VerticalAlignment="Center" />
+              <TextBlock Classes="mono groupB" FontWeight="SemiBold" FontSize="13" Text="{Binding SplitBText}" VerticalAlignment="Center" />
+              <TextBlock Classes="note small" Text="{Binding SplitNote}" VerticalAlignment="Center"
+                         IsVisible="{Binding SplitNote, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+            </StackPanel>
+          </Border>
+          <Border Width="1" Height="24" Background="{DynamicResource LineBrush}" />
+          <TextBlock Classes="label" Text="VALUE IN" VerticalAlignment="Center" />
+          <Border Classes="segmented">
+            <StackPanel Orientation="Horizontal">
+              <RadioButton Classes="segment" GroupName="analyzeunit" Content="DIV" IsChecked="{Binding IsDivine}" />
+              <RadioButton Classes="segment" GroupName="analyzeunit" Content="EX" IsChecked="{Binding IsExalted}" />
+              <RadioButton Classes="segment" GroupName="analyzeunit" Content="ChO" IsChecked="{Binding IsChaos}" />
+            </StackPanel>
+          </Border>
+        </StackPanel>
+      </Grid>
+    </Border>
+
+    <!-- Empty state -->
+    <TextBlock Grid.Row="2" Classes="muted" IsVisible="{Binding HasNoRuns}" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Text="Nothing to analyze yet: runs appear once a waystone is copied in the Gather tab." />
+
+    <Grid Grid.Row="2" ColumnDefinitions="*,16,*" IsVisible="{Binding HasRuns}">
+
+      <Grid RowDefinitions="*,8,*">
+
+        <!-- Currencies: Use (saved with the session), by value -->
+        <Border Classes="card" Grid.IsSharedSizeScope="True">
+          <DockPanel>
+            <Grid DockPanel.Dock="Top" ColumnDefinitions="Auto,Auto,*,Auto,Auto" ColumnSpacing="10" Margin="0,0,0,10">
+              <TextBlock Text="Currencies" FontWeight="SemiBold" FontSize="15" VerticalAlignment="Center" />
+              <TextBlock Grid.Column="1" Classes="muted" FontSize="13" Text="{Binding CurrencyCountText}" VerticalAlignment="Center" />
+              <TextBlock Grid.Column="3" Classes="mono" FontWeight="Medium" Text="{Binding TotalValueText}" VerticalAlignment="Center" />
+              <TextBlock Grid.Column="4" Classes="mono muted small" Text="{Binding UnitText, StringFormat='{}{0} total'}" VerticalAlignment="Center" />
+            </Grid>
+            <TextBlock DockPanel.Dock="Bottom" Classes="muted small" Margin="0,8,0,0" TextWrapping="Wrap"
+                       Text="– = no poe.ninja price. Unticked currencies are left out of the run values and the Value and Top value charts." />
+            <TextBlock DockPanel.Dock="Bottom" Classes="muted small" Margin="0,8,0,0" TextWrapping="Wrap" IsVisible="{Binding HasNoPrices}"
+                       Text="No prices yet: values come from poe.ninja (the price chip in the app bar)." />
+            <Grid DockPanel.Dock="Top" ColumnSpacing="8" Margin="0,0,14,6">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="code" />
+                <ColumnDefinition Width="*" MinWidth="80" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="count" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="value" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="countrun" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="valuerun" />
+              </Grid.ColumnDefinitions>
+              <CheckBox Classes="use" IsChecked="{Binding AllCurrenciesUsed}" AutomationProperties.Name="Use all currencies"
+                        ToolTip.Tip="Use all currencies (or none)" />
+              <TextBlock Grid.Column="1" Classes="label" Text="CODE" VerticalAlignment="Center" />
+              <TextBlock Grid.Column="2" Classes="label" Text="CURRENCY" VerticalAlignment="Center" />
+              <TextBlock Grid.Column="3" Classes="label" Text="COUNT" HorizontalAlignment="Right" VerticalAlignment="Center" />
+              <TextBlock Grid.Column="4" Classes="label blue" Text="VALUE ↓" HorizontalAlignment="Right" VerticalAlignment="Center" />
+              <TextBlock Grid.Column="5" Classes="label" Text="COUNT/RUN" HorizontalAlignment="Right" VerticalAlignment="Center"
+                         ToolTip.Tip="A vs B: A · B" />
+              <TextBlock Grid.Column="6" Classes="label" Text="VALUE/RUN" HorizontalAlignment="Right" VerticalAlignment="Center"
+                         ToolTip.Tip="A vs B: A · B and how A differs from B" />
+            </Grid>
+            <Panel>
+              <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                <ItemsControl ItemsSource="{Binding Currencies}" Margin="0,0,14,0">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:AnalyzeCurrencyRow">
+                      <Border BorderBrush="{DynamicResource LineBrush}" BorderThickness="0,1,0,0" Padding="0,6">
+                        <Grid ColumnSpacing="8">
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="code" />
+                            <ColumnDefinition Width="*" MinWidth="80" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="count" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="value" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="countrun" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="valuerun" />
+                          </Grid.ColumnDefinitions>
+                          <CheckBox Classes="use" IsChecked="{Binding IsUsed}" AutomationProperties.Name="{Binding UseLabel}" ToolTip.Tip="{Binding UseLabel}" />
+                          <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4" Opacity="{Binding RowOpacity}" VerticalAlignment="Center">
+                            <Image Classes="currencyIcon" Source="{Binding Image, Converter={x:Static c:CurrencyIconConverter.Instance}}"
+                                   IsVisible="{Binding $self.Source, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                            <TextBlock Classes="mono amber" Text="{Binding Code}" />
+                            <Border Classes="badge" IsVisible="{Binding Badge, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                              <TextBlock Text="{Binding Badge}" />
+                            </Border>
+                          </StackPanel>
+                          <TextBlock Grid.Column="2" Text="{Binding Name}" TextTrimming="CharacterEllipsis" Opacity="{Binding RowOpacity}" VerticalAlignment="Center" />
+                          <TextBlock Grid.Column="3" Classes="mono" Text="{Binding CountText}" HorizontalAlignment="Right" Opacity="{Binding RowOpacity}" VerticalAlignment="Center" />
+                          <TextBlock Grid.Column="4" Classes="mono" FontWeight="Medium" Text="{Binding ValueText}" HorizontalAlignment="Right" Opacity="{Binding RowOpacity}" VerticalAlignment="Center" />
+                          <TextBlock Grid.Column="5" Classes="mono secondary" FontSize="13" Text="{Binding CountPerRunText}" HorizontalAlignment="Right"
+                                     Opacity="{Binding RowOpacity}" VerticalAlignment="Center" />
+                          <StackPanel Grid.Column="6" Orientation="Horizontal" Spacing="6" HorizontalAlignment="Right" Opacity="{Binding RowOpacity}" VerticalAlignment="Center">
+                            <TextBlock Classes="mono secondary" FontSize="13" Text="{Binding ValuePerRunText}" />
+                            <TextBlock Classes="mono" Classes.up="{Binding IsUp}" Classes.down="{Binding IsDown}" FontSize="13" Text="{Binding ChangeText}" />
+                          </StackPanel>
+                        </Grid>
+                      </Border>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </ScrollViewer>
+              <TextBlock Classes="muted" Text="No run is used: tick runs below." IsVisible="{Binding HasNothingUsed}"
+                         HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" />
+            </Panel>
+          </DockPanel>
+        </Border>
+
+        <GridSplitter Grid.Row="1" ResizeDirection="Rows" Background="Transparent" />
+
+        <!-- Runs: Use includes a run (stored with it); A vs B marks each used run's group -->
+        <Border Grid.Row="2" Classes="card">
+          <DockPanel>
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="10" Margin="0,0,0,10">
+              <TextBlock Text="Runs" FontWeight="SemiBold" FontSize="15" VerticalAlignment="Center" />
+              <TextBlock Classes="muted" FontSize="13" VerticalAlignment="Center">
+                <Run Text="{Binding UsedText}" /><Run Text=" " /><Run Text="{Binding ScopeText}" />
+              </TextBlock>
+            </StackPanel>
+            <Grid DockPanel.Dock="Top" ColumnDefinitions="30,26,44,1.2*,64,64,*" ColumnSpacing="8" Margin="0,0,14,6">
+              <TextBlock Classes="label" Text="USE" />
+              <TextBlock Grid.Column="2" Classes="label" Text="RUN" />
+              <TextBlock Grid.Column="3" Classes="label" Text="SETUP" />
+              <TextBlock Grid.Column="4" Classes="label" Text="COUNT" HorizontalAlignment="Right" />
+              <TextBlock Grid.Column="5" Classes="label" Text="VALUE" HorizontalAlignment="Right" />
+              <TextBlock Grid.Column="6" Classes="label" Text="TAGS" />
+            </Grid>
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+              <ItemsControl ItemsSource="{Binding Runs}" Margin="0,0,14,0">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate x:DataType="vm:AnalyzeRunRow">
+                    <Border BorderBrush="{DynamicResource LineBrush}" BorderThickness="0,1,0,0" Padding="0,6">
+                      <Grid ColumnDefinitions="30,26,44,1.2*,64,64,*" ColumnSpacing="8">
+                        <CheckBox Classes="use" IsChecked="{Binding IsIncludedByHand}" AutomationProperties.Name="{Binding IncludeLabel}"
+                                  ToolTip.Tip="{Binding IncludeLabel}" />
+                        <Border Grid.Column="1" Classes="groupA" IsVisible="{Binding IsA}" ToolTip.Tip="{Binding GroupLabel}"><TextBlock Text="A" /></Border>
+                        <Border Grid.Column="1" Classes="groupB" IsVisible="{Binding IsB}" ToolTip.Tip="{Binding GroupLabel}"><TextBlock Text="B" /></Border>
+                        <TextBlock Grid.Column="2" Classes="mono" Text="{Binding NumberText}" FontWeight="Medium" Opacity="{Binding RowOpacity}" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="3" Text="{Binding SetupText}" TextTrimming="CharacterEllipsis" Opacity="{Binding RowOpacity}" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="4" Classes="mono" Text="{Binding CountText}" HorizontalAlignment="Right" Opacity="{Binding RowOpacity}" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="5" Classes="mono" FontWeight="Medium" Text="{Binding ValueText}" HorizontalAlignment="Right" Opacity="{Binding RowOpacity}" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="6" Classes="muted" Text="{Binding TagsText}" TextTrimming="CharacterEllipsis" Opacity="{Binding RowOpacity}" VerticalAlignment="Center" />
+                      </Grid>
+                    </Border>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </ScrollViewer>
+          </DockPanel>
+        </Border>
+      </Grid>
+
+      <!-- Charts: Value, the top three currencies by value, charts added by hand -->
+      <ScrollViewer Grid.Column="2" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Spacing="12" Margin="0,0,12,0">
+          <TextBlock Classes="muted" IsVisible="{Binding HasNothingUsed}" Text="No run is used: tick runs on the left." Margin="0,20" HorizontalAlignment="Center" />
+
+          <StackPanel Spacing="12" IsVisible="{Binding HasUsedRuns}">
+            <StackPanel Orientation="Horizontal" Spacing="10" Margin="2,0,0,0">
+              <TextBlock Classes="label" Text="VALUE" />
+              <TextBlock Classes="muted small" Text="used currencies of the used runs" />
+            </StackPanel>
+            <ContentControl Content="{Binding ValueChart}" ContentTemplate="{StaticResource ChartCard}" />
+
+            <StackPanel Orientation="Horizontal" Spacing="10" Margin="2,8,0,0">
+              <TextBlock Classes="label" Text="TOP VALUE" />
+              <TextBlock Classes="muted small" Text="the 3 used currencies with the highest value" />
+            </StackPanel>
+            <ItemsControl ItemsSource="{Binding TopCharts}" ItemTemplate="{StaticResource ChartCard}">
+              <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                  <StackPanel Spacing="12" />
+                </ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+            </ItemsControl>
+
+            <StackPanel Orientation="Horizontal" Spacing="10" Margin="2,8,0,0" IsVisible="{Binding HasCustomCharts}">
+              <TextBlock Classes="label" Text="YOUR CHARTS" />
+              <TextBlock Classes="muted small" Text="saved with the session" />
+            </StackPanel>
+            <ItemsControl ItemsSource="{Binding CustomCharts}" ItemTemplate="{StaticResource ChartCard}">
+              <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                  <StackPanel Spacing="12" />
+                </ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+            </ItemsControl>
+
+            <Button Classes="addchip" Content="+ Add chart" Command="{Binding AddChartCommand}" HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Center" Padding="14" FontSize="14"
+                    ToolTip.Tip="A Value chart (bars per run and the running total) of the currencies you choose" />
+          </StackPanel>
+        </StackPanel>
+      </ScrollViewer>
+    </Grid>
+  </Grid>
+</UserControl>

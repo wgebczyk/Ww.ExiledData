@@ -18,6 +18,29 @@ internal static class SampleMapping
 
     public const string Name = "Screenshot · farming rituals";
 
+    /// <summary>Made-up prices (in Divine Orbs) for the Analyze screenshots; the screenshot run has no poe.ninja pull.</summary>
+    public static PriceBook Prices { get; } = new()
+    {
+        League = "Screenshot",
+        FetchedAt = new DateTimeOffset(2026, 10, 15, 12, 0, 0, TimeSpan.Zero),
+        ExaltedPerDivine = 300,
+        ChaosPerDivine = 30,
+        Divine = new Dictionary<string, double>
+        {
+            ["Divine Orb"] = 1,
+            ["Chaos Orb"] = 1 / 30.0,
+            ["Greater Chaos Orb"] = 0.15,
+            ["Exalted Orb"] = 1 / 300.0,
+            ["Orb of Transmutation"] = 0.0005,
+            ["Greater Orb of Transmutation"] = 0.004,
+            ["Perfect Orb of Transmutation"] = 0.02,
+            ["Orb of Alchemy"] = 0.002,
+            ["Orb of Annulment"] = 0.05,
+            ["Vaal Orb"] = 0.01,
+            ["Regal Orb"] = 0.003,
+        },
+    };
+
     public static async Task<Guid> Create(SessionController controller, MappingService mapping)
     {
         var id = await controller.StartNewSession(Name, SessionKind.Mapping);
@@ -51,7 +74,7 @@ internal static class SampleMapping
         await mapping.AddTag(id, second, "died");
         await mapping.SetNote(id, second, "Boss twice, lost the portal.");
 
-        // Runs 3-9: one stash scan each, rituals from 3 to 9 (for the Analyse chart and compare).
+        // Runs 3-9: one stash scan each, rituals from 3 to 9 (for the Analyze chart and compare).
         for (var i = 0; i < 7; i++)
         {
             var rituals = 3 + i;

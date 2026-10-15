@@ -19,6 +19,8 @@
     <PackageVersion Include="Avalonia.Fonts.Inter" Version="12.1.4" />
     <PackageVersion Include="Avalonia.Themes.Fluent" Version="12.1.4" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <!-- Prerelease: 2.0.x targets Avalonia 11; only 2.1 dev builds target Avalonia 12. -->
+    <PackageVersion Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.1.0-dev-798" />
   </ItemGroup>
 
   <ItemGroup Label="Tests">

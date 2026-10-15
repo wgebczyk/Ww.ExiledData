@@ -25,7 +25,7 @@ public sealed partial class CurrencyCellViewModel(CurrencyDisplay? display) : Ob
     [NotifyPropertyChangedFor(nameof(IsZero), nameof(CountText), nameof(Tip))]
     public partial int Count { get; set; }
 
-    /// <summary>Shown instead of <see cref="Count"/> when set (an average in the Analyse tab).</summary>
+    /// <summary>Shown instead of <see cref="Count"/> when set (an average in the Analyze tab).</summary>
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(CountText))]
     public partial string? DisplayText { get; set; }

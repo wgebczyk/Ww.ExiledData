@@ -20,7 +20,7 @@
         <!-- Classic tabs on the header line: the active one connects to the page below. The only place the mode switches. -->
         <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Bottom" Margin="0,0,10,0" IsVisible="{Binding IsMapping}">
           <RadioButton Classes="modetab gather" GroupName="mode" Content="Gather" IsChecked="{Binding IsGatherMode}" />
-          <RadioButton Classes="modetab analyse" GroupName="mode" Content="Analyse" IsChecked="{Binding IsAnalyseMode}" />
+          <RadioButton Classes="modetab analyze" GroupName="mode" Content="Analyze" IsChecked="{Binding IsAnalyzeMode}" />
         </StackPanel>
 
         <!-- The summary takes what is left and trims, so the actions on the right always fit -->
@@ -35,8 +35,8 @@
               <TextBlock Classes="mono amber" Text="{Binding ElapsedText}" FontSize="13" VerticalAlignment="Center" />
             </StackPanel>
           </Border>
-          <TextBlock DockPanel.Dock="Left" Classes="mono muted" FontSize="13" Text="{Binding Analyse.SummaryText, FallbackValue=''}"
-                     IsVisible="{Binding ShowAnalyseSummary}" VerticalAlignment="Center" Margin="0,0,14,0" />
+          <TextBlock DockPanel.Dock="Left" Classes="mono muted" FontSize="13" Text="{Binding Analyze.SummaryText, FallbackValue=''}"
+                     IsVisible="{Binding ShowAnalyzeSummary}" VerticalAlignment="Center" Margin="0,0,14,0" />
           <!-- Session tags (mapping sessions) -->
           <ItemsControl DockPanel.Dock="Left" ItemsSource="{Binding Gather.SessionTags, FallbackValue={x:Null}}" VerticalAlignment="Center"
                         IsVisible="{Binding IsMapping}">
@@ -78,7 +78,7 @@
           <Button Classes="ui icon bare" Command="{Binding DeleteCommand}" ToolTip.Tip="Delete session" AutomationProperties.Name="Delete session">
             <c:StrokeIcon Data="{StaticResource IconDelete}" />
           </Button>
-          <!-- Recording toggle, set apart and last: stop while recording (not in Analyse), play when ended -->
+          <!-- Recording toggle, set apart and last: stop while recording (not in Analyze), play when ended -->
           <Rectangle Width="1" Height="24" Fill="{DynamicResource LineBrush}" Margin="6,0" IsVisible="{Binding ShowRecordingToggle}" />
           <Button Classes="ui icon stop" Command="{Binding EndSessionCommand}" IsVisible="{Binding ShowEndSession}"
                   ToolTip.Tip="End session" AutomationProperties.Name="End session">
@@ -147,9 +147,9 @@
       </Grid>
     </Border>
 
-    <!-- Body of a mapping session in Analyse mode -->
-    <Border Grid.Row="1" IsVisible="{Binding IsAnalyseBody}">
-      <v:AnalyseView Margin="16" DataContext="{Binding Analyse}" />
+    <!-- Body of a mapping session in Analyze mode -->
+    <Border Grid.Row="1" IsVisible="{Binding IsAnalyzeBody}">
+      <v:AnalyzeView Margin="16" DataContext="{Binding Analyze}" />
     </Border>
 
     <!-- Status line (capture feedback, errors, export results); the hotkeys while recording -->

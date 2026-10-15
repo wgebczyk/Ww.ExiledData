@@ -29,7 +29,7 @@ public sealed partial class LootGridField : SettingField
     private bool _loading;
 
     public LootGridField(LootLayout saved, LootLayout @default, CurrencyBook book)
-        : base("Loot grid", "The currencies of the condensed loot grid in the Gather and Analyse tabs. Empty places are left blank.")
+        : base("Loot grid", "The currencies of the condensed loot grid in the Gather and Analyze tabs. Empty places are left blank.")
     {
         _saved = saved;
         _default = @default;

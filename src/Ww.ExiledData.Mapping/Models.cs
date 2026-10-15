@@ -70,7 +70,7 @@ public sealed class MapRun
     /// <summary>Loot corrections the user confirmed (from the Final-vs-Initial check), in order.</summary>
     public List<LootAdjustment> Adjustments { get; set; } = [];
 
-    /// <summary>Excluded from the Analyse statistics by hand (an outlier or a failed run).</summary>
+    /// <summary>Excluded from the Analyze statistics by hand (an outlier or a failed run).</summary>
     public bool Excluded { get; set; }
 
     public bool IsOpen => EndedAt is null;

@@ -42,7 +42,7 @@
       <SolidColorBrush x:Key="InfoTintLineBrush" Color="#2f4a6b" />
       <SolidColorBrush x:Key="DeltaDownBrush" Color="#f0a35e" />
       <SolidColorBrush x:Key="CurrencyIconTileBrush" Color="#2c313b" />
-      <!-- Fluent-drawn controls (check boxes, selection) take the Analyse blue as accent. -->
+      <!-- Fluent-drawn controls (check boxes, selection) take the Analyze blue as accent. -->
       <Color x:Key="SystemAccentColor">#5ea6f0</Color>
     </ResourceDictionary>
 

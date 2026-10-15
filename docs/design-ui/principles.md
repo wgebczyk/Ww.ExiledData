@@ -13,7 +13,7 @@ Rules that hold across every screen. Values (colors, sizes) live in the code; se
 - Every color comes from a token in `Theme/Tokens.axaml`, referenced with `{DynamicResource ...}` so a theme switch re-resolves it. No hex values, `Color.Parse` or `Brushes.X` in UI code (a test checks the listed files).
 - Tokens are named by role, not by hue value: `PanelRaised`, `AmberText`, `DangerLine`. Both themes define the same keys.
 - Amber has three roles: `AmberFill` only for the primary button, `AmberText` for amber text, `AmberAccent` for dots, borders and accents. Blue likewise: `BlueFill` for bars and checkboxes, `BlueText` for text.
-- Mode colors: Gather is amber, Analyse is blue. Amber also means "recording" (REC badge, Running pill, recording dot).
+- Mode colors: Gather is amber, Analyze is blue. Amber also means "recording" (REC badge, Running pill, recording dot).
 - Color is never the only signal: mode tabs keep their label, decreases carry ▼, warnings carry ⚠, a changed setting has a dot and a colored border.
 - Contrast: text at least 4.5:1 against its background in both themes, indicators (bars, accents) at least 3:1. `TextFaint` is for disabled and placeholder text only. The pairs are asserted in `ThemeTokensTests`; add a pair there when you introduce a new text-on-background combination.
 - The game overlays (capture indicator, sweep grid, grid editor) are not themed: they sit on arbitrary game imagery and use fixed high-contrast colors with a dark backdrop or outline.
@@ -36,7 +36,7 @@ Rules that hold across every screen. Values (colors, sizes) live in the code; se
 - One primary (amber) button per area: the action the user most likely wants next.
 - Destructive actions use the danger style and ask for confirmation. Edits of recorded data are undoable (Undo / Redo buttons and hotkeys) instead of asking first.
 - Icon-only buttons always have a tooltip and an accessible name (`AutomationProperties.Name`).
-- The Gather/Analyse mode tabs are the only place the mode switches.
+- The Gather/Analyze mode tabs are the only place the mode switches.
 - Changes to scope, filters, scan kinds or include checkboxes recompute the shown numbers immediately; there is no Apply button outside Settings.
 - Settings is a draft: changes preview where it makes sense (theme), apply on Save, and Cancel puts everything back. Each changed field is marked.
 - Every list has an empty state that says what to do to fill it.
@@ -45,5 +45,5 @@ Rules that hold across every screen. Values (colors, sizes) live in the code; se
 ## Data shown
 
 - Loot is what scans counted, not what was copied; the UI says where numbers come from ("from stash scans", "+ 1 adjustment").
-- Analyse always shows its scope ("N of M runs included") so a number is never read without knowing which runs it covers.
+- Analyze always shows its scope ("N of M runs used", or "A: 5 runs vs B: 4 runs") so a number is never read without knowing which runs it covers.
 - Currency icons come from an icon folder that may be missing; every place that shows an icon has a fallback (the code's first letter on a tile).

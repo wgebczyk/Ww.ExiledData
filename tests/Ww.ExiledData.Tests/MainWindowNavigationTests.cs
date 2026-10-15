@@ -51,13 +51,13 @@ public sealed class MainWindowNavigationTests : IDisposable
         var a = await _controller.StartNewSession("A");
         _main.Open(a);
         var page = _main.CurrentSession;
-        page!.IsAnalyseMode = true;
+        page!.IsAnalyzeMode = true;
 
         _main.ShowListCommand.Execute(null);
         _main.BackCommand.Execute(null);
 
         Assert.Same(page, _main.CurrentSession);
-        Assert.True(_main.CurrentSession!.IsAnalyseMode);
+        Assert.True(_main.CurrentSession!.IsAnalyzeMode);
     }
 
     [Fact]

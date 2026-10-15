@@ -97,22 +97,24 @@ public sealed partial class SessionViewModel : ObservableObject, IDisposable
     /// <summary>For the Gather tab: the recall and review dialogs (supplied by the view).</summary>
     public Func<RecallDialogViewModel, Task<bool>>? AskRecall { get; set; }
     public Func<ReviewDialogViewModel, Task<ReviewChoice?>>? AskReview { get; set; }
-    /// <summary>For the Analyse tab: (title, help, suggestions) → filter text.</summary>
+    /// <summary>For the Analyze tab: (title, help, suggestions) → filter text.</summary>
     public Func<string, string, IReadOnlyList<string>, Task<string?>>? AskFilter { get; set; }
+    /// <summary>For the Analyze tab: (title, currencies) → the chosen currency names (Add chart).</summary>
+    public Func<string, IReadOnlyList<CurrencyChoice>, Task<IReadOnlyList<string>?>>? AskCurrencies { get; set; }
 
-    /// <summary>The Analyse tab; created with the Gather tab.</summary>
+    /// <summary>The Analyze tab; created with the Gather tab.</summary>
     [ObservableProperty]
-    public partial AnalyseViewModel? Analyse { get; set; }
+    public partial AnalyzeViewModel? Analyze { get; set; }
 
-    /// <summary>The mode tab (mapping sessions): Gather or Analyse. The tabs are the only place it switches.</summary>
+    /// <summary>The mode tab (mapping sessions): Gather or Analyze. The tabs are the only place it switches.</summary>
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IsAnalyseMode), nameof(IsGatherBody), nameof(IsAnalyseBody), nameof(ShowRecBadge), nameof(ShowAnalyseSummary), nameof(ShowEndSession),
+    [NotifyPropertyChangedFor(nameof(IsAnalyzeMode), nameof(IsGatherBody), nameof(IsAnalyzeBody), nameof(ShowRecBadge), nameof(ShowAnalyzeSummary), nameof(ShowEndSession),
         nameof(ShowRecordingToggle))]
     public partial bool IsGatherMode { get; set; } = true;
 
-    public bool IsAnalyseMode { get => !IsGatherMode; set => IsGatherMode = !value; }
+    public bool IsAnalyzeMode { get => !IsGatherMode; set => IsGatherMode = !value; }
     public bool IsGatherBody => IsMapping && IsGatherMode;
-    public bool IsAnalyseBody => IsMapping && IsAnalyseMode;
+    public bool IsAnalyzeBody => IsMapping && IsAnalyzeMode;
 
     /// <summary>"Run 9" while Gather shows a run picked in the history (the breadcrumb's last segment); else null.</summary>
     public string? PickedRunText => IsGatherBody && Gather is { IsPickedRun: true, ShownRunNumber: { } number } ? $"Run {number}" : null;
@@ -122,11 +124,11 @@ public sealed partial class SessionViewModel : ObservableObject, IDisposable
     private void ShowCurrentRun() => Gather?.ShowCurrentRunCommand.Execute(null);
 
     partial void OnIsGatherModeChanged(bool value) => OnPropertyChanged(nameof(PickedRunText));
-    /// <summary>The REC badge shows only in Gather; Analyse shows the run summary instead.</summary>
+    /// <summary>The REC badge shows only in Gather; Analyze shows the run summary instead.</summary>
     public bool ShowRecBadge => IsRecording && (!IsMapping || IsGatherMode);
-    public bool ShowAnalyseSummary => IsAnalyseBody;
-    /// <summary>End session: while recording, not in Analyse.</summary>
-    public bool ShowEndSession => IsRecording && !IsAnalyseBody;
+    public bool ShowAnalyzeSummary => IsAnalyzeBody;
+    /// <summary>End session: while recording, not in Analyze.</summary>
+    public bool ShowEndSession => IsRecording && !IsAnalyzeBody;
     /// <summary>The header's last button shows: stop (<see cref="ShowEndSession"/>) or play (<see cref="IsEnded"/>).</summary>
     public bool ShowRecordingToggle => ShowEndSession || IsEnded;
 
@@ -140,9 +142,9 @@ public sealed partial class SessionViewModel : ObservableObject, IDisposable
     partial void OnGatherChanged(GatherViewModel? value)
     {
         OnPropertyChanged(nameof(IsGatherBody));
-        OnPropertyChanged(nameof(IsAnalyseBody));
+        OnPropertyChanged(nameof(IsAnalyzeBody));
         OnPropertyChanged(nameof(ShowRecBadge));
-        OnPropertyChanged(nameof(ShowAnalyseSummary));
+        OnPropertyChanged(nameof(ShowAnalyzeSummary));
     }
 
     /// <summary>The settings changed the loot grid: the open tabs rebuild theirs.</summary>
@@ -150,12 +152,13 @@ public sealed partial class SessionViewModel : ObservableObject, IDisposable
     {
         _currencies = currencies;
         Gather?.SetBook(currencies);
-        Analyse?.SetBook(currencies);
+        Analyze?.SetBook(currencies);
     }
 
-    private AnalyseViewModel CreateAnalyse() => new(_mapping!, Id, _currencies, _log)
+    private AnalyzeViewModel CreateAnalyze() => new(_mapping!, Id, _currencies, _log)
     {
         AskFilter = (title, help, suggestions) => AskFilter?.Invoke(title, help, suggestions) ?? Task.FromResult<string?>(null),
+        AskCurrencies = (title, choices) => AskCurrencies?.Invoke(title, choices) ?? Task.FromResult<IReadOnlyList<string>?>(null),
         ReportError = text => StatusText = text,
     };
 
@@ -274,10 +277,14 @@ public sealed partial class SessionViewModel : ObservableObject, IDisposable
                 var undo = await _mapping.UndoState(Id);
                 if (version != _loadVersion)
                     return;
-                Analyse ??= CreateAnalyse();
+                if (Analyze is null)
+                {
+                    Analyze = CreateAnalyze();
+                    await Analyze.LoadLayout();
+                }
                 Gather ??= CreateGather();
                 Gather.Update(map, IsRecording, _active?.Sweep, undo, DateTimeOffset.UtcNow);
-                Analyse.Update(map, IsRecording, DateTimeOffset.UtcNow);
+                Analyze.Update(map, IsRecording, DateTimeOffset.UtcNow);
             }
             BuildDetail();
             UpdateElapsed();

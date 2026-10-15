@@ -35,6 +35,23 @@ public sealed class MappingStoreTests : IDisposable
     private MapFeed Feed() => new() { Session = new MapSession(_session.Id) };
 
     [Fact]
+    public void The_analyze_layout_round_trips_per_session()
+    {
+        Assert.Same(AnalyzeLayout.Empty, _store.LoadAnalyzeLayout(_session.Id));
+        var chart = new CustomChart { Currencies = ["Chaos Orb", "Divine Orb"] };
+
+        _store.SaveAnalyzeLayout(_session.Id, new AnalyzeLayout { UnusedCurrencies = ["Orb of Transmutation"], Charts = [chart] });
+        _store.SaveAnalyzeLayout(_session.Id, new AnalyzeLayout { UnusedCurrencies = ["Vaal Orb"], Charts = [chart] }); // replaces
+
+        var loaded = _store.LoadAnalyzeLayout(_session.Id);
+        Assert.Equal(["Vaal Orb"], loaded.UnusedCurrencies);
+        var stored = Assert.Single(loaded.Charts);
+        Assert.Equal(chart.Id, stored.Id);
+        Assert.Equal(["Chaos Orb", "Divine Orb"], stored.Currencies);
+        Assert.Same(AnalyzeLayout.Empty, AnalyzeLayout.FromJson("not json"));
+    }
+
+    [Fact]
     public void A_session_round_trips()
     {
         var feed = Feed();

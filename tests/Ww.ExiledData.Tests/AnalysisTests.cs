@@ -2,7 +2,7 @@ using Ww.ExiledData.Mapping;
 
 namespace Ww.ExiledData.Tests;
 
-/// <summary>Analyse scope, filters, statistics and compare (MAPPING_PLAN.md 4).</summary>
+/// <summary>Analyze scope, filters, statistics and compare (MAPPING_PLAN.md 4).</summary>
 public sealed class AnalysisTests
 {
     private const string Chaos = "Chaos Orb";
@@ -159,6 +159,58 @@ public sealed class AnalysisTests
     }
 
     // --- storage ----------------------------------------------------------------------------------
+
+    // --- Analyze: A vs B, values -----------------------------------------------------------------
+
+    [Fact]
+    public void Without_filters_a_is_the_first_half_with_the_extra_run()
+    {
+        Run(1);
+        Run(2);
+        var excluded = Run(3);
+        Run(4);
+        Run(5);
+        Run(6);
+        Session.SetRunExcluded(excluded.Id, true);
+
+        var split = Analysis.Of(Session, []).Split([]);
+
+        Assert.True(split.ByHalves);
+        Assert.Equal([1, 2, 4], split.A.Select(r => r.Run.Number));
+        Assert.Equal([5, 6], split.B.Select(r => r.Run.Number));
+        Assert.True(split.IsSmallSample);
+        Assert.False(split.HasEmptySide);
+    }
+
+    [Fact]
+    public void Filters_define_a_together_and_b_is_the_rest()
+    {
+        Run(1, tags: ["rituals: 6"]);
+        Run(2, tags: ["rituals: 7", "died"]);
+        Run(3, tags: ["rituals: 2"]);
+
+        var split = Analysis.Of(Session, []).Split([Filter("rituals >= 5"), Filter("!died")]);
+
+        Assert.False(split.ByHalves);
+        Assert.Equal([1], split.A.Select(r => r.Run.Number));
+        Assert.Equal([2, 3], split.B.Select(r => r.Run.Number));
+        Assert.True(split.IsA(split.A[0]));
+        Assert.True(Analysis.Of(Session, []).Split([Filter("rituals >= 99")]).HasEmptySide);
+    }
+
+    [Fact]
+    public void A_run_value_sums_the_used_priced_currencies()
+    {
+        Run(chaos: 10, divine: 2);
+        var run = Analysis.Of(Session, []).Included[0];
+        double? Price(string name, int count) => name == Chaos ? count * 0.1 : null;
+
+        Assert.Equal(1.0, run.ValueOf(_ => true, Price), 6); // the Divine Orb has no price here
+        Assert.Equal(0.0, run.ValueOf(n => n != Chaos, Price));
+        Assert.Equal(12, run.CountOf(_ => true));
+        Assert.Equal(2, run.CountOf(n => n == Divine));
+        Assert.Equal([1.0, 3.0, 6.0], Analysis.Cumulative([1, 2, 3]));
+    }
 
     [Fact]
     public void Exclusion_is_stored_and_a_mapping_schema_before_scan_kinds_is_reset()

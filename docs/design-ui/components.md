@@ -31,13 +31,15 @@ Opt in by class; a plain control keeps the Fluent look. Files are under `src/Ww.
 | Class / control | Use |
 |---|---|
 | `Icon*` geometries | the line icon set (settings, rename, export, delete, stop, play, recall, swipe, final, undo, redo, warning, close, back, chevron down), drawn with `StrokeIcon` |
-| `RadioButton.modetab` + `gather` / `analyse` | the session page's mode tabs |
+| `RadioButton.modetab` + `gather` / `analyze` | the session page's mode tabs |
 | `Button.ui.icon` (+ `bare`, `small`, `square`) | icon-only button; always with tooltip and accessible name |
 | `Button.ui.icon.stop` / `.play` | the recording toggle: end the session / make it the recording one |
-| `Border.filterchip` (+ `neutral`) | Analyse scope filters; Compare A and B |
+| `Border.filterchip` (+ `neutral`) | Analyze A vs B: the filters of A; the first / second half chips when there is none |
+| `Border.groupA` / `groupB` | A filled blue, B outlined orange: run markers and the A = / B = labels |
+| `Border.splitcount` (+ `small` / `empty`) | "A: 5 runs vs B: 4 runs"; amber for small samples, red when a side is empty |
 | `TextBlock.blue`, `.up`, `.down`, `.warning` | blue text, increases, decreases, warnings |
 | `ProgressBar.statbar` | the bar in the currency statistics |
-| `CheckBox.use` | include a run in the Analyse scope |
+| `CheckBox.use` | use a run or a currency in the Analyze values |
 | `Button.kindchip` (+ `stash`, `final`) | a scan's kind; opens the change menu |
 | `Panel.slot` | a tablet slot (filled or dashed empty) |
 | `Border.badge` | L / G / P tier next to a currency code |
@@ -63,7 +65,7 @@ Opt in by class; a plain control keeps the Fluent look. Files are under `src/Ww.
 |---|---|
 | `CurrencyCell` | one cell of the loot grid: icon tile (letter fallback), tier badge, code, count; states zero, changed, placeholder |
 | `CurrencyIcons` | loads icons from the data folder's icon directory; missing files fall back |
-| `BarChart` | per-run bars with a dashed average line |
+| `AnalyzeChart` | LiveCharts2: bars per run with the running total on a right axis; A vs B bars (A filled, B outlined) and running totals (A solid, B dashed) |
 | `StrokeIcon` | draws an `Icon*` geometry in the current foreground |
 | `KeyRecorderBox` | records a hotkey |
 | `GridPreview` | small proportional drawing of a sweep area |
@@ -79,7 +81,7 @@ Screenshot names are the files in `screens/`, each as `-dark.png` and `-light.pn
 | Session list | `Views/SessionListView.axaml` | `session-list` (empty), `session-list-filters` (with sessions, the date range and the REC pill) |
 | Session page, free recording | `Views/SessionView.axaml`, `Views/CapturesView.axaml` | `recording` |
 | Session page, Gather | `Views/GatherView.axaml` | `gather`, `gather-list`, `gather-items`, `gather-review` (a picked run: the breadcrumb ends in Run 2) |
-| Session page, Analyse | `Views/AnalyseView.axaml` | `analyse`, `analyse-grid` |
+| Session page, Analyze | `Views/AnalyzeView.axaml` | `analyze`, `analyze-compare` |
 | Recall dialog | `Views/RecallDialog.axaml` | `recall`, `recall-tablets` |
 | Review dialog | `Views/ReviewDialog.axaml` | `review` |
 | New session, prompt, confirm | `Views/NewSessionDialog.cs`, `PromptDialog.cs`, `ConfirmDialog.cs` | `new-session`, `prompt`, `confirm` |

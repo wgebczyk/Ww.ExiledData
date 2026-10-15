@@ -41,6 +41,7 @@ public partial class MainWindow : Window
         session.AskRecall = dialog => RecallDialog.Ask(this, dialog);
         session.AskReview = dialog => ReviewDialog.Ask(this, dialog);
         session.AskFilter = (title, help, suggestions) => PromptDialog.AskWithSuggestions(this, title, help, suggestions);
+        session.AskCurrencies = (title, choices) => AddChartDialog.Ask(this, title, choices);
         session.SaveFile = SaveFile;
         return session;
     }

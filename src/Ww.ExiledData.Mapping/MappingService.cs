@@ -94,6 +94,16 @@ public sealed class MappingService
 
     public Task<IReadOnlyList<MapTag>> KnownTags() => Run(_store.KnownTags);
 
+    /// <summary>The Analyze tab's layout of the session (unused currencies, charts added by hand).</summary>
+    public Task<AnalyzeLayout> LoadAnalyzeLayout(Guid sessionId) => Run(() => _store.LoadAnalyzeLayout(sessionId));
+
+    /// <summary>Stores the Analyze tab's layout; a view preference, so no undo and no <see cref="Changed"/>.</summary>
+    public Task SaveAnalyzeLayout(Guid sessionId, AnalyzeLayout layout) => Run(() =>
+    {
+        _store.SaveAnalyzeLayout(sessionId, layout);
+        return true;
+    });
+
     /// <summary>
     /// The kind the next scan (sweep) of the recording session starts with: the Swipe, Stash scan and Final scan
     /// actions set it right before starting the sweep. A sweep started any other way is a swipe.

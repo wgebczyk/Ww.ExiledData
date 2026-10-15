@@ -747,15 +747,20 @@ public sealed class AppHost : IDisposable
         await SaveAll("gather-review");
         await SaveDialogScreenshots(await _mapping.Load(mapping));
 
-        // The Analyse tab: a range filter, one run excluded by hand, and a compare by a numeric tag.
+        // The Analyze tab (sample prices): one run excluded by hand, one currency unticked and a chart added by hand;
+        // then A vs B by a numeric tag.
         var sample = await _mapping.Load(mapping);
         await _mapping.SetRunExcluded(mapping, sample.Runs[1].Id, true);
-        page.IsAnalyseMode = true;
-        page.Analyse!.AddFilter(new RunRangeFilter(2, null));
-        page.Analyse.CompareBy(RunFilter.Parse("rituals >= 6", out _));
-        await SaveAll("analyse");
-        page.Analyse.ShowGrid = true;
-        await SaveAll("analyse-grid");
+        page.IsAnalyzeMode = true;
+        var analyze = page.Analyze!;
+        analyze.SetBook(_currencies.WithPrices(SampleMapping.Prices));
+        analyze.Unit = PriceUnit.Divine;
+        analyze.AddCustomChart(["Orb of Alchemy", "Vaal Orb", "Greater Orb of Transmutation"]);
+        analyze.Currencies.First(c => c.Name == "Orb of Annulment").IsUsed = false;
+        await SaveAll("analyze");
+        analyze.IsCompare = true;
+        analyze.AddAFilter(RunFilter.Parse("rituals >= 6", out _)!);
+        await SaveAll("analyze-compare");
 
         await _controller.DeleteSession(mapping);
 
@@ -808,6 +813,13 @@ public sealed class AppHost : IDisposable
                 ("new-session", () => new NewSessionDialog("Session 2", SampleMapping.Name)),
                 ("prompt", () => new PromptDialog("Rename session", "New name for the session:", SampleMapping.Name, null, multiline: false)),
                 ("confirm", () => new ConfirmDialog($"Delete session '{SampleMapping.Name}' with all its runs and captures?", "Delete", "Cancel")),
+                ("add-chart", () => new AddChartDialog("Add chart",
+                [
+                    new("Chaos Orb", _currencies.Describe("Chaos Orb"), "43.3 DIV", true),
+                    new("Divine Orb", _currencies.Describe("Divine Orb"), "9.00 DIV", false),
+                    new("Orb of Transmutation", _currencies.Describe("Orb of Transmutation"), "1.07 DIV", true),
+                    new("Verisium", _currencies.Describe("Verisium"), "–", false),
+                ])),
             };
             foreach (var (name, create) in shots)
             {

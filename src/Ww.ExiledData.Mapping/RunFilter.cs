@@ -17,7 +17,7 @@ public enum TagOp
 }
 
 /// <summary>
-/// A condition on runs for the Analyse scope (MAPPING_PLAN.md 4): tags now, mods later. Filters combine with AND.
+/// A condition on runs for the Analyze scope (MAPPING_PLAN.md 4): tags now, mods later. Filters combine with AND.
 /// <see cref="Parse"/> reads the short text typed in the "+ Add filter" box.
 /// </summary>
 public abstract partial record RunFilter

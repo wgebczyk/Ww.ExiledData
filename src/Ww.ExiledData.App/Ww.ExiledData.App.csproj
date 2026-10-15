@@ -17,6 +17,7 @@
     <PackageReference Include="Avalonia.Fonts.Inter" />
     <PackageReference Include="Avalonia.Themes.Fluent" />
     <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" />
     <PackageReference Include="Microsoft.Extensions.Logging" />
     <PackageReference Include="Serilog" />
     <PackageReference Include="Serilog.Extensions.Logging" />
