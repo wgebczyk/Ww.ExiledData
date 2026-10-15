@@ -1,0 +1,79 @@
+<!-- Recall dialog: set up a run from earlier copies in the session. -->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Ww.ExiledData.App.ViewModels"
+        x:Class="Ww.ExiledData.App.Views.RecallDialog"
+        x:DataType="vm:RecallDialogViewModel"
+        Classes="app"
+        Title="{Binding Title}"
+        Width="560" Height="560" MinHeight="380" CanResize="True"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+
+  <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="20">
+    <StackPanel Spacing="4" Margin="0,0,0,14">
+      <TextBlock Classes="title" Text="{Binding Title}" />
+      <TextBlock Classes="muted small" Text="Pick from earlier scans in this session. Nothing is sent to the game." />
+    </StackPanel>
+
+    <Border Grid.Row="1" Classes="segmented" HorizontalAlignment="Left" Margin="0,0,0,12">
+      <StackPanel Orientation="Horizontal">
+        <RadioButton Classes="segment" GroupName="recall" Content="Waystone" IsChecked="{Binding IsWaystoneTab}" />
+        <RadioButton Classes="segment" GroupName="recall" IsChecked="{Binding IsTabletsTab}"
+                     Content="{Binding TabletCountText, StringFormat='Tablets · {0}'}" />
+      </StackPanel>
+    </Border>
+
+    <!-- Waystones: one, by radio -->
+    <Border Grid.Row="2" Classes="card flush" IsVisible="{Binding IsWaystoneTab}">
+      <Panel>
+        <ListBox Classes="table" ItemsSource="{Binding Waystones}" SelectedItem="{Binding SelectedWaystone}"
+                 AutomationProperties.Name="Waystones in this session">
+          <ListBox.ItemTemplate>
+            <DataTemplate x:DataType="vm:RecallRowViewModel">
+              <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                <TextBlock Text="{Binding Label}" TextTrimming="CharacterEllipsis" />
+                <TextBlock Grid.Column="1" Classes="mono muted small" Text="{Binding RunText, StringFormat='scanned in {0}'}" VerticalAlignment="Center" />
+              </Grid>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock Classes="muted" Text="No waystone copied in this session yet." IsVisible="{Binding HasNoWaystones}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+      </Panel>
+    </Border>
+
+    <!-- Tablets: up to four, by checkbox -->
+    <DockPanel Grid.Row="2" IsVisible="{Binding IsTabletsTab}">
+      <Grid DockPanel.Dock="Top" ColumnDefinitions="*,Auto" Margin="0,0,0,8">
+        <TextBlock Classes="label" Text="TABLETS (PICK UP TO 4)" VerticalAlignment="Center" />
+        <Button Grid.Column="1" Classes="ui link" Content="↺ Use previous run’s tablets" Command="{Binding UsePreviousTabletsCommand}"
+                IsEnabled="{Binding HasPreviousTablets}" />
+      </Grid>
+      <TextBlock DockPanel.Dock="Bottom" Classes="error" Text="A run has at most 4 tablets." IsVisible="{Binding TooManyTablets}" Margin="0,8,0,0" />
+      <Border Classes="card flush">
+        <Panel>
+          <ScrollViewer>
+            <ItemsControl ItemsSource="{Binding Tablets}" Margin="12,8">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="vm:RecallRowViewModel">
+                  <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="12" Margin="0,4">
+                    <CheckBox IsChecked="{Binding IsChecked}" Content="{Binding Label}" />
+                    <TextBlock Grid.Column="1" Classes="muted small" Text="{Binding UsesText}" VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="2" Classes="mono muted small" Text="{Binding RunText}" VerticalAlignment="Center" />
+                  </Grid>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </ScrollViewer>
+          <TextBlock Classes="muted" Text="No tablet copied in this session yet." IsVisible="{Binding HasNoTablets}"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Panel>
+      </Border>
+    </DockPanel>
+
+    <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,16,0,0">
+      <Button Classes="ui" Content="Cancel" IsCancel="True" Click="OnCancel" />
+      <Button Classes="ui primary" Content="{Binding AssignText}" IsDefault="True" IsEnabled="{Binding CanAssign}" Click="OnAssign" />
+    </StackPanel>
+  </Grid>
+</Window>

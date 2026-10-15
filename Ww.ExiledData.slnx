@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Ww.ExiledData.App/Ww.ExiledData.App.csproj" />
+    <Project Path="src/Ww.ExiledData.Capture/Ww.ExiledData.Capture.csproj" />
+    <Project Path="src/Ww.ExiledData.Core/Ww.ExiledData.Core.csproj" />
+    <Project Path="src/Ww.ExiledData.Mapping/Ww.ExiledData.Mapping.csproj" />
+    <Project Path="src/Ww.ExiledData.Storage/Ww.ExiledData.Storage.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/Ww.ExiledData.MockGame/Ww.ExiledData.MockGame.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Ww.ExiledData.Tests/Ww.ExiledData.Tests.csproj" />
+  </Folder>
+</Solution>

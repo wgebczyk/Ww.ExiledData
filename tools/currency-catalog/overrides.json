@@ -1,0 +1,17 @@
+{
+  "_comment": "Preferred codes (in-game name -> code without the category prefix). Applied on every update before anything else (overrides win over markers); Lesser/Greater/Perfect variants of a name get the same code plus l/g/p. Generated codes never take these.",
+  "Exalted Orb": "EX",
+  "Divine Orb": "DIV",
+  "Chaos Orb": "ChO",
+  "Mirror of Kalandra": "MKAL",
+  "Orb of Chance": "CHAN",
+  "Orb of Alchemy": "ALCH",
+  "Hinekora's Lock": "LOCK",
+  "Orb of Transmutation": "TRN",
+  "Orb of Augmentation": "AUG",
+  "markers": {
+    "_comment": "A name holding the phrase loses it, and these letters lead its code (Liquid Paranoia -> lP). Longest phrase wins.",
+    "Concentrated Liquid": "cl",
+    "Liquid": "l"
+  }
+}

@@ -1,0 +1,78 @@
+Item Class: Stackable Currency
+Rarity: Currency
+Orb of Transmutation
+--------
+Stack Size: 606/40
+--------
+Upgrades a Normal item to a Magic item with 1 modifier
+--------
+Right click this item then left click a normal item to apply it.
+Shift click to unstack.
+
+===
+
+Item Class: Stackable Currency
+Rarity: Currency
+Greater Orb of Transmutation
+--------
+Stack Size: 164/40
+Minimum Modifier Level: 44
+--------
+Upgrades a Normal item to a Magic item with 1 modifier
+--------
+Right click this item then left click a normal item to apply it.
+Shift click to unstack.
+
+===
+
+Item Class: Stackable Currency
+Rarity: Currency
+Perfect Orb of Transmutation
+--------
+Stack Size: 7/40
+Minimum Modifier Level: 70
+--------
+Upgrades a Normal item to a Magic item with 1 modifier
+--------
+Right click this item then left click a normal item to apply it.
+Shift click to unstack.
+
+===
+
+Item Class: Stackable Currency
+Rarity: Currency
+Chaos Orb
+--------
+Stack Size: 200/20
+--------
+Removes a random modifier and augments a Rare item with a new random modifier
+--------
+Right click this item then left click a rare item to apply it.
+Shift click to unstack.
+
+===
+
+Item Class: Stackable Currency
+Rarity: Currency
+Greater Chaos Orb
+--------
+Stack Size: 17/20
+Minimum Modifier Level: 35
+--------
+Removes a random modifier and augments a Rare item with a new random modifier
+--------
+Right click this item then left click a rare item to apply it.
+Shift click to unstack.
+
+===
+
+Item Class: Stackable Currency
+Rarity: Currency
+Orb of Annulment
+--------
+Stack Size: 7/20
+--------
+Removes a random modifier from an item
+--------
+Right click this item then left click on a magic or rare item to apply it.
+Shift click to unstack.

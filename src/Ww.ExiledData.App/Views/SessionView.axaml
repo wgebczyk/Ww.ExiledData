@@ -1,0 +1,170 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Ww.ExiledData.App.ViewModels"
+             xmlns:v="using:Ww.ExiledData.App.Views"
+             xmlns:c="using:Ww.ExiledData.App.Controls"
+             x:Class="Ww.ExiledData.App.Views.SessionView"
+             x:DataType="vm:SessionViewModel">
+
+  <UserControl.KeyBindings>
+    <KeyBinding Gesture="F5" Command="{Binding ReloadCommand}" />
+  </UserControl.KeyBindings>
+
+  <!-- One session's page of the main window, under its app bar (breadcrumb, switcher) -->
+
+  <Grid RowDefinitions="56,*,Auto">
+
+    <!-- Header: mode tabs first (mapping sessions), then the session's identity, then icon-only actions -->
+    <Border Grid.Row="0" Classes="chrome" BorderThickness="0,0,0,1" Padding="16,0,20,0" ClipToBounds="False">
+      <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="18">
+        <!-- Classic tabs on the header line: the active one connects to the page below. The only place the mode switches. -->
+        <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Bottom" Margin="0,0,10,0" IsVisible="{Binding IsMapping}">
+          <RadioButton Classes="modetab gather" GroupName="mode" Content="Gather" IsChecked="{Binding IsGatherMode}" />
+          <RadioButton Classes="modetab analyse" GroupName="mode" Content="Analyse" IsChecked="{Binding IsAnalyseMode}" />
+        </StackPanel>
+
+        <!-- The summary takes what is left and trims, so the actions on the right always fit -->
+        <!-- Identity and actions sit in the bottom 44 px band, on the line of the tab labels -->
+        <DockPanel Grid.Column="1" VerticalAlignment="Bottom" Height="44">
+          <TextBlock DockPanel.Dock="Left" Classes="title" Text="{Binding Name}" VerticalAlignment="Center" MaxWidth="360"
+                     TextTrimming="CharacterEllipsis" Margin="0,0,14,0" />
+          <Border DockPanel.Dock="Left" Classes="rec" IsVisible="{Binding ShowRecBadge}" VerticalAlignment="Center" Margin="0,0,14,0">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <Ellipse Classes="recdot" />
+              <TextBlock Classes="amber" Text="REC" FontWeight="SemiBold" FontSize="12" VerticalAlignment="Center" />
+              <TextBlock Classes="mono amber" Text="{Binding ElapsedText}" FontSize="13" VerticalAlignment="Center" />
+            </StackPanel>
+          </Border>
+          <TextBlock DockPanel.Dock="Left" Classes="mono muted" FontSize="13" Text="{Binding Analyse.SummaryText, FallbackValue=''}"
+                     IsVisible="{Binding ShowAnalyseSummary}" VerticalAlignment="Center" Margin="0,0,14,0" />
+          <!-- Session tags (mapping sessions) -->
+          <ItemsControl DockPanel.Dock="Left" ItemsSource="{Binding Gather.SessionTags, FallbackValue={x:Null}}" VerticalAlignment="Center"
+                        IsVisible="{Binding IsMapping}">
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <StackPanel Orientation="Horizontal" />
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+              <DataTemplate x:DataType="vm:TagChipViewModel">
+                <Border Classes="chip" Margin="0,0,6,0">
+                  <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Text}" />
+                    <Button Classes="chipx" Content="✕" Command="{Binding RemoveCommand}" ToolTip.Tip="Remove the tag" />
+                  </StackPanel>
+                </Border>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+          <Button DockPanel.Dock="Left" Classes="addchip" Content="+ tag" Command="{Binding Gather.AddSessionTagCommand, FallbackValue={x:Null}}"
+                  IsVisible="{Binding IsMapping}" Margin="0,0,14,0" VerticalAlignment="Center" />
+          <TextBlock Classes="muted" FontSize="13" Text="{Binding SummaryText}" VerticalAlignment="Center" IsVisible="{Binding IsFreeRecording}"
+                     TextTrimming="CharacterEllipsis" ToolTip.Tip="{Binding SummaryText}" />
+        </DockPanel>
+
+        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="6" VerticalAlignment="Bottom" Height="44">
+          <Button Classes="ui icon bare" Command="{Binding RenameCommand}" ToolTip.Tip="Rename session" AutomationProperties.Name="Rename session">
+            <c:StrokeIcon Data="{StaticResource IconRename}" />
+          </Button>
+          <Button Classes="ui icon bare" ToolTip.Tip="Export session" AutomationProperties.Name="Export session">
+            <c:StrokeIcon Data="{StaticResource IconExport}" />
+            <Button.Flyout>
+              <MenuFlyout Placement="BottomEdgeAlignedRight">
+                <MenuItem Header="Export JSON…" Command="{Binding ExportJsonCommand}" />
+                <MenuItem Header="Export CSV…" Command="{Binding ExportCsvCommand}" />
+              </MenuFlyout>
+            </Button.Flyout>
+          </Button>
+          <Button Classes="ui icon bare" Command="{Binding DeleteCommand}" ToolTip.Tip="Delete session" AutomationProperties.Name="Delete session">
+            <c:StrokeIcon Data="{StaticResource IconDelete}" />
+          </Button>
+          <!-- Recording toggle, set apart and last: stop while recording (not in Analyse), play when ended -->
+          <Rectangle Width="1" Height="24" Fill="{DynamicResource LineBrush}" Margin="6,0" IsVisible="{Binding ShowRecordingToggle}" />
+          <Button Classes="ui icon stop" Command="{Binding EndSessionCommand}" IsVisible="{Binding ShowEndSession}"
+                  ToolTip.Tip="End session" AutomationProperties.Name="End session">
+            <c:StrokeIcon Data="{StaticResource IconStop}" />
+          </Button>
+          <Button Classes="ui icon play" Command="{Binding MakeRecordingCommand}" IsVisible="{Binding IsEnded}"
+                  ToolTip.Tip="Make this the recording session: captures go here from now on. The recording session, if any, ends."
+                  AutomationProperties.Name="Make this the recording session">
+            <c:StrokeIcon Data="{StaticResource IconPlay}" />
+          </Button>
+        </StackPanel>
+      </Grid>
+    </Border>
+
+    <!-- Body of a free recording session: sweep bar, captures, raw text -->
+    <Grid Grid.Row="1" Margin="16" RowDefinitions="Auto,*,16,200" IsVisible="{Binding IsFreeRecording}">
+
+      <!-- Sweep: grid scan of the inventory or a stash tab; only the recording session can run one -->
+      <Border Grid.Row="0" Classes="card" Margin="0,0,0,16" Padding="16,12" IsVisible="{Binding IsRecording}">
+        <Grid ColumnDefinitions="Auto,Auto,Auto,*,Auto">
+          <TextBlock Classes="label" Text="SWEEP AREA" VerticalAlignment="Center" Margin="0,0,12,0" />
+          <ComboBox Grid.Column="1" Classes="filter" MinWidth="170" AutomationProperties.Name="Sweep area"
+                    ItemsSource="{Binding Sweeps.GridKinds}" SelectedItem="{Binding Sweeps.SelectedGridKind}" />
+          <Button Grid.Column="2" Classes="ui primary" Content="Start sweep…" Margin="8,0,0,0" Command="{Binding StartSweepCommand}"
+                  ToolTip.Tip="Shows a grid over the game to align with the inventory/stash, then tints each cell you Ctrl+C" />
+          <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="10" Margin="16,0" VerticalAlignment="Center"
+                      IsVisible="{Binding Sweeps.HasSweep}">
+            <Border Classes="pill" VerticalAlignment="Center">
+              <TextBlock Text="Running" />
+            </Border>
+            <TextBlock Text="{Binding Sweeps.Sweep.Label, FallbackValue=''}" FontWeight="SemiBold" VerticalAlignment="Center" />
+            <TextBlock Classes="mono muted" FontSize="12" Text="{Binding Sweeps.SweepProgressText}" VerticalAlignment="Center" />
+          </StackPanel>
+          <TextBlock Grid.Column="3" Classes="muted small" Margin="16,0" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"
+                     IsVisible="{Binding !Sweeps.HasSweep}"
+                     Text="Align a grid over the inventory or a stash tab, then copy each cell; the overlay tints what was captured." />
+          <StackPanel Grid.Column="4" Orientation="Horizontal" Spacing="8">
+            <Button Classes="ui" Content="Finish sweep" Command="{Binding FinishSweepCommand}" />
+            <Button Classes="ui danger" Content="Cancel sweep…" Command="{Binding CancelSweepCommand}" />
+          </StackPanel>
+        </Grid>
+      </Border>
+
+      <v:CapturesView Grid.Row="1" />
+
+      <Border Grid.Row="3" Classes="card">
+        <DockPanel>
+          <TextBlock DockPanel.Dock="Top" Classes="label" Text="RAW TEXT" Margin="0,0,0,8" />
+          <TextBox Text="{Binding Detail.RawText, FallbackValue=''}" IsReadOnly="True" AcceptsReturn="True" TextWrapping="NoWrap"
+                   FontFamily="{StaticResource MonoFont}" FontSize="12" Background="Transparent" BorderThickness="0" Padding="0"
+                   PlaceholderText="Select a row to see its raw copied text" />
+        </DockPanel>
+      </Border>
+    </Grid>
+
+    <!-- Body of a mapping session: the Gather tab (captured items are in its loot card) -->
+    <Border Grid.Row="1" IsVisible="{Binding IsGatherBody}">
+      <Grid Margin="16" RowDefinitions="Auto,*">
+        <Border Classes="raised" Margin="0,0,0,16" IsVisible="{Binding IsEnded}">
+          <TextBlock Classes="secondary small" TextWrapping="Wrap"
+                     Text="This session is not recording: captures go to the recording session. Press the green play button (top right) to make this the recording session and gather more runs here." />
+        </Border>
+
+        <v:GatherView Grid.Row="1" DataContext="{Binding Gather}" />
+
+      </Grid>
+    </Border>
+
+    <!-- Body of a mapping session in Analyse mode -->
+    <Border Grid.Row="1" IsVisible="{Binding IsAnalyseBody}">
+      <v:AnalyseView Margin="16" DataContext="{Binding Analyse}" />
+    </Border>
+
+    <!-- Status line (capture feedback, errors, export results); the hotkeys while recording -->
+    <Border Grid.Row="2" Classes="chrome" BorderThickness="0,1,0,0" Padding="20,6">
+      <Border.IsVisible>
+        <MultiBinding Converter="{x:Static BoolConverters.Or}">
+          <Binding Path="IsRecording" />
+          <Binding Path="StatusText" Converter="{x:Static StringConverters.IsNotNullOrEmpty}" />
+        </MultiBinding>
+      </Border.IsVisible>
+      <Grid ColumnDefinitions="*,Auto">
+        <TextBlock Classes="muted small" Text="{Binding StatusText}" TextTrimming="CharacterEllipsis" />
+        <TextBlock Grid.Column="1" Classes="muted small" Margin="16,0,0,0" Text="{Binding Sweeps.HotkeyHint}"
+                   IsVisible="{Binding IsRecording}" />
+      </Grid>
+    </Border>
+  </Grid>
+</UserControl>

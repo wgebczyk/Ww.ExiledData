@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>Ww.ExiledData.MockGame</AssemblyName>
+    <RootNamespace>Ww.ExiledData.MockGame</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Desktop" />
+    <PackageReference Include="Avalonia.Fonts.Inter" />
+    <PackageReference Include="Avalonia.Themes.Fluent" />
+    <PackageReference Include="Microsoft.Data.Sqlite" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Ww.ExiledData.Core\Ww.ExiledData.Core.csproj" />
+    <ProjectReference Include="..\..\src\Ww.ExiledData.Mapping\Ww.ExiledData.Mapping.csproj" />
+  </ItemGroup>
+
+</Project>

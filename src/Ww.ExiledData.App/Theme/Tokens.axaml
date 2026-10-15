@@ -1,0 +1,98 @@
+<!--
+  Design tokens (docs/design-ui: tokens.json there is generated from this file).
+  The only place UI colors are defined: reference them with {DynamicResource ...Brush}, never a literal,
+  so a theme switch re-resolves everything. Both theme entries must hold the same keys
+  (ThemeTokensTests checks that, and the contrast pairs).
+-->
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <ResourceDictionary.ThemeDictionaries>
+    <ResourceDictionary x:Key="Dark">
+      <SolidColorBrush x:Key="BgBrush" Color="#13151a" />
+      <SolidColorBrush x:Key="BgChromeBrush" Color="#0f1115" />
+      <SolidColorBrush x:Key="PanelBrush" Color="#1b1e25" />
+      <SolidColorBrush x:Key="PanelRaisedBrush" Color="#232834" />
+      <SolidColorBrush x:Key="LineBrush" Color="#2c313b" />
+      <SolidColorBrush x:Key="LineStrongBrush" Color="#3a4150" />
+      <SolidColorBrush x:Key="LineFaintBrush" Color="#3f4450" />
+      <SolidColorBrush x:Key="TextBrush" Color="#e8eaee" />
+      <SolidColorBrush x:Key="TextSecondaryBrush" Color="#c3c9d4" />
+      <SolidColorBrush x:Key="TextMutedBrush" Color="#8e97a6" />
+      <SolidColorBrush x:Key="TextFaintBrush" Color="#5d6676" />
+      <SolidColorBrush x:Key="AmberFillBrush" Color="#e0a63e" />
+      <SolidColorBrush x:Key="OnAmberBrush" Color="#1a1405" />
+      <SolidColorBrush x:Key="AmberTextBrush" Color="#e0a63e" />
+      <SolidColorBrush x:Key="AmberAccentBrush" Color="#e0a63e" />
+      <SolidColorBrush x:Key="AmberTintBrush" Color="#241d0e" />
+      <SolidColorBrush x:Key="AmberTintLineBrush" Color="#5a4620" />
+      <SolidColorBrush x:Key="BlueFillBrush" Color="#5ea6f0" />
+      <SolidColorBrush x:Key="BlueTextBrush" Color="#8fc2f5" />
+      <SolidColorBrush x:Key="BlueTextSoftBrush" Color="#a9d0f7" />
+      <SolidColorBrush x:Key="BlueTintBrush" Color="#1a2433" />
+      <SolidColorBrush x:Key="BlueTintLineBrush" Color="#2f4a6b" />
+      <SolidColorBrush x:Key="DangerTextBrush" Color="#e58a8f" />
+      <SolidColorBrush x:Key="DangerLineBrush" Color="#4a2d31" />
+      <SolidColorBrush x:Key="DangerTintBrush" Color="#2a1a1d" />
+      <SolidColorBrush x:Key="SuccessTextBrush" Color="#7fcf9a" />
+      <SolidColorBrush x:Key="SuccessLineBrush" Color="#2b4a36" />
+      <SolidColorBrush x:Key="SuccessTintBrush" Color="#17261d" />
+      <SolidColorBrush x:Key="InfoTextBrush" Color="#a9d0f7" />
+      <SolidColorBrush x:Key="InfoTintBrush" Color="#1a2433" />
+      <SolidColorBrush x:Key="InfoTintLineBrush" Color="#2f4a6b" />
+      <SolidColorBrush x:Key="DeltaDownBrush" Color="#f0a35e" />
+      <SolidColorBrush x:Key="CurrencyIconTileBrush" Color="#2c313b" />
+      <!-- Fluent-drawn controls (check boxes, selection) take the Analyse blue as accent. -->
+      <Color x:Key="SystemAccentColor">#5ea6f0</Color>
+    </ResourceDictionary>
+
+    <ResourceDictionary x:Key="Light">
+      <SolidColorBrush x:Key="BgBrush" Color="#f4f5f7" />
+      <SolidColorBrush x:Key="BgChromeBrush" Color="#e9ebef" />
+      <SolidColorBrush x:Key="PanelBrush" Color="#ffffff" />
+      <SolidColorBrush x:Key="PanelRaisedBrush" Color="#eef0f4" />
+      <SolidColorBrush x:Key="LineBrush" Color="#d9dde4" />
+      <SolidColorBrush x:Key="LineStrongBrush" Color="#b8bfcb" />
+      <SolidColorBrush x:Key="LineFaintBrush" Color="#cdd2d9" />
+      <SolidColorBrush x:Key="TextBrush" Color="#14171c" />
+      <SolidColorBrush x:Key="TextSecondaryBrush" Color="#3b4350" />
+      <SolidColorBrush x:Key="TextMutedBrush" Color="#5b6574" />
+      <SolidColorBrush x:Key="TextFaintBrush" Color="#8a93a1" />
+      <SolidColorBrush x:Key="AmberFillBrush" Color="#e0a63e" />
+      <SolidColorBrush x:Key="OnAmberBrush" Color="#1a1405" />
+      <SolidColorBrush x:Key="AmberTextBrush" Color="#8a5600" />
+      <SolidColorBrush x:Key="AmberAccentBrush" Color="#b87800" />
+      <SolidColorBrush x:Key="AmberTintBrush" Color="#fdf3dc" />
+      <SolidColorBrush x:Key="AmberTintLineBrush" Color="#e6c27a" />
+      <SolidColorBrush x:Key="BlueFillBrush" Color="#2f7fd0" />
+      <SolidColorBrush x:Key="BlueTextBrush" Color="#1f5fa8" />
+      <SolidColorBrush x:Key="BlueTextSoftBrush" Color="#1f5fa8" />
+      <SolidColorBrush x:Key="BlueTintBrush" Color="#e6f0fc" />
+      <SolidColorBrush x:Key="BlueTintLineBrush" Color="#9cc3ee" />
+      <SolidColorBrush x:Key="DangerTextBrush" Color="#b3262e" />
+      <SolidColorBrush x:Key="DangerLineBrush" Color="#e3b0b3" />
+      <SolidColorBrush x:Key="DangerTintBrush" Color="#fdecee" />
+      <SolidColorBrush x:Key="SuccessTextBrush" Color="#1d7a3c" />
+      <SolidColorBrush x:Key="SuccessLineBrush" Color="#a8d8b7" />
+      <SolidColorBrush x:Key="SuccessTintBrush" Color="#e8f6ed" />
+      <SolidColorBrush x:Key="InfoTextBrush" Color="#1f5fa8" />
+      <SolidColorBrush x:Key="InfoTintBrush" Color="#e6f0fc" />
+      <SolidColorBrush x:Key="InfoTintLineBrush" Color="#9cc3ee" />
+      <SolidColorBrush x:Key="DeltaDownBrush" Color="#a8560a" />
+      <SolidColorBrush x:Key="CurrencyIconTileBrush" Color="#d9dde4" />
+      <Color x:Key="SystemAccentColor">#2f7fd0</Color>
+    </ResourceDictionary>
+  </ResourceDictionary.ThemeDictionaries>
+
+  <!-- Typography (bundled, OFL; see Assets/Fonts/OFL.txt) -->
+  <FontFamily x:Key="SansFont">avares://Ww.ExiledData/Assets/Fonts#IBM Plex Sans</FontFamily>
+  <FontFamily x:Key="MonoFont">avares://Ww.ExiledData/Assets/Fonts#IBM Plex Mono</FontFamily>
+
+  <!-- Shape -->
+  <CornerRadius x:Key="CardRadius">10</CornerRadius>
+  <CornerRadius x:Key="ControlRadius">6</CornerRadius>
+  <CornerRadius x:Key="ModeTabRadius">8</CornerRadius>
+  <CornerRadius x:Key="ModeTabCorners">8,8,0,0</CornerRadius>
+  <CornerRadius x:Key="ChipRadius">4</CornerRadius>
+  <CornerRadius x:Key="PillRadius">999</CornerRadius>
+</ResourceDictionary>

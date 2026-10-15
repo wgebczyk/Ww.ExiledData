@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Codes and icon paths of every currency-like item; maintained by the scripts next to it (CurrencyCatalog). -->
+    <EmbeddedResource Include="..\..\tools\currency-catalog\catalog.json" LogicalName="Ww.ExiledData.Mapping.catalog.json" Link="catalog.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Only the seam (Core.Recording) and the shared basics (sessions, text, sweeps); never the capture internals. -->
+    <ProjectReference Include="..\Ww.ExiledData.Core\Ww.ExiledData.Core.csproj" />
+  </ItemGroup>
+
+</Project>

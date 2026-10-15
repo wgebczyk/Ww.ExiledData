@@ -1,0 +1,6202 @@
+[
+  {
+    "name": "Blacksmith's Whetstone",
+    "code": "BW",
+    "category": "Currency",
+    "url": "Blacksmiths_Whetstone",
+    "image": "Currency/CurrencyWeaponQuality.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Arcanist's Etcher",
+    "code": "AE",
+    "category": "Currency",
+    "url": "Arcanists_Etcher",
+    "image": "Currency/CurrencyWeaponMagicQuality.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Scroll of Wisdom",
+    "code": "SW",
+    "category": "Currency",
+    "url": "Scroll_of_Wisdom",
+    "image": "Currency/CurrencyIdentification.webp",
+    "maxStackSize": 40
+  },
+  {
+    "name": "Chaos Orb",
+    "code": "ChO",
+    "category": "Currency",
+    "url": "Chaos_Orb",
+    "image": "Currency/CurrencyRerollRare.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Greater Chaos Orb",
+    "code": "ChOg",
+    "category": "Currency",
+    "url": "Greater_Chaos_Orb",
+    "image": "Currency/CurrencyRerollRare.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Perfect Chaos Orb",
+    "code": "ChOp",
+    "category": "Currency",
+    "url": "Perfect_Chaos_Orb",
+    "image": "Currency/CurrencyRerollRare.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Armourer's Scrap",
+    "code": "AS",
+    "category": "Currency",
+    "url": "Armourers_Scrap",
+    "image": "Currency/CurrencyArmourQuality.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Mirror of Kalandra",
+    "code": "MKAL",
+    "category": "Currency",
+    "url": "Mirror_of_Kalandra",
+    "image": "Currency/CurrencyDuplicate.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Hinekora's Lock",
+    "code": "LOCK",
+    "category": "Currency",
+    "url": "Hinekoras_Lock",
+    "image": "Currency/HinekorasLock.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Orb of Alchemy",
+    "code": "ALCH",
+    "category": "Currency",
+    "url": "Orb_of_Alchemy",
+    "image": "Currency/CurrencyUpgradeToRare.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Orb of Chance",
+    "code": "CHAN",
+    "category": "Currency",
+    "url": "Orb_of_Chance",
+    "image": "Currency/CurrencyUpgradeToUnique.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Orb of Transmutation",
+    "code": "TRN",
+    "category": "Currency",
+    "url": "Orb_of_Transmutation",
+    "image": "Currency/CurrencyUpgradeToMagic.webp",
+    "maxStackSize": 40
+  },
+  {
+    "name": "Greater Orb of Transmutation",
+    "code": "TRNg",
+    "category": "Currency",
+    "url": "Greater_Orb_of_Transmutation",
+    "image": "Currency/CurrencyUpgradeToMagic.webp",
+    "maxStackSize": 40
+  },
+  {
+    "name": "Perfect Orb of Transmutation",
+    "code": "TRNp",
+    "category": "Currency",
+    "url": "Perfect_Orb_of_Transmutation",
+    "image": "Currency/CurrencyUpgradeToMagic.webp",
+    "maxStackSize": 40
+  },
+  {
+    "name": "Exalted Orb",
+    "code": "EX",
+    "category": "Currency",
+    "url": "Exalted_Orb",
+    "image": "Currency/CurrencyAddModToRare.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Greater Exalted Orb",
+    "code": "EXg",
+    "category": "Currency",
+    "url": "Greater_Exalted_Orb",
+    "image": "Currency/CurrencyAddModToRare.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Perfect Exalted Orb",
+    "code": "EXp",
+    "category": "Currency",
+    "url": "Perfect_Exalted_Orb",
+    "image": "Currency/CurrencyAddModToRare.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Regal Orb",
+    "code": "RO",
+    "category": "Currency",
+    "url": "Regal_Orb",
+    "image": "Currency/CurrencyUpgradeMagicToRare.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Greater Regal Orb",
+    "code": "ROg",
+    "category": "Currency",
+    "url": "Greater_Regal_Orb",
+    "image": "Currency/CurrencyUpgradeMagicToRare.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Perfect Regal Orb",
+    "code": "ROp",
+    "category": "Currency",
+    "url": "Perfect_Regal_Orb",
+    "image": "Currency/CurrencyUpgradeMagicToRare.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Orb of Augmentation",
+    "code": "AUG",
+    "category": "Currency",
+    "url": "Orb_of_Augmentation",
+    "image": "Currency/CurrencyAddModToMagic.webp",
+    "maxStackSize": 30
+  },
+  {
+    "name": "Greater Orb of Augmentation",
+    "code": "AUGg",
+    "category": "Currency",
+    "url": "Greater_Orb_of_Augmentation",
+    "image": "Currency/CurrencyAddModToMagic.webp",
+    "maxStackSize": 30
+  },
+  {
+    "name": "Perfect Orb of Augmentation",
+    "code": "AUGp",
+    "category": "Currency",
+    "url": "Perfect_Orb_of_Augmentation",
+    "image": "Currency/CurrencyAddModToMagic.webp",
+    "maxStackSize": 30
+  },
+  {
+    "name": "Glassblower's Bauble",
+    "code": "GB",
+    "category": "Currency",
+    "url": "Glassblowers_Bauble",
+    "image": "Currency/CurrencyFlaskQuality.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Gemcutter's Prism",
+    "code": "GP",
+    "category": "Currency",
+    "url": "Gemcutters_Prism",
+    "image": "Currency/CurrencyGemQuality.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Lesser Jeweller's Orb",
+    "code": "JOl",
+    "category": "Currency",
+    "url": "Lesser_Jewellers_Orb",
+    "image": "Currency/CurrencyRerollSocketNumbers01.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Greater Jeweller's Orb",
+    "code": "JOg",
+    "category": "Currency",
+    "url": "Greater_Jewellers_Orb",
+    "image": "Currency/CurrencyRerollSocketNumbers02.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Perfect Jeweller's Orb",
+    "code": "JOp",
+    "category": "Currency",
+    "url": "Perfect_Jewellers_Orb",
+    "image": "Currency/CurrencyRerollSocketNumbers03.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Artificer's Orb",
+    "code": "AO",
+    "category": "Currency",
+    "url": "Artificers_Orb",
+    "image": "Currency/CurrencyAddEquipmentSocket.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Divine Orb",
+    "code": "DIV",
+    "category": "Currency",
+    "url": "Divine_Orb",
+    "image": "Currency/CurrencyModValues.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Transmutation Shard",
+    "code": "TS",
+    "category": "Currency",
+    "url": "Transmutation_Shard",
+    "image": "Currency/CurrencyUpgradeToMagicShard.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Chance Shard",
+    "code": "CS",
+    "category": "Currency",
+    "url": "Chance_Shard",
+    "image": "Currency/CurrencyUpgradeToUniqueShard.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Albino Rhoa Feather",
+    "code": "ARF",
+    "category": "Currency",
+    "url": "Albino_Rhoa_Feather",
+    "image": "Currency/CurrencyRhoaFeather.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Vaal Orb",
+    "code": "VO",
+    "category": "Currency",
+    "url": "Vaal_Orb",
+    "image": "Currency/CurrencyVaal.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Architect's Orb",
+    "code": "AOr",
+    "category": "Currency",
+    "url": "Architects_Orb",
+    "image": "Currency/IncursionCraftingOrbs/IncursionGreaterVaalOrb.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Crystallised Corruption",
+    "code": "CC",
+    "category": "Currency",
+    "url": "Crystallised_Corruption",
+    "image": "Currency/IncursionCraftingOrbs/IncursionCrystallisedCorruption.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Core Destabiliser",
+    "code": "CD",
+    "category": "Currency",
+    "url": "Core_Destabiliser",
+    "image": "Currency/IncursionCraftingOrbs/IncursionCoreDestabliser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Infuser",
+    "code": "AI",
+    "category": "Currency",
+    "url": "Ancient_Infuser",
+    "image": "Currency/IncursionCraftingOrbs/IncursionAncientInfusion.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Vaal Cultivation Orb",
+    "code": "VCO",
+    "category": "Currency",
+    "url": "Vaal_Cultivation_Orb",
+    "image": "Currency/IncursionCraftingOrbs/IncursionHistoricVaalOrb.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Yaomac's Orb of Sacrifice",
+    "code": "YOS",
+    "category": "Currency",
+    "url": "Yaomacs_Orb_of_Sacrifice",
+    "image": "Currency/IncursionCraftingOrbs/IncursionCorruptionOrb1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Kopec's Orb of Sacrifice",
+    "code": "KOS",
+    "category": "Currency",
+    "url": "Kopecs_Orb_of_Sacrifice",
+    "image": "Currency/IncursionCraftingOrbs/IncursionCorruptionOrb2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Kamasa's Orb of Sacrifice",
+    "code": "KOSa",
+    "category": "Currency",
+    "url": "Kamasas_Orb_of_Sacrifice",
+    "image": "Currency/IncursionCraftingOrbs/IncursionCorruptionOrb3.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Yugul's Orb of Sacrifice",
+    "code": "YOSa",
+    "category": "Currency",
+    "url": "Yuguls_Orb_of_Sacrifice",
+    "image": "Currency/IncursionCraftingOrbs/IncursionCorruptionOrb4.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Vaal Armourer's Infuser",
+    "code": "VAI",
+    "category": "Currency",
+    "url": "Vaal_Armourers_Infuser",
+    "image": "Currency/IncursionCraftingOrbs/VaakArmourersScrap.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Vaal Blacksmith's Infuser",
+    "code": "VBI",
+    "category": "Currency",
+    "url": "Vaal_Blacksmiths_Infuser",
+    "image": "Currency/IncursionCraftingOrbs/VaalBlacksmithsWhetstone.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Vaal Arcanist's Infuser",
+    "code": "VAIn",
+    "category": "Currency",
+    "url": "Vaal_Arcanists_Infuser",
+    "image": "Currency/IncursionCraftingOrbs/VaalArcanistsEtcher.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Vaal Catalysing Infuser",
+    "code": "VCI",
+    "category": "Currency",
+    "url": "Vaal_Catalysing_Infuser",
+    "image": "Currency/IncursionCraftingOrbs/VaalCatalyst.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Orb of Extraction",
+    "code": "OE",
+    "category": "Currency",
+    "url": "Orb_of_Extraction",
+    "image": "Currency/IncursionCraftingOrbs/IncursionSocketableExtractorCurrency.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Orb of Annulment",
+    "code": "OAn",
+    "category": "Currency",
+    "url": "Orb_of_Annulment",
+    "image": "Currency/AnnullOrb.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Fracturing Orb",
+    "code": "FO",
+    "category": "Currency",
+    "url": "Fracturing_Orb",
+    "image": "Currency/FracturingOrb.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Regal Shard",
+    "code": "RS",
+    "category": "Currency",
+    "url": "Regal_Shard",
+    "image": "Currency/CurrencyUpgradeMagicToRareShard.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Artificer's Shard",
+    "code": "ASh",
+    "category": "Currency",
+    "url": "Artificers_Shard",
+    "image": "Currency/CurrencyAddEquipmentSocketShard.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Diluted Liquid Ire",
+    "code": "lDIr",
+    "category": "Currency",
+    "url": "Diluted_Liquid_Ire",
+    "image": "Currency/DistilledEmotions/DilutedDistilledIre.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Diluted Liquid Guilt",
+    "code": "lDG",
+    "category": "Currency",
+    "url": "Diluted_Liquid_Guilt",
+    "image": "Currency/DistilledEmotions/DilutedDistilledGuilt.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Diluted Liquid Greed",
+    "code": "lDGr",
+    "category": "Currency",
+    "url": "Diluted_Liquid_Greed",
+    "image": "Currency/DistilledEmotions/DilutedDistilledGreed.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Liquid Paranoia",
+    "code": "lP",
+    "category": "Currency",
+    "url": "Liquid_Paranoia",
+    "image": "Currency/DistilledEmotions/DistilledParanoia.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Liquid Envy",
+    "code": "lE",
+    "category": "Currency",
+    "url": "Liquid_Envy",
+    "image": "Currency/DistilledEmotions/DistilledEnvy.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Liquid Disgust",
+    "code": "lD",
+    "category": "Currency",
+    "url": "Liquid_Disgust",
+    "image": "Currency/DistilledEmotions/DistilledDisgust.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Liquid Despair",
+    "code": "lDe",
+    "category": "Currency",
+    "url": "Liquid_Despair",
+    "image": "Currency/DistilledEmotions/DistilledDespair.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Concentrated Liquid Fear",
+    "code": "clF",
+    "category": "Currency",
+    "url": "Concentrated_Liquid_Fear",
+    "image": "Currency/DistilledEmotions/ConcentratedDistilledFear.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Concentrated Liquid Suffering",
+    "code": "clS",
+    "category": "Currency",
+    "url": "Concentrated_Liquid_Suffering",
+    "image": "Currency/DistilledEmotions/ConcentratedDistilledSuffering.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Concentrated Liquid Isolation",
+    "code": "clI",
+    "category": "Currency",
+    "url": "Concentrated_Liquid_Isolation",
+    "image": "Currency/DistilledEmotions/ConcentratedDistilledIsolation.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Diluted Liquid Ire",
+    "code": "lADI",
+    "category": "Currency",
+    "url": "Ancient_Diluted_Liquid_Ire",
+    "image": "Currency/DistilledEmotions/TimelostDilutedDistilledIre.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Diluted Liquid Guilt",
+    "code": "lADG",
+    "category": "Currency",
+    "url": "Ancient_Diluted_Liquid_Guilt",
+    "image": "Currency/DistilledEmotions/TimelostDilutedDistilledGuilt.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Diluted Liquid Greed",
+    "code": "lADGr",
+    "category": "Currency",
+    "url": "Ancient_Diluted_Liquid_Greed",
+    "image": "Currency/DistilledEmotions/TimelostDilutedDistilledGreed.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Liquid Paranoia",
+    "code": "lAP",
+    "category": "Currency",
+    "url": "Ancient_Liquid_Paranoia",
+    "image": "Currency/DistilledEmotions/TimelostDistilledParanoia.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Liquid Envy",
+    "code": "lAEn",
+    "category": "Currency",
+    "url": "Ancient_Liquid_Envy",
+    "image": "Currency/DistilledEmotions/TimelostDistilledEnvy.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Liquid Disgust",
+    "code": "lAD",
+    "category": "Currency",
+    "url": "Ancient_Liquid_Disgust",
+    "image": "Currency/DistilledEmotions/TimelostDistilledDisgust.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Liquid Despair",
+    "code": "lADe",
+    "category": "Currency",
+    "url": "Ancient_Liquid_Despair",
+    "image": "Currency/DistilledEmotions/TimelostDistilledDespair.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Concentrated Liquid Fear",
+    "code": "clAF",
+    "category": "Currency",
+    "url": "Ancient_Concentrated_Liquid_Fear",
+    "image": "Currency/DistilledEmotions/TimelostConcentratedDistilledFear.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Concentrated Liquid Suffering",
+    "code": "clAS",
+    "category": "Currency",
+    "url": "Ancient_Concentrated_Liquid_Suffering",
+    "image": "Currency/DistilledEmotions/TimelostConcentratedDistilledSuffering.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Concentrated Liquid Isolation",
+    "code": "clAI",
+    "category": "Currency",
+    "url": "Ancient_Concentrated_Liquid_Isolation",
+    "image": "Currency/DistilledEmotions/TimelostConcentratedDistilledIsolation.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Potent Liquid Melancholy",
+    "code": "lPM",
+    "category": "Currency",
+    "url": "Potent_Liquid_Melancholy",
+    "image": "Currency/DistilledEmotions/UniqueHumansEmotion.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Potent Liquid Ferocity",
+    "code": "lPF",
+    "category": "Currency",
+    "url": "Potent_Liquid_Ferocity",
+    "image": "Currency/DistilledEmotions/UniqueConstructsEmotion.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Potent Liquid Contempt",
+    "code": "lPC",
+    "category": "Currency",
+    "url": "Potent_Liquid_Contempt",
+    "image": "Currency/DistilledEmotions/UniqueBeastEmotion.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Potent Liquid Melancholy",
+    "code": "lAPM",
+    "category": "Currency",
+    "url": "Ancient_Potent_Liquid_Melancholy",
+    "image": "Currency/DistilledEmotions/TimelessUniqueHumansEmotion.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Potent Liquid Ferocity",
+    "code": "lAPF",
+    "category": "Currency",
+    "url": "Ancient_Potent_Liquid_Ferocity",
+    "image": "Currency/DistilledEmotions/TimlessUniqueConstructsEmotion.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Potent Liquid Contempt",
+    "code": "lAPC",
+    "category": "Currency",
+    "url": "Ancient_Potent_Liquid_Contempt",
+    "image": "Currency/DistilledEmotions/TimelessUniqueBeastEmotion.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Rogue's Marker",
+    "code": "RM",
+    "category": "Currency",
+    "url": "Rogues_Marker",
+    "image": "Currency/Heist/HeistCoinCurrency.webp",
+    "maxStackSize": 50000
+  },
+  {
+    "name": "Exotic Coinage",
+    "code": "EC",
+    "category": "Currency",
+    "url": "Exotic_Coinage",
+    "image": "Currency/Expedition/BarterRefreshCurrency.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Broken Circle Artifact",
+    "code": "BCA",
+    "category": "Currency",
+    "url": "Broken_Circle_Artifact",
+    "image": "Currency/Expedition/Rune16.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Black Scythe Artifact",
+    "code": "BSA",
+    "category": "Currency",
+    "url": "Black_Scythe_Artifact",
+    "image": "Currency/Expedition/Rune6.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Order Artifact",
+    "code": "OAr",
+    "category": "Currency",
+    "url": "Order_Artifact",
+    "image": "Currency/Expedition/Rune13.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Sun Artifact",
+    "code": "SA",
+    "category": "Currency",
+    "url": "Sun_Artifact",
+    "image": "Currency/Expedition/Rune17.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Gold",
+    "code": "Go",
+    "category": "Currency",
+    "url": "Gold",
+    "image": "Currency/Ruthless/CoinPileTier2.webp",
+    "maxStackSize": 10000
+  },
+  {
+    "name": "Shattered Triskelion",
+    "code": "ST",
+    "category": "Currency",
+    "url": "Shattered_Triskelion",
+    "image": "QuestItems/DamagedKalguuranTriskellion.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Gnawed Jawbone",
+    "code": "GJ",
+    "category": "Currency",
+    "url": "Gnawed_Jawbone",
+    "image": "Currency/Abyss/GnawedJawbone.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Preserved Jawbone",
+    "code": "PJ",
+    "category": "Currency",
+    "url": "Preserved_Jawbone",
+    "image": "Currency/Abyss/PreservedJawbone.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Ancient Jawbone",
+    "code": "AJ",
+    "category": "Currency",
+    "url": "Ancient_Jawbone",
+    "image": "Currency/Abyss/AncientJawbone.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Gnawed Rib",
+    "code": "GR",
+    "category": "Currency",
+    "url": "Gnawed_Rib",
+    "image": "Currency/Abyss/GnawedRibs.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Preserved Rib",
+    "code": "PR",
+    "category": "Currency",
+    "url": "Preserved_Rib",
+    "image": "Currency/Abyss/PreservedRibs.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Ancient Rib",
+    "code": "AR",
+    "category": "Currency",
+    "url": "Ancient_Rib",
+    "image": "Currency/Abyss/AncientRibs.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Gnawed Collarbone",
+    "code": "GC",
+    "category": "Currency",
+    "url": "Gnawed_Collarbone",
+    "image": "Currency/Abyss/GnawedClavicle.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Preserved Collarbone",
+    "code": "PC",
+    "category": "Currency",
+    "url": "Preserved_Collarbone",
+    "image": "Currency/Abyss/PreservedCalvicle.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Ancient Collarbone",
+    "code": "AC",
+    "category": "Currency",
+    "url": "Ancient_Collarbone",
+    "image": "Currency/Abyss/AncientClavicle.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Preserved Cranium",
+    "code": "PCr",
+    "category": "Currency",
+    "url": "Preserved_Cranium",
+    "image": "Currency/Abyss/PreservedCranium.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Preserved Vertebrae",
+    "code": "PV",
+    "category": "Currency",
+    "url": "Preserved_Vertebrae",
+    "image": "Currency/Abyss/PreservedSpine.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Altered Collarbone",
+    "code": "ACo",
+    "category": "Currency",
+    "url": "Altered_Collarbone",
+    "image": "Currency/Breach/BreachDesecration.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Thaumaturgic Flux (Level 5)",
+    "code": "TF5",
+    "category": "Currency",
+    "url": "Thaumaturgic_Flux_%28Level_5%29",
+    "image": "Currency/Expedition2/ExpeditionGemCurrency.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Thaumaturgic Flux (Level 6)",
+    "code": "TF6",
+    "category": "Currency",
+    "url": "Thaumaturgic_Flux_%28Level_6%29",
+    "image": "Currency/Expedition2/ExpeditionGemCurrency.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Thaumaturgic Flux (Level 7)",
+    "code": "TF7",
+    "category": "Currency",
+    "url": "Thaumaturgic_Flux_%28Level_7%29",
+    "image": "Currency/Expedition2/ExpeditionGemCurrency.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Thaumaturgic Flux (Level 8)",
+    "code": "TF8",
+    "category": "Currency",
+    "url": "Thaumaturgic_Flux_%28Level_8%29",
+    "image": "Currency/Expedition2/ExpeditionGemCurrency.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Thaumaturgic Flux (Level 9)",
+    "code": "TF9",
+    "category": "Currency",
+    "url": "Thaumaturgic_Flux_%28Level_9%29",
+    "image": "Currency/Expedition2/ExpeditionGemCurrency.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Thaumaturgic Flux (Level 10)",
+    "code": "TF10",
+    "category": "Currency",
+    "url": "Thaumaturgic_Flux_%28Level_10%29",
+    "image": "Currency/Expedition2/ExpeditionGemCurrency.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Thaumaturgic Flux (Level 11)",
+    "code": "TF11",
+    "category": "Currency",
+    "url": "Thaumaturgic_Flux_%28Level_11%29",
+    "image": "Currency/Expedition2/ExpeditionGemCurrency.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Thaumaturgic Flux (Level 12)",
+    "code": "TF12",
+    "category": "Currency",
+    "url": "Thaumaturgic_Flux_%28Level_12%29",
+    "image": "Currency/Expedition2/ExpeditionGemCurrency.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Thaumaturgic Flux (Level 13)",
+    "code": "TF13",
+    "category": "Currency",
+    "url": "Thaumaturgic_Flux_%28Level_13%29",
+    "image": "Currency/Expedition2/ExpeditionGemCurrency.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Thaumaturgic Flux (Level 14)",
+    "code": "TF14",
+    "category": "Currency",
+    "url": "Thaumaturgic_Flux_%28Level_14%29",
+    "image": "Currency/Expedition2/ExpeditionGemCurrency.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Thaumaturgic Flux (Level 15)",
+    "code": "TF15",
+    "category": "Currency",
+    "url": "Thaumaturgic_Flux_%28Level_15%29",
+    "image": "Currency/Expedition2/ExpeditionGemCurrency.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Thaumaturgic Flux (Level 16)",
+    "code": "TF16",
+    "category": "Currency",
+    "url": "Thaumaturgic_Flux_%28Level_16%29",
+    "image": "Currency/Expedition2/ExpeditionGemCurrency.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Thaumaturgic Flux (Level 17)",
+    "code": "TF17",
+    "category": "Currency",
+    "url": "Thaumaturgic_Flux_%28Level_17%29",
+    "image": "Currency/Expedition2/ExpeditionGemCurrency.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Thaumaturgic Flux (Level 18)",
+    "code": "TF18",
+    "category": "Currency",
+    "url": "Thaumaturgic_Flux_%28Level_18%29",
+    "image": "Currency/Expedition2/ExpeditionGemCurrency.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Thaumaturgic Flux (Level 19)",
+    "code": "TF19",
+    "category": "Currency",
+    "url": "Thaumaturgic_Flux_%28Level_19%29",
+    "image": "Currency/Expedition2/ExpeditionGemCurrency.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Thaumaturgic Flux (Level 20)",
+    "code": "TF20",
+    "category": "Currency",
+    "url": "Thaumaturgic_Flux_%28Level_20%29",
+    "image": "Currency/Expedition2/ExpeditionGemCurrency.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Verisium",
+    "code": "Ve",
+    "category": "Currency",
+    "url": "Verisium",
+    "image": "Currency/Expedition2/RefinedVerisium.webp",
+    "maxStackSize": 1000
+  },
+  {
+    "name": "Exceptional Verisium",
+    "code": "EV",
+    "category": "Currency",
+    "url": "Exceptional_Verisium",
+    "image": "Currency/Expedition2/PerfectVerisium.webp",
+    "maxStackSize": 50
+  },
+  {
+    "name": "Medved's Crest of the Circle",
+    "code": "MCC",
+    "category": "Currency",
+    "url": "Medveds_Crest_of_the_Circle",
+    "image": "Currency/Expedition2/UhtredCrest.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Vorana's Crest of the Scythe",
+    "code": "VCS",
+    "category": "Currency",
+    "url": "Voranas_Crest_of_the_Scythe",
+    "image": "Currency/Expedition2/VoranaCrest.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Uhtred's Crest of the Chalice",
+    "code": "UCC",
+    "category": "Currency",
+    "url": "Uhtreds_Crest_of_the_Chalice",
+    "image": "Currency/Expedition2/MedvedCrest.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Olroth's Crest of the Sun",
+    "code": "OCS",
+    "category": "Currency",
+    "url": "Olroths_Crest_of_the_Sun",
+    "image": "Currency/Expedition2/OlrothCrest.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Runic Alloy",
+    "code": "RA",
+    "category": "Currency",
+    "url": "Runic_Alloy",
+    "image": "Currency/Expedition2/ScrapVerisium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Adaptive Alloy",
+    "code": "AA",
+    "category": "Currency",
+    "url": "Adaptive_Alloy",
+    "image": "Currency/Expedition2/ChippedVerisium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Protective Alloy",
+    "code": "PA",
+    "category": "Currency",
+    "url": "Protective_Alloy",
+    "image": "Currency/Expedition2/ImpureVerisium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Expansive Alloy",
+    "code": "EA",
+    "category": "Currency",
+    "url": "Expansive_Alloy",
+    "image": "Currency/Expedition2/StandardVerisium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Swift Alloy",
+    "code": "SAl",
+    "category": "Currency",
+    "url": "Swift_Alloy",
+    "image": "Currency/Expedition2/PureVerisium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Cyclonic Alloy",
+    "code": "CA",
+    "category": "Currency",
+    "url": "Cyclonic_Alloy",
+    "image": "Currency/Expedition2/ImbuedVerisium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Prismatic Alloy",
+    "code": "PAl",
+    "category": "Currency",
+    "url": "Prismatic_Alloy",
+    "image": "Currency/Expedition2/SovereignVerisium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Mystic Alloy",
+    "code": "MA",
+    "category": "Currency",
+    "url": "Mystic_Alloy",
+    "image": "Currency/Expedition2/CelestialVerisium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Sovereign Alloy",
+    "code": "SoA",
+    "category": "Currency",
+    "url": "Sovereign_Alloy",
+    "image": "Currency/Expedition2/Alloy1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Celestial Alloy",
+    "code": "CAl",
+    "category": "Currency",
+    "url": "Celestial_Alloy",
+    "image": "Currency/Expedition2/Alloy4.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Transcendent Alloy",
+    "code": "TA",
+    "category": "Currency",
+    "url": "Transcendent_Alloy",
+    "image": "Currency/Expedition2/Alloy5.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "The Runebinder's Alloy",
+    "code": "RAl",
+    "category": "Currency",
+    "url": "The_Runebinders_Alloy",
+    "image": "Currency/Expedition2/Alloy2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "The Runefather's Alloy",
+    "code": "RuA",
+    "category": "Currency",
+    "url": "The_Runefathers_Alloy",
+    "image": "Currency/Expedition2/Alloy3.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Venerable Starlit Ore",
+    "code": "VSO",
+    "category": "Currency",
+    "url": "Venerable_Starlit_Ore",
+    "image": "Crafting/Verisium/VerisiumOre_Starlit_2x3.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Revered Starlit Ore",
+    "code": "RSO",
+    "category": "Currency",
+    "url": "Revered_Starlit_Ore",
+    "image": "Crafting/Verisium/VerisiumOre_Starlit_2x4_Armour.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Veridical Starlit Ore",
+    "code": "VSOr",
+    "category": "Currency",
+    "url": "Veridical_Starlit_Ore",
+    "image": "Crafting/Verisium/VerisiumOre_Starlit_1x1.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Warding Starlit Ore",
+    "code": "WSO",
+    "category": "Currency",
+    "url": "Warding_Starlit_Ore",
+    "image": "Crafting/Verisium/VerisiumOre_Starlit_2x4_Weapon.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Starlit Ore",
+    "code": "SO",
+    "category": "Currency",
+    "url": "Starlit_Ore",
+    "image": "Crafting/Verisium/VerisiumOre_Starlit_2x2.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Blazing Flux",
+    "code": "BF",
+    "category": "Currency",
+    "url": "Blazing_Flux",
+    "image": "Currency/Expedition2/ArcaneFluxFire.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Chilling Flux",
+    "code": "CF",
+    "category": "Currency",
+    "url": "Chilling_Flux",
+    "image": "Currency/Expedition2/ArcaneFluxCold.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Crackling Flux",
+    "code": "CFl",
+    "category": "Currency",
+    "url": "Crackling_Flux",
+    "image": "Currency/Expedition2/ArcaneFluxLightning.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Void Flux",
+    "code": "VF",
+    "category": "Currency",
+    "url": "Void_Flux",
+    "image": "Currency/Expedition2/ArcaneFlux.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Liquid Verisium",
+    "code": "lV",
+    "category": "Currency",
+    "url": "Liquid_Verisium",
+    "image": "Currency/Expedition2/LiquidMetalVerisium.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Perfect Flux",
+    "code": "Fp",
+    "category": "Currency",
+    "url": "Perfect_Flux",
+    "image": "Currency/Expedition2/ExpeditionGemCurrencyPowerful.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Cryptic Key",
+    "code": "CK",
+    "category": "Currency",
+    "url": "Cryptic_Key",
+    "image": "Currency/StrongboxSkeletonKey.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Lesser Essence of the Body",
+    "code": "EBl",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_the_Body",
+    "image": "Currency/Essence/LifeEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of the Mind",
+    "code": "EMl",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_the_Mind",
+    "image": "Currency/Essence/ManaEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Enhancement",
+    "code": "EEl",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_Enhancement",
+    "image": "Currency/Essence/DefencesEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Abrasion",
+    "code": "EAbl",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_Abrasion",
+    "image": "Currency/Essence/PhysicalEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Flames",
+    "code": "EFl",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_Flames",
+    "image": "Currency/Essence/FireEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Ice",
+    "code": "EIl",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_Ice",
+    "image": "Currency/Essence/ColdEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Electricity",
+    "code": "EEcl",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_Electricity",
+    "image": "Currency/Essence/LightningEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Ruin",
+    "code": "ERl",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_Ruin",
+    "image": "Currency/Essence/ChaosEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Battle",
+    "code": "EBal",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_Battle",
+    "image": "Currency/Essence/AttackEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Sorcery",
+    "code": "ESl",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_Sorcery",
+    "image": "Currency/Essence/CasterEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Haste",
+    "code": "EHl",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_Haste",
+    "image": "Currency/Essence/SpeedEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of the Infinite",
+    "code": "EInl",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_the_Infinite",
+    "image": "Currency/Essence/AttributeEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of the Body",
+    "code": "EB",
+    "category": "Currency",
+    "url": "Essence_of_the_Body",
+    "image": "Currency/Essence/LifeEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of the Mind",
+    "code": "EM",
+    "category": "Currency",
+    "url": "Essence_of_the_Mind",
+    "image": "Currency/Essence/ManaEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Enhancement",
+    "code": "EE",
+    "category": "Currency",
+    "url": "Essence_of_Enhancement",
+    "image": "Currency/Essence/DefencesEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Abrasion",
+    "code": "EAb",
+    "category": "Currency",
+    "url": "Essence_of_Abrasion",
+    "image": "Currency/Essence/PhysicalEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Flames",
+    "code": "EF",
+    "category": "Currency",
+    "url": "Essence_of_Flames",
+    "image": "Currency/Essence/FireEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Ice",
+    "code": "EI",
+    "category": "Currency",
+    "url": "Essence_of_Ice",
+    "image": "Currency/Essence/ColdEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Electricity",
+    "code": "EEc",
+    "category": "Currency",
+    "url": "Essence_of_Electricity",
+    "image": "Currency/Essence/LightningEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Ruin",
+    "code": "ER",
+    "category": "Currency",
+    "url": "Essence_of_Ruin",
+    "image": "Currency/Essence/ChaosEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Battle",
+    "code": "EBa",
+    "category": "Currency",
+    "url": "Essence_of_Battle",
+    "image": "Currency/Essence/AttackEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Sorcery",
+    "code": "ES",
+    "category": "Currency",
+    "url": "Essence_of_Sorcery",
+    "image": "Currency/Essence/CasterEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Haste",
+    "code": "EH",
+    "category": "Currency",
+    "url": "Essence_of_Haste",
+    "image": "Currency/Essence/SpeedEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of the Infinite",
+    "code": "EIn",
+    "category": "Currency",
+    "url": "Essence_of_the_Infinite",
+    "image": "Currency/Essence/AttributeEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of the Body",
+    "code": "EBg",
+    "category": "Currency",
+    "url": "Greater_Essence_of_the_Body",
+    "image": "Currency/Essence/GreaterLifeEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of the Mind",
+    "code": "EMg",
+    "category": "Currency",
+    "url": "Greater_Essence_of_the_Mind",
+    "image": "Currency/Essence/GreaterManaEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Enhancement",
+    "code": "EEg",
+    "category": "Currency",
+    "url": "Greater_Essence_of_Enhancement",
+    "image": "Currency/Essence/GreaterDefencesEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Abrasion",
+    "code": "EAbg",
+    "category": "Currency",
+    "url": "Greater_Essence_of_Abrasion",
+    "image": "Currency/Essence/GreaterPhysicalEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Flames",
+    "code": "EFg",
+    "category": "Currency",
+    "url": "Greater_Essence_of_Flames",
+    "image": "Currency/Essence/GreaterFireEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Ice",
+    "code": "EIg",
+    "category": "Currency",
+    "url": "Greater_Essence_of_Ice",
+    "image": "Currency/Essence/GreaterColdEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Electricity",
+    "code": "EEcg",
+    "category": "Currency",
+    "url": "Greater_Essence_of_Electricity",
+    "image": "Currency/Essence/GreaterLightningEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Ruin",
+    "code": "ERg",
+    "category": "Currency",
+    "url": "Greater_Essence_of_Ruin",
+    "image": "Currency/Essence/GreaterChaosEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Battle",
+    "code": "EBag",
+    "category": "Currency",
+    "url": "Greater_Essence_of_Battle",
+    "image": "Currency/Essence/GreaterAttackEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Sorcery",
+    "code": "ESg",
+    "category": "Currency",
+    "url": "Greater_Essence_of_Sorcery",
+    "image": "Currency/Essence/GreaterCasterEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Haste",
+    "code": "EHg",
+    "category": "Currency",
+    "url": "Greater_Essence_of_Haste",
+    "image": "Currency/Essence/GreaterSpeedEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of the Infinite",
+    "code": "EIng",
+    "category": "Currency",
+    "url": "Greater_Essence_of_the_Infinite",
+    "image": "Currency/Essence/GreaterAttributeEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of the Body",
+    "code": "EBp",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_the_Body",
+    "image": "Currency/Essence/LifeEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of the Mind",
+    "code": "EMp",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_the_Mind",
+    "image": "Currency/Essence/ManaEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Enhancement",
+    "code": "EEp",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_Enhancement",
+    "image": "Currency/Essence/DefencesEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Abrasion",
+    "code": "EAbp",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_Abrasion",
+    "image": "Currency/Essence/PhysicalEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Flames",
+    "code": "EFp",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_Flames",
+    "image": "Currency/Essence/FireEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Ice",
+    "code": "EIp",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_Ice",
+    "image": "Currency/Essence/ColdEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Electricity",
+    "code": "EEcp",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_Electricity",
+    "image": "Currency/Essence/LightningEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Ruin",
+    "code": "ERp",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_Ruin",
+    "image": "Currency/Essence/ChaosEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Battle",
+    "code": "EBap",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_Battle",
+    "image": "Currency/Essence/AttackEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Sorcery",
+    "code": "ESp",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_Sorcery",
+    "image": "Currency/Essence/CasterEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Haste",
+    "code": "EHp",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_Haste",
+    "image": "Currency/Essence/SpeedEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of the Infinite",
+    "code": "EInp",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_the_Infinite",
+    "image": "Currency/Essence/AttributeEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Seeking",
+    "code": "ESel",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_Seeking",
+    "image": "Currency/Essence/CriticalEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Seeking",
+    "code": "ESe",
+    "category": "Currency",
+    "url": "Essence_of_Seeking",
+    "image": "Currency/Essence/CriticalEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Seeking",
+    "code": "ESeg",
+    "category": "Currency",
+    "url": "Greater_Essence_of_Seeking",
+    "image": "Currency/Essence/GreaterCriticalEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Seeking",
+    "code": "ESep",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_Seeking",
+    "image": "Currency/Essence/CriticalEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Hysteria",
+    "code": "EHy",
+    "category": "Currency",
+    "url": "Essence_of_Hysteria",
+    "image": "Currency/Essence/CorruptedEssenceHysteria.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Delirium",
+    "code": "ED",
+    "category": "Currency",
+    "url": "Essence_of_Delirium",
+    "image": "Currency/Essence/CorruptedEssenceDelirium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Horror",
+    "code": "EHo",
+    "category": "Currency",
+    "url": "Essence_of_Horror",
+    "image": "Currency/Essence/CorruptedEssenceHorror.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Insanity",
+    "code": "EsI",
+    "category": "Currency",
+    "url": "Essence_of_Insanity",
+    "image": "Currency/Essence/CorruptedEssenceInsanity.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of the Abyss",
+    "code": "EsA",
+    "category": "Currency",
+    "url": "Essence_of_the_Abyss",
+    "image": "Currency/Essence/AbyssalEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of the Breach",
+    "code": "EBr",
+    "category": "Currency",
+    "url": "Essence_of_the_Breach",
+    "image": "Currency/Essence/BreachEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Insulation",
+    "code": "EInsl",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_Insulation",
+    "image": "Currency/Essence/FireResistanceEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Insulation",
+    "code": "EIns",
+    "category": "Currency",
+    "url": "Essence_of_Insulation",
+    "image": "Currency/Essence/FireResistanceEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Insulation",
+    "code": "EInsg",
+    "category": "Currency",
+    "url": "Greater_Essence_of_Insulation",
+    "image": "Currency/Essence/GreaterFireResistanceEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Insulation",
+    "code": "EInsp",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_Insulation",
+    "image": "Currency/Essence/FireResistanceEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Thawing",
+    "code": "ETl",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_Thawing",
+    "image": "Currency/Essence/ColdResistanceEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Thawing",
+    "code": "ET",
+    "category": "Currency",
+    "url": "Essence_of_Thawing",
+    "image": "Currency/Essence/ColdResistanceEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Thawing",
+    "code": "ETg",
+    "category": "Currency",
+    "url": "Greater_Essence_of_Thawing",
+    "image": "Currency/Essence/GreaterColdResistanceEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Thawing",
+    "code": "ETp",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_Thawing",
+    "image": "Currency/Essence/ColdResistanceEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Grounding",
+    "code": "EGl",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_Grounding",
+    "image": "Currency/Essence/LightningResistanceEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Grounding",
+    "code": "EG",
+    "category": "Currency",
+    "url": "Essence_of_Grounding",
+    "image": "Currency/Essence/LightningResistanceEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Grounding",
+    "code": "EGg",
+    "category": "Currency",
+    "url": "Greater_Essence_of_Grounding",
+    "image": "Currency/Essence/GreaterLightningResistanceEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Grounding",
+    "code": "EGp",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_Grounding",
+    "image": "Currency/Essence/LightningResistanceEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Alacrity",
+    "code": "EAll",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_Alacrity",
+    "image": "Currency/Essence/SpeedCasterEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Alacrity",
+    "code": "EAl",
+    "category": "Currency",
+    "url": "Essence_of_Alacrity",
+    "image": "Currency/Essence/SpeedCasterEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Alacrity",
+    "code": "EAlg",
+    "category": "Currency",
+    "url": "Greater_Essence_of_Alacrity",
+    "image": "Currency/Essence/GreaterSpeedCasterEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Alacrity",
+    "code": "EAlp",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_Alacrity",
+    "image": "Currency/Essence/SpeedCasterEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Opulence",
+    "code": "EsOl",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_Opulence",
+    "image": "Currency/Essence/RarityResistanceEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Opulence",
+    "code": "EsO",
+    "category": "Currency",
+    "url": "Essence_of_Opulence",
+    "image": "Currency/Essence/RarityResistanceEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Opulence",
+    "code": "EsOg",
+    "category": "Currency",
+    "url": "Greater_Essence_of_Opulence",
+    "image": "Currency/Essence/GreaterRarityResistanceEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Opulence",
+    "code": "EsOp",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_Opulence",
+    "image": "Currency/Essence/RarityResistanceEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Command",
+    "code": "ECol",
+    "category": "Currency",
+    "url": "Lesser_Essence_of_Command",
+    "image": "Currency/Essence/AllyEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Command",
+    "code": "ECo",
+    "category": "Currency",
+    "url": "Essence_of_Command",
+    "image": "Currency/Essence/AllyEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Command",
+    "code": "ECog",
+    "category": "Currency",
+    "url": "Greater_Essence_of_Command",
+    "image": "Currency/Essence/GreaterAllyEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Command",
+    "code": "ECop",
+    "category": "Currency",
+    "url": "Perfect_Essence_of_Command",
+    "image": "Currency/Essence/AllyEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Breach Splinter",
+    "code": "BS",
+    "category": "Currency",
+    "url": "Breach_Splinter",
+    "image": "Currency/Breach/BreachstoneSplinter.webp",
+    "maxStackSize": 300
+  },
+  {
+    "name": "Simulacrum Splinter",
+    "code": "SS",
+    "category": "Currency",
+    "url": "Simulacrum_Splinter",
+    "image": "Maps/DeliriumSplinter.webp",
+    "maxStackSize": 300
+  },
+  {
+    "name": "Petition Splinter",
+    "code": "PS",
+    "category": "Currency",
+    "url": "Petition_Splinter",
+    "image": "Currency/Ritual/NewRitualSplinter.webp",
+    "maxStackSize": 300
+  },
+  {
+    "name": "Runic Splinter",
+    "code": "RSp",
+    "category": "Currency",
+    "url": "Runic_Splinter",
+    "image": "Currency/Expedition/ExpeditionSplinter.webp",
+    "maxStackSize": 300
+  },
+  {
+    "name": "Flesh Catalyst",
+    "code": "FC",
+    "category": "Currency",
+    "url": "Flesh_Catalyst",
+    "image": "Currency/Breach/BreachCatalystLife.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Neural Catalyst",
+    "code": "NC",
+    "category": "Currency",
+    "url": "Neural_Catalyst",
+    "image": "Currency/Breach/BreachCatalystMana.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Carapace Catalyst",
+    "code": "CCa",
+    "category": "Currency",
+    "url": "Carapace_Catalyst",
+    "image": "Currency/Breach/BreachCatalystDefences.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Uul-Netol's Catalyst",
+    "code": "UNC",
+    "category": "Currency",
+    "url": "Uul-Netols_Catalyst",
+    "image": "Currency/Breach/BreachCatalystPhysical.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Xoph's Catalyst",
+    "code": "XC",
+    "category": "Currency",
+    "url": "Xophs_Catalyst",
+    "image": "Currency/Breach/BreachCatalystFire.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Tul's Catalyst",
+    "code": "TC",
+    "category": "Currency",
+    "url": "Tuls_Catalyst",
+    "image": "Currency/Breach/BreachCatalystCold.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Esh's Catalyst",
+    "code": "ECa",
+    "category": "Currency",
+    "url": "Eshs_Catalyst",
+    "image": "Currency/Breach/BreachCatalystLightning.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Chayula's Catalyst",
+    "code": "ChC",
+    "category": "Currency",
+    "url": "Chayulas_Catalyst",
+    "image": "Currency/Breach/BreachCatalystChaos.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Reaver Catalyst",
+    "code": "RC",
+    "category": "Currency",
+    "url": "Reaver_Catalyst",
+    "image": "Currency/Breach/BreachCatalystAttack.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Sibilant Catalyst",
+    "code": "SC",
+    "category": "Currency",
+    "url": "Sibilant_Catalyst",
+    "image": "Currency/Breach/BreachCatalystCaster.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Skittering Catalyst",
+    "code": "SCa",
+    "category": "Currency",
+    "url": "Skittering_Catalyst",
+    "image": "Currency/Breach/BreachCatalystSpeed.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Adaptive Catalyst",
+    "code": "ACa",
+    "category": "Currency",
+    "url": "Adaptive_Catalyst",
+    "image": "Currency/Breach/BreachCatalystAttribute.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Necrotic Catalyst",
+    "code": "NCa",
+    "category": "Currency",
+    "url": "Necrotic_Catalyst",
+    "image": "Currency/Breach/BreachCatalystNecrotic.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Flesh Catalyst",
+    "code": "RFC",
+    "category": "Currency",
+    "url": "Refined_Flesh_Catalyst",
+    "image": "Currency/Breach/JewelCatalystLife.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Neural Catalyst",
+    "code": "RNC",
+    "category": "Currency",
+    "url": "Refined_Neural_Catalyst",
+    "image": "Currency/Breach/JewelCatalystMana.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Carapace Catalyst",
+    "code": "RCC",
+    "category": "Currency",
+    "url": "Refined_Carapace_Catalyst",
+    "image": "Currency/Breach/JewelCatalystDefences.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Uul-Netol's Catalyst",
+    "code": "RUNC",
+    "category": "Currency",
+    "url": "Refined_Uul-Netols_Catalyst",
+    "image": "Currency/Breach/JewelCatalystPhysical.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Xoph's Catalyst",
+    "code": "RXC",
+    "category": "Currency",
+    "url": "Refined_Xophs_Catalyst",
+    "image": "Currency/Breach/JewelCatalystFire.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Tul's Catalyst",
+    "code": "RTC",
+    "category": "Currency",
+    "url": "Refined_Tuls_Catalyst",
+    "image": "Currency/Breach/JewelCatalystCold.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Esh's Catalyst",
+    "code": "REC",
+    "category": "Currency",
+    "url": "Refined_Eshs_Catalyst",
+    "image": "Currency/Breach/JewelCatalystLightning.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Chayula's Catalyst",
+    "code": "RCCa",
+    "category": "Currency",
+    "url": "Refined_Chayulas_Catalyst",
+    "image": "Currency/Breach/JewelCatalystChaos.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Reaver Catalyst",
+    "code": "RRC",
+    "category": "Currency",
+    "url": "Refined_Reaver_Catalyst",
+    "image": "Currency/Breach/JewelCatalystAttack.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Sibilant Catalyst",
+    "code": "RSC",
+    "category": "Currency",
+    "url": "Refined_Sibilant_Catalyst",
+    "image": "Currency/Breach/JewelCatalystCaster.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Skittering Catalyst",
+    "code": "RSCa",
+    "category": "Currency",
+    "url": "Refined_Skittering_Catalyst",
+    "image": "Currency/Breach/JewelCatalystSpeed.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Adaptive Catalyst",
+    "code": "RAC",
+    "category": "Currency",
+    "url": "Refined_Adaptive_Catalyst",
+    "image": "Currency/Breach/JewelCatalystAttribute.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Necrotic Catalyst",
+    "code": "RNCa",
+    "category": "Currency",
+    "url": "Refined_Necrotic_Catalyst",
+    "image": "Currency/Breach/JewelCatalystNecrotic.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Desert Rune",
+    "code": "aDR",
+    "category": "Augment",
+    "url": "Desert_Rune",
+    "image": "Currency/Runes/FireRune.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Glacial Rune",
+    "code": "aGRu",
+    "category": "Augment",
+    "url": "Glacial_Rune",
+    "image": "Currency/Runes/ColdRune.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Storm Rune",
+    "code": "aSR",
+    "category": "Augment",
+    "url": "Storm_Rune",
+    "image": "Currency/Runes/LightningRune.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Iron Rune",
+    "code": "aIR",
+    "category": "Augment",
+    "url": "Iron_Rune",
+    "image": "Currency/Runes/EnhanceRune.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Body Rune",
+    "code": "aBR",
+    "category": "Augment",
+    "url": "Body_Rune",
+    "image": "Currency/Runes/LifeRune.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Mind Rune",
+    "code": "aMR",
+    "category": "Augment",
+    "url": "Mind_Rune",
+    "image": "Currency/Runes/ManaRune.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Rebirth Rune",
+    "code": "aRR",
+    "category": "Augment",
+    "url": "Rebirth_Rune",
+    "image": "Currency/Runes/LifeRecoveryRune.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Inspiration Rune",
+    "code": "aIRu",
+    "category": "Augment",
+    "url": "Inspiration_Rune",
+    "image": "Currency/Runes/ManaRecoveryRune.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Stone Rune",
+    "code": "aSRu",
+    "category": "Augment",
+    "url": "Stone_Rune",
+    "image": "Currency/Runes/StunRune.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Vision Rune",
+    "code": "aVR",
+    "category": "Augment",
+    "url": "Vision_Rune",
+    "image": "Currency/Runes/AccuracyRune.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Desert Rune",
+    "code": "aDRl",
+    "category": "Augment",
+    "url": "Lesser_Desert_Rune",
+    "image": "Currency/Runes/FireRuneTier1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Glacial Rune",
+    "code": "aGRul",
+    "category": "Augment",
+    "url": "Lesser_Glacial_Rune",
+    "image": "Currency/Runes/ColdRuneTier1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Storm Rune",
+    "code": "aSRl",
+    "category": "Augment",
+    "url": "Lesser_Storm_Rune",
+    "image": "Currency/Runes/LightningRuneTier1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Iron Rune",
+    "code": "aIRl",
+    "category": "Augment",
+    "url": "Lesser_Iron_Rune",
+    "image": "Currency/Runes/EnhanceRuneTier1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Body Rune",
+    "code": "aBRl",
+    "category": "Augment",
+    "url": "Lesser_Body_Rune",
+    "image": "Currency/Runes/LifeRuneTier1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Mind Rune",
+    "code": "aMRl",
+    "category": "Augment",
+    "url": "Lesser_Mind_Rune",
+    "image": "Currency/Runes/ManaRuneTier1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Rebirth Rune",
+    "code": "aRRl",
+    "category": "Augment",
+    "url": "Lesser_Rebirth_Rune",
+    "image": "Currency/Runes/LifeRecoveryRuneTier1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Inspiration Rune",
+    "code": "aIRul",
+    "category": "Augment",
+    "url": "Lesser_Inspiration_Rune",
+    "image": "Currency/Runes/ManaRecoveryRuneTier1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Stone Rune",
+    "code": "aSRul",
+    "category": "Augment",
+    "url": "Lesser_Stone_Rune",
+    "image": "Currency/Runes/StunRuneTier1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Vision Rune",
+    "code": "aVRl",
+    "category": "Augment",
+    "url": "Lesser_Vision_Rune",
+    "image": "Currency/Runes/AccuracyRuneTier1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Desert Rune",
+    "code": "aDRg",
+    "category": "Augment",
+    "url": "Greater_Desert_Rune",
+    "image": "Currency/Runes/FireRuneTier2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Glacial Rune",
+    "code": "aGRug",
+    "category": "Augment",
+    "url": "Greater_Glacial_Rune",
+    "image": "Currency/Runes/ColdRuneTier2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Storm Rune",
+    "code": "aSRg",
+    "category": "Augment",
+    "url": "Greater_Storm_Rune",
+    "image": "Currency/Runes/LightningRuneTier2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Iron Rune",
+    "code": "aIRg",
+    "category": "Augment",
+    "url": "Greater_Iron_Rune",
+    "image": "Currency/Runes/EnhanceRuneTier2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Body Rune",
+    "code": "aBRg",
+    "category": "Augment",
+    "url": "Greater_Body_Rune",
+    "image": "Currency/Runes/LifeRuneTier2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Mind Rune",
+    "code": "aMRg",
+    "category": "Augment",
+    "url": "Greater_Mind_Rune",
+    "image": "Currency/Runes/ManaRuneTier2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Rebirth Rune",
+    "code": "aRRg",
+    "category": "Augment",
+    "url": "Greater_Rebirth_Rune",
+    "image": "Currency/Runes/LifeRecoveryRuneTier2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Inspiration Rune",
+    "code": "aIRug",
+    "category": "Augment",
+    "url": "Greater_Inspiration_Rune",
+    "image": "Currency/Runes/ManaRecoveryRuneTier2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Stone Rune",
+    "code": "aSRug",
+    "category": "Augment",
+    "url": "Greater_Stone_Rune",
+    "image": "Currency/Runes/StunRuneTier2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Vision Rune",
+    "code": "aVRg",
+    "category": "Augment",
+    "url": "Greater_Vision_Rune",
+    "image": "Currency/Runes/AccuracyRuneTier2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Desert Rune",
+    "code": "aDRp",
+    "category": "Augment",
+    "url": "Perfect_Desert_Rune",
+    "image": "Currency/Runes/PerfectRuneFire.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Glacial Rune",
+    "code": "aGRup",
+    "category": "Augment",
+    "url": "Perfect_Glacial_Rune",
+    "image": "Currency/Runes/PerfectRuneCold.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Storm Rune",
+    "code": "aSRp",
+    "category": "Augment",
+    "url": "Perfect_Storm_Rune",
+    "image": "Currency/Runes/PerfectRuneLightning.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Iron Rune",
+    "code": "aIRp",
+    "category": "Augment",
+    "url": "Perfect_Iron_Rune",
+    "image": "Currency/Runes/PerfectRuneEnhance.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Body Rune",
+    "code": "aBRp",
+    "category": "Augment",
+    "url": "Perfect_Body_Rune",
+    "image": "Currency/Runes/PerfectRuneLife.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Mind Rune",
+    "code": "aMRp",
+    "category": "Augment",
+    "url": "Perfect_Mind_Rune",
+    "image": "Currency/Runes/PerfectRuneMana.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Rebirth Rune",
+    "code": "aRRp",
+    "category": "Augment",
+    "url": "Perfect_Rebirth_Rune",
+    "image": "Currency/Runes/PerfectRuneLifeRecovery.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Inspiration Rune",
+    "code": "aIRup",
+    "category": "Augment",
+    "url": "Perfect_Inspiration_Rune",
+    "image": "Currency/Runes/PerfectRuneManaRecovery.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Stone Rune",
+    "code": "aSRup",
+    "category": "Augment",
+    "url": "Perfect_Stone_Rune",
+    "image": "Currency/Runes/PerfectRuneStun.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Vision Rune",
+    "code": "aVRp",
+    "category": "Augment",
+    "url": "Perfect_Vision_Rune",
+    "image": "Currency/Runes/PerfectRuneAccuracy.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Robust Rune",
+    "code": "aRRul",
+    "category": "Augment",
+    "url": "Lesser_Robust_Rune",
+    "image": "Currency/Runes/StrengthRuneTier1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Robust Rune",
+    "code": "aRRu",
+    "category": "Augment",
+    "url": "Robust_Rune",
+    "image": "Currency/Runes/StrengthRune.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Robust Rune",
+    "code": "aRRug",
+    "category": "Augment",
+    "url": "Greater_Robust_Rune",
+    "image": "Currency/Runes/StrengthRuneTier3.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Robust Rune",
+    "code": "aRRup",
+    "category": "Augment",
+    "url": "Perfect_Robust_Rune",
+    "image": "Currency/Runes/PerfectRuneStrength.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Adept Rune",
+    "code": "aARul",
+    "category": "Augment",
+    "url": "Lesser_Adept_Rune",
+    "image": "Currency/Runes/DexRuneTier1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Adept Rune",
+    "code": "aARu",
+    "category": "Augment",
+    "url": "Adept_Rune",
+    "image": "Currency/Runes/DexRune.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Adept Rune",
+    "code": "aARug",
+    "category": "Augment",
+    "url": "Greater_Adept_Rune",
+    "image": "Currency/Runes/DexRuneTier3.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Adept Rune",
+    "code": "aARup",
+    "category": "Augment",
+    "url": "Perfect_Adept_Rune",
+    "image": "Currency/Runes/PerfectRuneDexterity.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Resolve Rune",
+    "code": "aReRl",
+    "category": "Augment",
+    "url": "Lesser_Resolve_Rune",
+    "image": "Currency/Runes/IntRuneTier1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Resolve Rune",
+    "code": "aReR",
+    "category": "Augment",
+    "url": "Resolve_Rune",
+    "image": "Currency/Runes/IntRune.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Resolve Rune",
+    "code": "aReRg",
+    "category": "Augment",
+    "url": "Greater_Resolve_Rune",
+    "image": "Currency/Runes/IntRuneTier3.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Resolve Rune",
+    "code": "aReRp",
+    "category": "Augment",
+    "url": "Perfect_Resolve_Rune",
+    "image": "Currency/Runes/PerfectRuneIntelligence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Tempered Rune",
+    "code": "aTRl",
+    "category": "Augment",
+    "url": "Lesser_Tempered_Rune",
+    "image": "Currency/Runes/PhyDmgRuneTier1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Tempered Rune",
+    "code": "aTR",
+    "category": "Augment",
+    "url": "Tempered_Rune",
+    "image": "Currency/Runes/PhyDmgRune.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Tempered Rune",
+    "code": "aTRg",
+    "category": "Augment",
+    "url": "Greater_Tempered_Rune",
+    "image": "Currency/Runes/PhyDmgRuneTier3.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Rune of Leadership",
+    "code": "aRLg",
+    "category": "Augment",
+    "url": "Greater_Rune_of_Leadership",
+    "image": "Currency/Runes/LightningRuneSpecial1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Rune of Tithing",
+    "code": "aRTg",
+    "category": "Augment",
+    "url": "Greater_Rune_of_Tithing",
+    "image": "Currency/Runes/LightningRuneSpecial2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Rune of Alacrity",
+    "code": "aRAg",
+    "category": "Augment",
+    "url": "Greater_Rune_of_Alacrity",
+    "image": "Currency/Runes/LightningRuneSpecial3.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Rune of Nobility",
+    "code": "aRNg",
+    "category": "Augment",
+    "url": "Greater_Rune_of_Nobility",
+    "image": "Currency/Runes/LightningRuneSpecial4.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Hedgewitch Assandra's Rune of Wisdom",
+    "code": "aHARW",
+    "category": "Augment",
+    "url": "Hedgewitch_Assandras_Rune_of_Wisdom",
+    "image": "Currency/Runes/NewRune1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Saqawal's Rune of the Sky",
+    "code": "aSRS",
+    "category": "Augment",
+    "url": "Saqawals_Rune_of_the_Sky",
+    "image": "Currency/Runes/NewRune2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Fenumus' Rune of Agony",
+    "code": "aFRA",
+    "category": "Augment",
+    "url": "Fenumus_Rune_of_Agony",
+    "image": "Currency/Runes/NewRune3.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Farrul's Rune of Grace",
+    "code": "aFRG",
+    "category": "Augment",
+    "url": "Farruls_Rune_of_Grace",
+    "image": "Currency/Runes/NewRune4.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Farrul's Rune of the Chase",
+    "code": "aFRC",
+    "category": "Augment",
+    "url": "Farruls_Rune_of_the_Chase",
+    "image": "Currency/Runes/NewRune5.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Craiceann's Rune of Warding",
+    "code": "aCRW",
+    "category": "Augment",
+    "url": "Craiceanns_Rune_of_Warding",
+    "image": "Currency/Runes/NewRune6.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Saqawal's Rune of Memory",
+    "code": "aSRM",
+    "category": "Augment",
+    "url": "Saqawals_Rune_of_Memory",
+    "image": "Currency/Runes/NewRune7.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Saqawal's Rune of Erosion",
+    "code": "aSRE",
+    "category": "Augment",
+    "url": "Saqawals_Rune_of_Erosion",
+    "image": "Currency/Runes/NewRune8.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Farrul's Rune of the Hunt",
+    "code": "aFRH",
+    "category": "Augment",
+    "url": "Farruls_Rune_of_the_Hunt",
+    "image": "Currency/Runes/NewRune9.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Craiceann's Rune of Recovery",
+    "code": "aCRR",
+    "category": "Augment",
+    "url": "Craiceanns_Rune_of_Recovery",
+    "image": "Currency/Runes/NewRune10.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Courtesan Mannan's Rune of Cruelty",
+    "code": "aCMRC",
+    "category": "Augment",
+    "url": "Courtesan_Mannans_Rune_of_Cruelty",
+    "image": "Currency/Runes/NewRune11.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Thane Grannell's Rune of Mastery",
+    "code": "aTGRM",
+    "category": "Augment",
+    "url": "Thane_Grannells_Rune_of_Mastery",
+    "image": "Currency/Runes/NewRune12.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Fenumus' Rune of Spinning",
+    "code": "aFRS",
+    "category": "Augment",
+    "url": "Fenumus_Rune_of_Spinning",
+    "image": "Currency/Runes/NewRune13.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Countess Seske's Rune of Archery",
+    "code": "aCSRA",
+    "category": "Augment",
+    "url": "Countess_Seskes_Rune_of_Archery",
+    "image": "Currency/Runes/NewRune14.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Thane Girt's Rune of Wildness",
+    "code": "aTGRW",
+    "category": "Augment",
+    "url": "Thane_Girts_Rune_of_Wildness",
+    "image": "Currency/Runes/NewRune15.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Fenumus' Rune of Draining",
+    "code": "aFRD",
+    "category": "Augment",
+    "url": "Fenumus_Rune_of_Draining",
+    "image": "Currency/Runes/NewRune16.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Thane Myrk's Rune of Summer",
+    "code": "aTMRS",
+    "category": "Augment",
+    "url": "Thane_Myrks_Rune_of_Summer",
+    "image": "Currency/Runes/NewRune17.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lady Hestra's Rune of Winter",
+    "code": "aLHRW",
+    "category": "Augment",
+    "url": "Lady_Hestras_Rune_of_Winter",
+    "image": "Currency/Runes/NewRune18.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Thane Leld's Rune of Spring",
+    "code": "aTLRS",
+    "category": "Augment",
+    "url": "Thane_Lelds_Rune_of_Spring",
+    "image": "Currency/Runes/NewRune19.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "The Greatwolf's Rune of Claws",
+    "code": "aGRC",
+    "category": "Augment",
+    "url": "The_Greatwolfs_Rune_of_Claws",
+    "image": "Currency/Runes/NewRune20.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "The Greatwolf's Rune of Willpower",
+    "code": "aGRW",
+    "category": "Augment",
+    "url": "The_Greatwolfs_Rune_of_Willpower",
+    "image": "Currency/Runes/NewRune21.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Masterwork Rune",
+    "code": "aMRu",
+    "category": "Augment",
+    "url": "Masterwork_Rune",
+    "image": "Currency/Expedition2/UpgradeRune.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Idol of Sirrius",
+    "code": "aIS",
+    "category": "Augment",
+    "url": "Idol_of_Sirrius",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableWolfSpecial.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Idol of Thruldana",
+    "code": "aIT",
+    "category": "Augment",
+    "url": "Idol_of_Thruldana",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableSnakeSpecial.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Idol of Grold",
+    "code": "aIG",
+    "category": "Augment",
+    "url": "Idol_of_Grold",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableBearSpecial.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Idol of Eeshta",
+    "code": "aIE",
+    "category": "Augment",
+    "url": "Idol_of_Eeshta",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableOwlSpecial.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Idol of Egrin",
+    "code": "aIEg",
+    "category": "Augment",
+    "url": "Idol_of_Egrin",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableCatSpecial.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Idol of Maxarius",
+    "code": "aIM",
+    "category": "Augment",
+    "url": "Idol_of_Maxarius",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableStagSpecial.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Idol of Ralakesh",
+    "code": "aIRa",
+    "category": "Augment",
+    "url": "Idol_of_Ralakesh",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableMonkeySpecial.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Idol of Greust",
+    "code": "aIGr",
+    "category": "Augment",
+    "url": "Idol_of_Greust",
+    "image": "Currency/TormentedSpiritSocketables/IdolofGreust.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Idol of Yeena",
+    "code": "aIY",
+    "category": "Augment",
+    "url": "Idol_of_Yeena",
+    "image": "Currency/TormentedSpiritSocketables/IdolofYeena.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Idol of Eramir",
+    "code": "aIEr",
+    "category": "Augment",
+    "url": "Idol_of_Eramir",
+    "image": "Currency/TormentedSpiritSocketables/IdolofEramir.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Idol of Oak",
+    "code": "aIO",
+    "category": "Augment",
+    "url": "Idol_of_Oak",
+    "image": "Currency/TormentedSpiritSocketables/IdolofOak.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Idol of Alira",
+    "code": "aIA",
+    "category": "Augment",
+    "url": "Idol_of_Alira",
+    "image": "Currency/TormentedSpiritSocketables/IdoloAlira.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Idol of Kraityn",
+    "code": "aIK",
+    "category": "Augment",
+    "url": "Idol_of_Kraityn",
+    "image": "Currency/TormentedSpiritSocketables/IdoloKraityn.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Idol of Silk",
+    "code": "aISi",
+    "category": "Augment",
+    "url": "Idol_of_Silk",
+    "image": "Currency/TormentedSpiritSocketables/IdolofSilk.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Idol of the Sycophant",
+    "code": "aISy",
+    "category": "Augment",
+    "url": "Idol_of_the_Sycophant",
+    "image": "Currency/TormentedSpiritSocketables/RitualCorruptedIdol1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Idol of the Martyr",
+    "code": "aIMa",
+    "category": "Augment",
+    "url": "Idol_of_the_Martyr",
+    "image": "Currency/TormentedSpiritSocketables/RitualCorruptedIdol2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Idol of the Pharisee",
+    "code": "aIP",
+    "category": "Augment",
+    "url": "Idol_of_the_Pharisee",
+    "image": "Currency/TormentedSpiritSocketables/RitualCorruptedIdol3.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Panther Idol",
+    "code": "aPI",
+    "category": "Augment",
+    "url": "Panther_Idol",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketablePanther.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Hawk Idol",
+    "code": "aHI",
+    "category": "Augment",
+    "url": "Hawk_Idol",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableHawk.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Stoat Idol",
+    "code": "aSI",
+    "category": "Augment",
+    "url": "Stoat_Idol",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableStoat.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Hayoxi's Soul Core of Heatproofing",
+    "code": "aHSCH",
+    "category": "Augment",
+    "url": "Hayoxis_Soul_Core_of_Heatproofing",
+    "image": "Currency/SoulCores/NewSoulCoreIce.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Zalatl's Soul Core of Insulation",
+    "code": "aZSCI",
+    "category": "Augment",
+    "url": "Zalatls_Soul_Core_of_Insulation",
+    "image": "Currency/SoulCores/NewSoulCoreLightning.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Topotante's Soul Core of Dampening",
+    "code": "aTSCD",
+    "category": "Augment",
+    "url": "Topotantes_Soul_Core_of_Dampening",
+    "image": "Currency/SoulCores/NewSoulCoreFire.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Atmohua's Soul Core of Retreat",
+    "code": "aASCR",
+    "category": "Augment",
+    "url": "Atmohuas_Soul_Core_of_Retreat",
+    "image": "Currency/SoulCores/NewSoulCoreEnergyShield.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Quipolatl's Soul Core of Flow",
+    "code": "aQSCF",
+    "category": "Augment",
+    "url": "Quipolatls_Soul_Core_of_Flow",
+    "image": "Currency/SoulCores/NewSoulCoreTimeCooldown.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Tzamoto's Soul Core of Ferocity",
+    "code": "aTSCF",
+    "category": "Augment",
+    "url": "Tzamotos_Soul_Core_of_Ferocity",
+    "image": "Currency/SoulCores/NewSoulCoreRage.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Uromoti's Soul Core of Attenuation",
+    "code": "aUSCA",
+    "category": "Augment",
+    "url": "Uromotis_Soul_Core_of_Attenuation",
+    "image": "Currency/SoulCores/NewSoulCoreCurses2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Opiloti's Soul Core of Assault",
+    "code": "aOSCA",
+    "category": "Augment",
+    "url": "Opilotis_Soul_Core_of_Assault",
+    "image": "Currency/SoulCores/NewSoulCoreFrenzyCharge.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Guatelitzi's Soul Core of Endurance",
+    "code": "aGSCE",
+    "category": "Augment",
+    "url": "Guatelitzis_Soul_Core_of_Endurance",
+    "image": "Currency/SoulCores/NewSoulCoreEnduranceCharge.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Xopec's Soul Core of Power",
+    "code": "aXSCP",
+    "category": "Augment",
+    "url": "Xopecs_Soul_Core_of_Power",
+    "image": "Currency/SoulCores/NewSoulCorePowerCharge.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Estazunti's Soul Core of Convalescence",
+    "code": "aESCC",
+    "category": "Augment",
+    "url": "Estazuntis_Soul_Core_of_Convalescence",
+    "image": "Currency/SoulCores/NewSoulCoreTimeSlow.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Tacati's Soul Core of Affliction",
+    "code": "aTSCA",
+    "category": "Augment",
+    "url": "Tacatis_Soul_Core_of_Affliction",
+    "image": "Currency/SoulCores/NewSoulCoreChaos1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Cholotl's Soul Core of War",
+    "code": "aCSCW",
+    "category": "Augment",
+    "url": "Cholotls_Soul_Core_of_War",
+    "image": "Currency/SoulCores/NewSoulCoreProjectile.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Citaqualotl's Soul Core of Foulness",
+    "code": "aCSCF",
+    "category": "Augment",
+    "url": "Citaqualotls_Soul_Core_of_Foulness",
+    "image": "Currency/SoulCores/NewSoulCoreChaos2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Xipocado's Soul Core of Dominion",
+    "code": "aXSCD",
+    "category": "Augment",
+    "url": "Xipocados_Soul_Core_of_Dominion",
+    "image": "Currency/SoulCores/NewSoulCoreMinion.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Jiquani's Soul Core of Automation",
+    "code": "aJSCA",
+    "category": "Augment",
+    "url": "Jiquanis_Soul_Core_of_Automation",
+    "image": "Currency/SoulCores/RareSoulCoreTotems.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Jiquani's Soul Core of Malediction",
+    "code": "aJSCM",
+    "category": "Augment",
+    "url": "Jiquanis_Soul_Core_of_Malediction",
+    "image": "Currency/SoulCores/RareSoulCoreCurses.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Jiquani's Soul Core of Targeting",
+    "code": "aJSCT",
+    "category": "Augment",
+    "url": "Jiquanis_Soul_Core_of_Targeting",
+    "image": "Currency/SoulCores/RareSoulCoreMarks.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Jiquani's Soul Core of Rallying",
+    "code": "aJSCR",
+    "category": "Augment",
+    "url": "Jiquanis_Soul_Core_of_Rallying",
+    "image": "Currency/SoulCores/RareSoulCoreWarcries.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Jiquani's Soul Core of Radiance",
+    "code": "aJCR",
+    "category": "Augment",
+    "url": "Jiquanis_Soul_Core_of_Radiance",
+    "image": "Currency/SoulCores/RareSoulCoreHeralds.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Jiquani's Soul Core of Severing",
+    "code": "aJSCS",
+    "category": "Augment",
+    "url": "Jiquanis_Soul_Core_of_Severing",
+    "image": "Currency/SoulCores/RareSoulCoreStrikes.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Jiquani's Soul Core of Rippling",
+    "code": "aJCRi",
+    "category": "Augment",
+    "url": "Jiquanis_Soul_Core_of_Rippling",
+    "image": "Currency/SoulCores/RareSoulCoreNovas.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Jiquani's Soul Core of Quaking",
+    "code": "aJSCQ",
+    "category": "Augment",
+    "url": "Jiquanis_Soul_Core_of_Quaking",
+    "image": "Currency/SoulCores/RareSoulCoreSlams.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Jiquani's Soul Core of Munitions",
+    "code": "aJCM",
+    "category": "Augment",
+    "url": "Jiquanis_Soul_Core_of_Munitions",
+    "image": "Currency/SoulCores/RareSoulCoreGrenades.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Jiquani's Soul Core of Snares",
+    "code": "aJCS",
+    "category": "Augment",
+    "url": "Jiquanis_Soul_Core_of_Snares",
+    "image": "Currency/SoulCores/RareSoulCoreHazards.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Jiquani's Soul Core of Abundance",
+    "code": "aJCA",
+    "category": "Augment",
+    "url": "Jiquanis_Soul_Core_of_Abundance",
+    "image": "Currency/SoulCores/RareSoulCorePlants.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Jiquani's Soul Core of Squalls",
+    "code": "aJCSq",
+    "category": "Augment",
+    "url": "Jiquanis_Soul_Core_of_Squalls",
+    "image": "Currency/SoulCores/RareSoulCoreWind.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Jiquani's Soul Core of Thundering",
+    "code": "aJCT",
+    "category": "Augment",
+    "url": "Jiquanis_Soul_Core_of_Thundering",
+    "image": "Currency/SoulCores/RareSoulCoreStorms.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Atziri's Soul Core of Devotion",
+    "code": "aASCD",
+    "category": "Augment",
+    "url": "Atziris_Soul_Core_of_Devotion",
+    "image": "Currency/SoulCores/SoulCoreSpecialHelmet.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Atziri's Soul Core of Vitality",
+    "code": "aASCV",
+    "category": "Augment",
+    "url": "Atziris_Soul_Core_of_Vitality",
+    "image": "Currency/SoulCores/SoulCoreSpecialBodyArmour.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Atziri's Soul Core of Alacrity",
+    "code": "aASCA",
+    "category": "Augment",
+    "url": "Atziris_Soul_Core_of_Alacrity",
+    "image": "Currency/SoulCores/SoulCoreSpecialGloves.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Atziri's Soul Core of Inoculation",
+    "code": "aASCI",
+    "category": "Augment",
+    "url": "Atziris_Soul_Core_of_Inoculation",
+    "image": "Currency/SoulCores/SoulCoreSpecialBoots.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Soul Core of Vizoma",
+    "code": "aSCV",
+    "category": "Augment",
+    "url": "Soul_Core_of_Vizoma",
+    "image": "Currency/SoulCores/GreaterSoulCoreVision.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Soul Core of Tacati",
+    "code": "aSCT",
+    "category": "Augment",
+    "url": "Soul_Core_of_Tacati",
+    "image": "Currency/SoulCores/GreaterSoulCoreChaos.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Soul Core of Opiloti",
+    "code": "aSCO",
+    "category": "Augment",
+    "url": "Soul_Core_of_Opiloti",
+    "image": "Currency/SoulCores/GreaterSoulCorePhysical.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Soul Core of Jiquani",
+    "code": "aSCJ",
+    "category": "Augment",
+    "url": "Soul_Core_of_Jiquani",
+    "image": "Currency/SoulCores/GreaterSoulCoreLife.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Soul Core of Zalatl",
+    "code": "aSCZ",
+    "category": "Augment",
+    "url": "Soul_Core_of_Zalatl",
+    "image": "Currency/SoulCores/GreaterSoulCoreMana.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Soul Core of Citaqualotl",
+    "code": "aSCC",
+    "category": "Augment",
+    "url": "Soul_Core_of_Citaqualotl",
+    "image": "Currency/SoulCores/GreaterSoulCoreElementalResist.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Soul Core of Puhuarte",
+    "code": "aSCP",
+    "category": "Augment",
+    "url": "Soul_Core_of_Puhuarte",
+    "image": "Currency/SoulCores/GreaterSoulCoreFire.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Soul Core of Tzamoto",
+    "code": "aSCTz",
+    "category": "Augment",
+    "url": "Soul_Core_of_Tzamoto",
+    "image": "Currency/SoulCores/GreaterSoulCoreCold.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Soul Core of Xopec",
+    "code": "aSCX",
+    "category": "Augment",
+    "url": "Soul_Core_of_Xopec",
+    "image": "Currency/SoulCores/GreaterSoulCoreLightning.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Soul Core of Azcapa",
+    "code": "aSCAz",
+    "category": "Augment",
+    "url": "Soul_Core_of_Azcapa",
+    "image": "Currency/SoulCores/GreaterSoulCoreWealthRarity.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Soul Core of Topotante",
+    "code": "aSCTo",
+    "category": "Augment",
+    "url": "Soul_Core_of_Topotante",
+    "image": "Currency/SoulCores/GreaterSoulCoreTriElement.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Soul Core of Quipolatl",
+    "code": "aSCQ",
+    "category": "Augment",
+    "url": "Soul_Core_of_Quipolatl",
+    "image": "Currency/SoulCores/GreaterSoulCoreSpeed.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Soul Core of Ticaba",
+    "code": "aSCTi",
+    "category": "Augment",
+    "url": "Soul_Core_of_Ticaba",
+    "image": "Currency/SoulCores/GreaterSoulCoreCrit.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Soul Core of Atmohua",
+    "code": "aSCAt",
+    "category": "Augment",
+    "url": "Soul_Core_of_Atmohua",
+    "image": "Currency/SoulCores/GreaterSoulCoreStrength.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Soul Core of Cholotl",
+    "code": "aSCCh",
+    "category": "Augment",
+    "url": "Soul_Core_of_Cholotl",
+    "image": "Currency/SoulCores/GreaterSoulCoreDex.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Soul Core of Zantipi",
+    "code": "aSCZa",
+    "category": "Augment",
+    "url": "Soul_Core_of_Zantipi",
+    "image": "Currency/SoulCores/GreaterSoulCoreint.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Snake Idol",
+    "code": "aSId",
+    "category": "Augment",
+    "url": "Snake_Idol",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableSnake.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Primate Idol",
+    "code": "aPId",
+    "category": "Augment",
+    "url": "Primate_Idol",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableMonkey.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Owl Idol",
+    "code": "aOI",
+    "category": "Augment",
+    "url": "Owl_Idol",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableOwl.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Cat Idol",
+    "code": "aCI",
+    "category": "Augment",
+    "url": "Cat_Idol",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableCat.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Wolf Idol",
+    "code": "aWI",
+    "category": "Augment",
+    "url": "Wolf_Idol",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableWolf.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Stag Idol",
+    "code": "aStI",
+    "category": "Augment",
+    "url": "Stag_Idol",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableStag.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Boar Idol",
+    "code": "aBI",
+    "category": "Augment",
+    "url": "Boar_Idol",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableBoar.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Bear Idol",
+    "code": "aBId",
+    "category": "Augment",
+    "url": "Bear_Idol",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableBear.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ox Idol",
+    "code": "aOId",
+    "category": "Augment",
+    "url": "Ox_Idol",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableOx.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Rabbit Idol",
+    "code": "aRI",
+    "category": "Augment",
+    "url": "Rabbit_Idol",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableRabbit.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Fox Idol",
+    "code": "aFI",
+    "category": "Augment",
+    "url": "Fox_Idol",
+    "image": "Currency/TormentedSpiritSocketables/AzmeriSocketableFox.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Amanamu's Gaze",
+    "code": "aAG",
+    "category": "Augment",
+    "url": "Amanamus_Gaze",
+    "image": "Currency/AbyssalEyeSocketables/AmanamusGaze.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Tecrod's Gaze",
+    "code": "aTG",
+    "category": "Augment",
+    "url": "Tecrods_Gaze",
+    "image": "Currency/AbyssalEyeSocketables/TecrodsGaze.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Kurgal's Gaze",
+    "code": "aKG",
+    "category": "Augment",
+    "url": "Kurgals_Gaze",
+    "image": "Currency/AbyssalEyeSocketables/KurgalsGaze.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Ulaman's Gaze",
+    "code": "aUG",
+    "category": "Augment",
+    "url": "Ulamans_Gaze",
+    "image": "Currency/AbyssalEyeSocketables/UlamansGaze.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Guatelitzi's Thesis",
+    "code": "aGT",
+    "category": "Augment",
+    "url": "Guatelitzis_Thesis",
+    "image": "Currency/PerfectSoulCores/SoulCoreBlood.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Citaqualotl's Thesis",
+    "code": "aCT",
+    "category": "Augment",
+    "url": "Citaqualotls_Thesis",
+    "image": "Currency/PerfectSoulCores/SoulCoreSacrifice.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Jiquani's Thesis",
+    "code": "aJT",
+    "category": "Augment",
+    "url": "Jiquanis_Thesis",
+    "image": "Currency/PerfectSoulCores/SoulCoreSoul.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Quipolatl's Thesis",
+    "code": "aQT",
+    "category": "Augment",
+    "url": "Quipolatls_Thesis",
+    "image": "Currency/PerfectSoulCores/SoulCoreScience.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Emergent Vigour",
+    "code": "aEVi",
+    "category": "Augment",
+    "url": "Emergent_Vigour",
+    "image": "Currency/Expedition2/ExpeditionReligionAncientAugment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Emergent Possibility",
+    "code": "aEP",
+    "category": "Augment",
+    "url": "Emergent_Possibility",
+    "image": "Currency/Expedition2/ExpeditionScienceAncientAugment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Emergent Protection",
+    "code": "aEPr",
+    "category": "Augment",
+    "url": "Emergent_Protection",
+    "image": "Currency/Expedition2/ExpeditionValorAncientAugment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Emergent Instinct",
+    "code": "aEmI",
+    "category": "Augment",
+    "url": "Emergent_Instinct",
+    "image": "Currency/Expedition2/ExpeditionWarAncientAugment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Carved Cunning",
+    "code": "aCCu",
+    "category": "Augment",
+    "url": "Carved_Cunning",
+    "image": "Currency/Ritual/RitualAmbushPredators.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Carved Majesty",
+    "code": "aCM",
+    "category": "Augment",
+    "url": "Carved_Majesty",
+    "image": "Currency/Ritual/RitualMajesticBeasts.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Carved Mischief",
+    "code": "aCMi",
+    "category": "Augment",
+    "url": "Carved_Mischief",
+    "image": "Currency/Ritual/RitualMischievousCreatures.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Carved Tenacity",
+    "code": "aCTe",
+    "category": "Augment",
+    "url": "Carved_Tenacity",
+    "image": "Currency/Ritual/RitualTenaciousBeasts.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Raven-Touched Shard",
+    "code": "aRTS",
+    "category": "Augment",
+    "url": "Raven-Touched_Shard",
+    "image": "Currency/Delirium/DeliriumEndgameSocketable.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Ward Rune",
+    "code": "aWRl",
+    "category": "Augment",
+    "url": "Lesser_Ward_Rune",
+    "image": "Currency/Expedition2/AddedWardLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ward Rune",
+    "code": "aWR",
+    "category": "Augment",
+    "url": "Ward_Rune",
+    "image": "Currency/Expedition2/AddedWardNormal.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Ward Rune",
+    "code": "aWRg",
+    "category": "Augment",
+    "url": "Greater_Ward_Rune",
+    "image": "Currency/Expedition2/AddedWardGreater.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Ward Rune",
+    "code": "aWRp",
+    "category": "Augment",
+    "url": "Perfect_Ward_Rune",
+    "image": "Currency/Expedition2/AddedWardPerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Charging Rune",
+    "code": "aCRl",
+    "category": "Augment",
+    "url": "Lesser_Charging_Rune",
+    "image": "Currency/Expedition2/WardRegenerationLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Charging Rune",
+    "code": "aCR",
+    "category": "Augment",
+    "url": "Charging_Rune",
+    "image": "Currency/Expedition2/WardRegenerationNormal.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Charging Rune",
+    "code": "aCRg",
+    "category": "Augment",
+    "url": "Greater_Charging_Rune",
+    "image": "Currency/Expedition2/WardRegenerationGreater.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Charging Rune",
+    "code": "aCRp",
+    "category": "Augment",
+    "url": "Perfect_Charging_Rune",
+    "image": "Currency/Expedition2/WardRegenerationPerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Warding Rune of Reinforcement",
+    "code": "aWRR",
+    "category": "Augment",
+    "url": "Warding_Rune_of_Reinforcement",
+    "image": "Currency/Expedition2/RunicWard1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Warding Rune of Protection",
+    "code": "aWRP",
+    "category": "Augment",
+    "url": "Warding_Rune_of_Protection",
+    "image": "Currency/Expedition2/RunicWard2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Warding Rune of Disintegration",
+    "code": "aWRD",
+    "category": "Augment",
+    "url": "Warding_Rune_of_Disintegration",
+    "image": "Currency/Expedition2/RunicWard3.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Warding Rune of Desperation",
+    "code": "aWRDe",
+    "category": "Augment",
+    "url": "Warding_Rune_of_Desperation",
+    "image": "Currency/Expedition2/RunicWard4.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Warding Rune of Symbiosis",
+    "code": "aWRS",
+    "category": "Augment",
+    "url": "Warding_Rune_of_Symbiosis",
+    "image": "Currency/Expedition2/RunicWard8.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Warding Rune of Courage",
+    "code": "aWRC",
+    "category": "Augment",
+    "url": "Warding_Rune_of_Courage",
+    "image": "Currency/Expedition2/RunicWard9.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Warding Rune of Stability",
+    "code": "aWRSt",
+    "category": "Augment",
+    "url": "Warding_Rune_of_Stability",
+    "image": "Currency/Expedition2/RunicWard10.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Warding Rune of Glancing",
+    "code": "aWRG",
+    "category": "Augment",
+    "url": "Warding_Rune_of_Glancing",
+    "image": "Currency/Expedition2/RunicWard13.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Warding Rune of Heart",
+    "code": "aWRH",
+    "category": "Augment",
+    "url": "Warding_Rune_of_Heart",
+    "image": "Currency/Expedition2/RunicWard14.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Warding Rune of Nourishment",
+    "code": "aWRN",
+    "category": "Augment",
+    "url": "Warding_Rune_of_Nourishment",
+    "image": "Currency/Expedition2/RunicWard15.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Warding Rune of Annihilation",
+    "code": "aWRA",
+    "category": "Augment",
+    "url": "Warding_Rune_of_Annihilation",
+    "image": "Currency/Expedition2/RunicWard16.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Warding Rune of Armature",
+    "code": "aWRAr",
+    "category": "Augment",
+    "url": "Warding_Rune_of_Armature",
+    "image": "Currency/Expedition2/RunicWard18.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Warding Rune of Obsession",
+    "code": "aWRO",
+    "category": "Augment",
+    "url": "Warding_Rune_of_Obsession",
+    "image": "Currency/Expedition2/RunicWard19.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Warding Rune of Equinox",
+    "code": "aWRE",
+    "category": "Augment",
+    "url": "Warding_Rune_of_Equinox",
+    "image": "Currency/Expedition2/RunicWard20.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Warding Rune of Salvaging",
+    "code": "aWRSa",
+    "category": "Augment",
+    "url": "Warding_Rune_of_Salvaging",
+    "image": "Currency/Expedition2/RunicWard21.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Warding Rune of Bodyguards",
+    "code": "aWRB",
+    "category": "Augment",
+    "url": "Warding_Rune_of_Bodyguards",
+    "image": "Currency/Expedition2/RunicWard23.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Warding Rune of Hollowing",
+    "code": "aWRHo",
+    "category": "Augment",
+    "url": "Warding_Rune_of_Hollowing",
+    "image": "Currency/Expedition2/RunicWard24.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Passion of Aldur",
+    "code": "aPaA",
+    "category": "Augment",
+    "url": "Passion_of_Aldur",
+    "image": "Currency/Expedition2/ElementalConversionRuneFire.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Breath of Aldur",
+    "code": "aBA",
+    "category": "Augment",
+    "url": "Breath_of_Aldur",
+    "image": "Currency/Expedition2/ElementalConversionRuneCold.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ire of Aldur",
+    "code": "aIAl",
+    "category": "Augment",
+    "url": "Ire_of_Aldur",
+    "image": "Currency/Expedition2/ElementalConversionRuneLightning.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Betrayal of Aldur",
+    "code": "aBAl",
+    "category": "Augment",
+    "url": "Betrayal_of_Aldur",
+    "image": "Currency/Expedition2/ElementalConversionRuneChaos.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Rune of Splinters",
+    "code": "aARS",
+    "category": "Augment",
+    "url": "Ancient_Rune_of_Splinters",
+    "image": "Currency/Expedition2/EndgameRune1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Rune of Dueling",
+    "code": "aARD",
+    "category": "Augment",
+    "url": "Ancient_Rune_of_Dueling",
+    "image": "Currency/Expedition2/EndgameRune2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Rune of the Titan",
+    "code": "aART",
+    "category": "Augment",
+    "url": "Ancient_Rune_of_the_Titan",
+    "image": "Currency/Expedition2/EndgameRune3.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Rune of Shattering",
+    "code": "aARSh",
+    "category": "Augment",
+    "url": "Ancient_Rune_of_Shattering",
+    "image": "Currency/Expedition2/EndgameRune4.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Rune of Prowess",
+    "code": "aARP",
+    "category": "Augment",
+    "url": "Ancient_Rune_of_Prowess",
+    "image": "Currency/Expedition2/EndgameRune5.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Rune of Control",
+    "code": "aARC",
+    "category": "Augment",
+    "url": "Ancient_Rune_of_Control",
+    "image": "Currency/Expedition2/EndgameRune6.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Rune of Discovery",
+    "code": "aARDi",
+    "category": "Augment",
+    "url": "Ancient_Rune_of_Discovery",
+    "image": "Currency/Expedition2/EndgameRune7.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Rune of Decay",
+    "code": "aARDe",
+    "category": "Augment",
+    "url": "Ancient_Rune_of_Decay",
+    "image": "Currency/Expedition2/EndgameRune8.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Rune of Witchcraft",
+    "code": "aARW",
+    "category": "Augment",
+    "url": "Ancient_Rune_of_Witchcraft",
+    "image": "Currency/Expedition2/EndgameRune9.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Rune of the Horde",
+    "code": "aARH",
+    "category": "Augment",
+    "url": "Ancient_Rune_of_the_Horde",
+    "image": "Currency/Expedition2/EndgameRune10.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Rune of Animosity",
+    "code": "aARA",
+    "category": "Augment",
+    "url": "Ancient_Rune_of_Animosity",
+    "image": "Currency/Expedition2/EndgameRune11.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Rune of Detonation",
+    "code": "aARuD",
+    "category": "Augment",
+    "url": "Ancient_Rune_of_Detonation",
+    "image": "Currency/Expedition2/EndgameRune12.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Rune of Retaliation",
+    "code": "aARR",
+    "category": "Augment",
+    "url": "Ancient_Rune_of_Retaliation",
+    "image": "Currency/Expedition2/EndgameRune13.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Rune of Vitality",
+    "code": "aRV",
+    "category": "Augment",
+    "url": "Rune_of_Vitality",
+    "image": "Currency/Expedition2/EarlyMythicRune1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Rune of the Hunt",
+    "code": "aRH",
+    "category": "Augment",
+    "url": "Rune_of_the_Hunt",
+    "image": "Currency/Expedition2/EarlyMythicRune2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Rune of Acrobatics",
+    "code": "aRAcr",
+    "category": "Augment",
+    "url": "Rune_of_Acrobatics",
+    "image": "Currency/Expedition2/EarlyMythicRune3.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Rune of Culmination",
+    "code": "aRCu",
+    "category": "Augment",
+    "url": "Rune_of_Culmination",
+    "image": "Currency/Expedition2/EarlyMythicRune4.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Rune of Renown",
+    "code": "aRRe",
+    "category": "Augment",
+    "url": "Rune_of_Renown",
+    "image": "Currency/Expedition2/EarlyMythicRune5.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Rune of Accumulation",
+    "code": "aRAcc",
+    "category": "Augment",
+    "url": "Rune_of_Accumulation",
+    "image": "Currency/Expedition2/EarlyMythicRune6.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Rune of Foundations",
+    "code": "aRF",
+    "category": "Augment",
+    "url": "Rune_of_Foundations",
+    "image": "Currency/Expedition2/EarlyMythicRune7.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Rune of the Prism",
+    "code": "aRP",
+    "category": "Augment",
+    "url": "Rune_of_the_Prism",
+    "image": "Currency/Expedition2/EarlyMythicRune8.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Rune of the Blossom",
+    "code": "aRB",
+    "category": "Augment",
+    "url": "Rune_of_the_Blossom",
+    "image": "Currency/Expedition2/EarlyMythicRune9.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Rune of Consistency",
+    "code": "aRCo",
+    "category": "Augment",
+    "url": "Rune_of_Consistency",
+    "image": "Currency/Expedition2/EarlyMythicRune10.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Rune of Reach",
+    "code": "aRuR",
+    "category": "Augment",
+    "url": "Rune_of_Reach",
+    "image": "Currency/Expedition2/EarlyMythicRune11.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Rune of Vital Flame",
+    "code": "aRVF",
+    "category": "Augment",
+    "url": "Rune_of_Vital_Flame",
+    "image": "Currency/Expedition2/EarlyMythicRune12.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Rune of Confrontation",
+    "code": "aRuC",
+    "category": "Augment",
+    "url": "Rune_of_Confrontation",
+    "image": "Currency/Expedition2/EarlyMythicRune13.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "[DNT-Unused] Rune of Wild Ferocity",
+    "code": "aDURW",
+    "category": "Augment",
+    "url": "DNT-Unused_Rune_of_Wild_Ferocity",
+    "image": "Currency/Expedition2/EarlyMythicRune14.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "[DNT-Unused] Rune of Partnership",
+    "code": "aDURP",
+    "category": "Augment",
+    "url": "DNT-Unused_Rune_of_Partnership",
+    "image": "Currency/Expedition2/EarlyMythicRune15.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "[DNT-Unused] Rune of Reverberation",
+    "code": "aDURR",
+    "category": "Augment",
+    "url": "DNT-Unused_Rune_of_Reverberation",
+    "image": "Currency/Expedition2/EarlyMythicRune16.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "[DNT-Unused] Rune of Vital Flame",
+    "code": "aDURV",
+    "category": "Augment",
+    "url": "DNT-Unused_Rune_of_Vital_Flame",
+    "image": "Currency/Expedition2/EarlyMythicRune17.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "[DNT-Unused] Rune of Confrontation",
+    "code": "aDURC",
+    "category": "Augment",
+    "url": "DNT-Unused_Rune_of_Confrontation",
+    "image": "Currency/Expedition2/EarlyMythicRune18.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "[DNT-Unused] Rune of Chance",
+    "code": "aDRC",
+    "category": "Augment",
+    "url": "DNT-Unused_Rune_of_Chance",
+    "image": "Currency/Expedition2/EarlyMythicRune19.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "[DNT-Unused] Rune of Confidence",
+    "code": "aDRCo",
+    "category": "Augment",
+    "url": "DNT-Unused_Rune_of_Confidence",
+    "image": "Currency/Expedition2/EarlyMythicRune12.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "[DNT-Unused] Rune of Duplication",
+    "code": "aDURD",
+    "category": "Augment",
+    "url": "DNT-Unused_Rune_of_Duplication",
+    "image": "Currency/Expedition2/EarlyMythicRune16.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Serle's Triumph",
+    "code": "aSTr",
+    "category": "Augment",
+    "url": "Serles_Triumph",
+    "image": "Currency/Expedition2/GameWarpRune2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Cadigan's Epiphany",
+    "code": "aCE",
+    "category": "Augment",
+    "url": "Cadigans_Epiphany",
+    "image": "Currency/Expedition2/GameWarpRune3.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Astrid's Creativity",
+    "code": "aACr",
+    "category": "Augment",
+    "url": "Astrids_Creativity",
+    "image": "Currency/Expedition2/GameWarpRune1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Uhtred's Sidereus",
+    "code": "aUS",
+    "category": "Augment",
+    "url": "Uhtreds_Sidereus",
+    "image": "Currency/Expedition2/GameWarpRuneTime.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Kolr's Hunt",
+    "code": "aKH",
+    "category": "Augment",
+    "url": "Kolrs_Hunt",
+    "image": "Currency/Expedition2/GameWarpRuneDex.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Vorana's Carnage",
+    "code": "aVC",
+    "category": "Augment",
+    "url": "Voranas_Carnage",
+    "image": "Currency/Expedition2/GameWarpRunePhysical.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Thrud's Might",
+    "code": "aTM",
+    "category": "Augment",
+    "url": "Thruds_Might",
+    "image": "Currency/Expedition2/GameWarpRuneFire.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Medved's Tending",
+    "code": "aMT",
+    "category": "Augment",
+    "url": "Medveds_Tending",
+    "image": "Currency/Expedition2/GameWarpRuneCold.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Katla's Gloom",
+    "code": "aKGl",
+    "category": "Augment",
+    "url": "Katlas_Gloom",
+    "image": "Currency/Expedition2/GameWarpRuneChaos.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Aldur's Legacy",
+    "code": "aAL",
+    "category": "Augment",
+    "url": "Aldurs_Legacy",
+    "image": "Currency/Expedition2/GameWarpRuneUnique.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Legacy of Bramblejack",
+    "code": "aLB",
+    "category": "Augment",
+    "url": "Legacy_of_Bramblejack",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Blackbraid",
+    "code": "aLBl",
+    "category": "Augment",
+    "url": "Legacy_of_Blackbraid",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Edyrn's Tusks",
+    "code": "aLETu",
+    "category": "Augment",
+    "url": "Legacy_of_Edyrns_Tusks",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Kingsguard",
+    "code": "aLK",
+    "category": "Augment",
+    "url": "Legacy_of_Kingsguard",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Bristleboar",
+    "code": "aLBri",
+    "category": "Augment",
+    "url": "Legacy_of_Bristleboar",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Foxshade",
+    "code": "aLF",
+    "category": "Augment",
+    "url": "Legacy_of_Foxshade",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Ashrend",
+    "code": "aLA",
+    "category": "Augment",
+    "url": "Legacy_of_Ashrend",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Briskwrap",
+    "code": "aLegB",
+    "category": "Augment",
+    "url": "Legacy_of_Briskwrap",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of The Unleashed",
+    "code": "aLU",
+    "category": "Augment",
+    "url": "Legacy_of_The_Unleashed",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Horns of Bynden",
+    "code": "aLHB",
+    "category": "Augment",
+    "url": "Legacy_of_Horns_of_Bynden",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Wings of Caelyn",
+    "code": "aLWC",
+    "category": "Augment",
+    "url": "Legacy_of_Wings_of_Caelyn",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Ezomyte Peak",
+    "code": "aLEP",
+    "category": "Augment",
+    "url": "Legacy_of_Ezomyte_Peak",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Deidbell",
+    "code": "aLeD",
+    "category": "Augment",
+    "url": "Legacy_of_Deidbell",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Elevore",
+    "code": "aLEl",
+    "category": "Augment",
+    "url": "Legacy_of_Elevore",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Starkonja's Head",
+    "code": "aLSH",
+    "category": "Augment",
+    "url": "Legacy_of_Starkonjas_Head",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Crown of Thorns",
+    "code": "aLCT",
+    "category": "Augment",
+    "url": "Legacy_of_Crown_of_Thorns",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Greymake",
+    "code": "aLG",
+    "category": "Augment",
+    "url": "Legacy_of_Greymake",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Erian's Cobble",
+    "code": "aLECo",
+    "category": "Augment",
+    "url": "Legacy_of_Erians_Cobble",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of The Smiling Knight",
+    "code": "aLSK",
+    "category": "Augment",
+    "url": "Legacy_of_The_Smiling_Knight",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of The Vile Knight",
+    "code": "aLVK",
+    "category": "Augment",
+    "url": "Legacy_of_The_Vile_Knight",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Northpaw",
+    "code": "aLN",
+    "category": "Augment",
+    "url": "Legacy_of_Northpaw",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Candlemaker",
+    "code": "aLC",
+    "category": "Augment",
+    "url": "Legacy_of_Candlemaker",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Deathblow",
+    "code": "aLDea",
+    "category": "Augment",
+    "url": "Legacy_of_Deathblow",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Legionstride",
+    "code": "aLL",
+    "category": "Augment",
+    "url": "Legacy_of_Legionstride",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Trampletoe",
+    "code": "aLT",
+    "category": "Augment",
+    "url": "Legacy_of_Trampletoe",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Briarpatch",
+    "code": "aLeBr",
+    "category": "Augment",
+    "url": "Legacy_of_Briarpatch",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Bushwhack",
+    "code": "aLBu",
+    "category": "Augment",
+    "url": "Legacy_of_Bushwhack",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Wanderlust",
+    "code": "aLW",
+    "category": "Augment",
+    "url": "Legacy_of_Wanderlust",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of The Knight-errant",
+    "code": "aLKE",
+    "category": "Augment",
+    "url": "Legacy_of_The_Knight-errant",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Obern's Bastion",
+    "code": "aLOB",
+    "category": "Augment",
+    "url": "Legacy_of_Oberns_Bastion",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Dionadair",
+    "code": "aLDi",
+    "category": "Augment",
+    "url": "Legacy_of_Dionadair",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Wulfsbane",
+    "code": "aLWu",
+    "category": "Augment",
+    "url": "Legacy_of_Wulfsbane",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Chernobog's Pillar",
+    "code": "aLCP",
+    "category": "Augment",
+    "url": "Legacy_of_Chernobogs_Pillar",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Alkem Eira",
+    "code": "aLAE",
+    "category": "Augment",
+    "url": "Legacy_of_Alkem_Eira",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Oaksworn",
+    "code": "aLO",
+    "category": "Augment",
+    "url": "Legacy_of_Oaksworn",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Dunkelhalt",
+    "code": "aLDu",
+    "category": "Augment",
+    "url": "Legacy_of_Dunkelhalt",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Rondel de Ezo",
+    "code": "aLRDE",
+    "category": "Augment",
+    "url": "Legacy_of_Rondel_de_Ezo",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Brynhand's Mark",
+    "code": "aLBM",
+    "category": "Augment",
+    "url": "Legacy_of_Brynhands_Mark",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Trenchtimbre",
+    "code": "aLTre",
+    "category": "Augment",
+    "url": "Legacy_of_Trenchtimbre",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Mjölner",
+    "code": "aLM",
+    "category": "Augment",
+    "url": "Legacy_of_Mj%C3%B6lner",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Twisted Empyrean",
+    "code": "aLTE",
+    "category": "Augment",
+    "url": "Legacy_of_Twisted_Empyrean",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Hoghunt",
+    "code": "aLH",
+    "category": "Augment",
+    "url": "Legacy_of_Hoghunt",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Hrimnor's Hymn",
+    "code": "aLHH",
+    "category": "Augment",
+    "url": "Legacy_of_Hrimnors_Hymn",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Brain Rattler",
+    "code": "aLBRa",
+    "category": "Augment",
+    "url": "Legacy_of_Brain_Rattler",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Lifesprig",
+    "code": "aLLi",
+    "category": "Augment",
+    "url": "Legacy_of_Lifesprig",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Duality",
+    "code": "aLDua",
+    "category": "Augment",
+    "url": "Legacy_of_Duality",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Tyranny's Grip",
+    "code": "aLTG",
+    "category": "Augment",
+    "url": "Legacy_of_Tyrannys_Grip",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of The Sentry",
+    "code": "aLS",
+    "category": "Augment",
+    "url": "Legacy_of_The_Sentry",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Adonia's Ego",
+    "code": "aLAEg",
+    "category": "Augment",
+    "url": "Legacy_of_Adonias_Ego",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Cursecarver",
+    "code": "aLCu",
+    "category": "Augment",
+    "url": "Legacy_of_Cursecarver",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Dusk Vigil",
+    "code": "aLDV",
+    "category": "Augment",
+    "url": "Legacy_of_Dusk_Vigil",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of The Blood Thorn",
+    "code": "aLBT",
+    "category": "Augment",
+    "url": "Legacy_of_The_Blood_Thorn",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Quill Rain",
+    "code": "aLQR",
+    "category": "Augment",
+    "url": "Legacy_of_Quill_Rain",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Ironbound",
+    "code": "aLI",
+    "category": "Augment",
+    "url": "Legacy_of_Ironbound",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Amor Mandragora",
+    "code": "aLAM",
+    "category": "Augment",
+    "url": "Legacy_of_Amor_Mandragora",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Spiteful Floret",
+    "code": "aLSF",
+    "category": "Augment",
+    "url": "Legacy_of_Spiteful_Floret",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Svalinn",
+    "code": "aLSv",
+    "category": "Augment",
+    "url": "Legacy_of_Svalinn",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Keeper of the Arc",
+    "code": "aLKA",
+    "category": "Augment",
+    "url": "Legacy_of_Keeper_of_the_Arc",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Olrovasara",
+    "code": "aLOl",
+    "category": "Augment",
+    "url": "Legacy_of_Olrovasara",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of A Worthy Foe",
+    "code": "aLWF",
+    "category": "Augment",
+    "url": "Legacy_of_A_Worthy_Foe",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Serle's Grit",
+    "code": "aLSG",
+    "category": "Augment",
+    "url": "Legacy_of_Serles_Grit",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Runeseeker's Call",
+    "code": "aLRC",
+    "category": "Augment",
+    "url": "Legacy_of_Runeseekers_Call",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Legacy of Facebreaker",
+    "code": "aLFa",
+    "category": "Augment",
+    "url": "Legacy_of_Facebreaker",
+    "image": "Currency/Expedition2/GameWarpRuneUniqueFragment.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Artificer's Orb",
+    "code": "aAO",
+    "category": "Augment",
+    "url": "Artificers_Orb",
+    "image": "Currency/CurrencyAddEquipmentSocket.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Orb of Extraction",
+    "code": "aOE",
+    "category": "Augment",
+    "url": "Orb_of_Extraction",
+    "image": "Currency/IncursionCraftingOrbs/IncursionSocketableExtractorCurrency.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Horror",
+    "code": "aEHo",
+    "category": "Augment",
+    "url": "Essence_of_Horror",
+    "image": "Currency/Essence/CorruptedEssenceHorror.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Sovereign Alloy",
+    "code": "aSoA",
+    "category": "Augment",
+    "url": "Sovereign_Alloy",
+    "image": "Currency/Expedition2/Alloy1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Aldur's Saga",
+    "code": "oASa",
+    "category": "Omen",
+    "url": "Aldurs_Saga",
+    "image": "Currency/Expedition2/SpecialExpeditionPage5.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Medved's Saga",
+    "code": "oMS",
+    "category": "Omen",
+    "url": "Medveds_Saga",
+    "image": "Currency/Expedition2/SpecialExpeditionPage3.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Vorana's Saga",
+    "code": "oVS",
+    "category": "Omen",
+    "url": "Voranas_Saga",
+    "image": "Currency/Expedition2/SpecialExpeditionPage2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Uhtred's Saga",
+    "code": "oUSa",
+    "category": "Omen",
+    "url": "Uhtreds_Saga",
+    "image": "Currency/Expedition2/SpecialExpeditionPage4.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Olroth's Saga",
+    "code": "oOS",
+    "category": "Omen",
+    "url": "Olroths_Saga",
+    "image": "Currency/Expedition2/SpecialExpeditionPage1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Refreshment",
+    "code": "oOR",
+    "category": "Omen",
+    "url": "Omen_of_Refreshment",
+    "image": "Currency/Omens/VoodooOmens1Blue.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Resurgence",
+    "code": "oORe",
+    "category": "Omen",
+    "url": "Omen_of_Resurgence",
+    "image": "Currency/Omens/VoodooOmens2Blue.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Amelioration",
+    "code": "oOAm",
+    "category": "Omen",
+    "url": "Omen_of_Amelioration",
+    "image": "Currency/Omens/VoodooOmens3Blue.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Whittling",
+    "code": "oOW",
+    "category": "Omen",
+    "url": "Omen_of_Whittling",
+    "image": "Currency/Omens/VoodooOmens1Dark.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Sinistral Erasure",
+    "code": "oOSE",
+    "category": "Omen",
+    "url": "Omen_of_Sinistral_Erasure",
+    "image": "Currency/Omens/VoodooOmens2Dark.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Dextral Erasure",
+    "code": "oODE",
+    "category": "Omen",
+    "url": "Omen_of_Dextral_Erasure",
+    "image": "Currency/Omens/VoodooOmens3Dark.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Sinistral Alchemy",
+    "code": "oOSA",
+    "category": "Omen",
+    "url": "Omen_of_Sinistral_Alchemy",
+    "image": "Currency/Omens/VoodooOmens1Green.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Dextral Alchemy",
+    "code": "oODA",
+    "category": "Omen",
+    "url": "Omen_of_Dextral_Alchemy",
+    "image": "Currency/Omens/VoodooOmens2Green.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Sinistral Coronation",
+    "code": "oOSC",
+    "category": "Omen",
+    "url": "Omen_of_Sinistral_Coronation",
+    "image": "Currency/Omens/VoodooOmens1Red.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Dextral Coronation",
+    "code": "oODC",
+    "category": "Omen",
+    "url": "Omen_of_Dextral_Coronation",
+    "image": "Currency/Omens/VoodooOmens2Red.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Corruption",
+    "code": "oOCo",
+    "category": "Omen",
+    "url": "Omen_of_Corruption",
+    "image": "Currency/Omens/VoodooOmens3Red.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Greater Exaltation",
+    "code": "oOGE",
+    "category": "Omen",
+    "url": "Omen_of_Greater_Exaltation",
+    "image": "Currency/Omens/VoodooOmens1Yellow.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Sinistral Exaltation",
+    "code": "oOSEx",
+    "category": "Omen",
+    "url": "Omen_of_Sinistral_Exaltation",
+    "image": "Currency/Omens/VoodooOmens2Yellow.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Dextral Exaltation",
+    "code": "oODEx",
+    "category": "Omen",
+    "url": "Omen_of_Dextral_Exaltation",
+    "image": "Currency/Omens/VoodooOmens3Yellow.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Greater Annulment",
+    "code": "oOGA",
+    "category": "Omen",
+    "url": "Omen_of_Greater_Annulment",
+    "image": "Currency/Omens/VoodooOmens1Purple.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Sinistral Annulment",
+    "code": "oOSAn",
+    "category": "Omen",
+    "url": "Omen_of_Sinistral_Annulment",
+    "image": "Currency/Omens/VoodooOmens2Purple.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Dextral Annulment",
+    "code": "oODAn",
+    "category": "Omen",
+    "url": "Omen_of_Dextral_Annulment",
+    "image": "Currency/Omens/VoodooOmens3Purple.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Answered Prayers",
+    "code": "oOAP",
+    "category": "Omen",
+    "url": "Omen_of_Answered_Prayers",
+    "image": "Currency/Omens/VoodooOmens4Blue.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Secret Compartments",
+    "code": "oOSCo",
+    "category": "Omen",
+    "url": "Omen_of_Secret_Compartments",
+    "image": "Currency/Omens/VoodooOmens4Dark.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of the Hunt",
+    "code": "oOH",
+    "category": "Omen",
+    "url": "Omen_of_the_Hunt",
+    "image": "Currency/Omens/VoodooOmens4Green.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Reinforcements",
+    "code": "oOmR",
+    "category": "Omen",
+    "url": "Omen_of_Reinforcements",
+    "image": "Currency/Omens/VoodooOmens4Purple.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Homogenising Exaltation",
+    "code": "oOHE",
+    "category": "Omen",
+    "url": "Omen_of_Homogenising_Exaltation",
+    "image": "Currency/Omens/OmenOnExaltAddExistingModType.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Homogenising Coronation",
+    "code": "oOHC",
+    "category": "Omen",
+    "url": "Omen_of_Homogenising_Coronation",
+    "image": "Currency/Omens/OmenOnRegalAddExistingModType.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Gambling",
+    "code": "oOG",
+    "category": "Omen",
+    "url": "Omen_of_Gambling",
+    "image": "Currency/Omens/OmenGambleNoGoldCost.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Bartering",
+    "code": "oOB",
+    "category": "Omen",
+    "url": "Omen_of_Bartering",
+    "image": "Currency/Omens/OmenSellVendorRandomise.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Recombination",
+    "code": "oORec",
+    "category": "Omen",
+    "url": "Omen_of_Recombination",
+    "image": "Currency/Omens/OmenSellVendorRandomise.webp",
+    "maxStackSize": null
+  },
+  {
+    "name": "Omen of the Blessed",
+    "code": "oOBl",
+    "category": "Omen",
+    "url": "Omen_of_the_Blessed",
+    "image": "Currency/Omens/OmenOnDivineRerollImplicits.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Chaotic Rarity",
+    "code": "oOCR",
+    "category": "Omen",
+    "url": "Omen_of_Chaotic_Rarity",
+    "image": "Currency/Omens/OmenOnChaosMapItemRarity.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Chaotic Quantity",
+    "code": "oOCQ",
+    "category": "Omen",
+    "url": "Omen_of_Chaotic_Quantity",
+    "image": "Currency/Omens/OmenOnChaosMapPackSize.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Chaotic Monsters",
+    "code": "oOCM",
+    "category": "Omen",
+    "url": "Omen_of_Chaotic_Monsters",
+    "image": "Currency/Omens/OmenOnChaosMapItemQuantity.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Chaotic Effectiveness",
+    "code": "oOCE",
+    "category": "Omen",
+    "url": "Omen_of_Chaotic_Effectiveness",
+    "image": "Currency/Omens/OmenOnChaosMapMonsterEffectiveness.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Chance",
+    "code": "oOCh",
+    "category": "Omen",
+    "url": "Omen_of_Chance",
+    "image": "Currency/Omens/OmenOnChanceNotDestroy.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of the Ancients",
+    "code": "oOmA",
+    "category": "Omen",
+    "url": "Omen_of_the_Ancients",
+    "image": "Currency/Omens/OmenOnChanceAncientOrb.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Sanctification",
+    "code": "oOmS",
+    "category": "Omen",
+    "url": "Omen_of_Sanctification",
+    "image": "Currency/Omens/OmenOnDivineSanctify.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Dextral Crystallisation",
+    "code": "oODCr",
+    "category": "Omen",
+    "url": "Omen_of_Dextral_Crystallisation",
+    "image": "Currency/Omens/OmenOnPerfectEssenceSuffix.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Sinistral Crystallisation",
+    "code": "oOSCr",
+    "category": "Omen",
+    "url": "Omen_of_Sinistral_Crystallisation",
+    "image": "Currency/Omens/OmenOnPerfectEssencePrefix.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Catalysing Exaltation",
+    "code": "oOCEx",
+    "category": "Omen",
+    "url": "Omen_of_Catalysing_Exaltation",
+    "image": "Currency/Omens/OmenOnExaltConsumeQuality.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Abyssal Echoes",
+    "code": "oOAE",
+    "category": "Omen",
+    "url": "Omen_of_Abyssal_Echoes",
+    "image": "Currency/Omens/OmenOnAbyssRerollOptions.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of the Sovereign",
+    "code": "oOSo",
+    "category": "Omen",
+    "url": "Omen_of_the_Sovereign",
+    "image": "Currency/Omens/OmenOnAbyssGuarenteedLichTypeMod1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of the Liege",
+    "code": "oOL",
+    "category": "Omen",
+    "url": "Omen_of_the_Liege",
+    "image": "Currency/Omens/OmenOnAbyssGuarenteedLichTypeMod2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of the Blackblooded",
+    "code": "oOmB",
+    "category": "Omen",
+    "url": "Omen_of_the_Blackblooded",
+    "image": "Currency/Omens/OmenOnAbyssGuarenteedLichTypeMod3.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Putrefaction",
+    "code": "oOP",
+    "category": "Omen",
+    "url": "Omen_of_Putrefaction",
+    "image": "Currency/Omens/OmenOnAbyssVeilAllAndCorrupt.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Light",
+    "code": "oOLi",
+    "category": "Omen",
+    "url": "Omen_of_Light",
+    "image": "Currency/Omens/OmenOnAnnulRemoveAbyssMod.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Sinistral Necromancy",
+    "code": "oOSN",
+    "category": "Omen",
+    "url": "Omen_of_Sinistral_Necromancy",
+    "image": "Currency/Omens/OmenOnAbyssAddPrefixes.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Dextral Necromancy",
+    "code": "oODN",
+    "category": "Omen",
+    "url": "Omen_of_Dextral_Necromancy",
+    "image": "Currency/Omens/OmenOnAbyssAddSuffixes.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Diluted Liquid Ire",
+    "code": "lDIr",
+    "category": "Emotions",
+    "url": "Diluted_Liquid_Ire",
+    "image": "Currency/DistilledEmotions/DilutedDistilledIre.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Diluted Liquid Guilt",
+    "code": "lDG",
+    "category": "Emotions",
+    "url": "Diluted_Liquid_Guilt",
+    "image": "Currency/DistilledEmotions/DilutedDistilledGuilt.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Diluted Liquid Greed",
+    "code": "lDGr",
+    "category": "Emotions",
+    "url": "Diluted_Liquid_Greed",
+    "image": "Currency/DistilledEmotions/DilutedDistilledGreed.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Liquid Paranoia",
+    "code": "lP",
+    "category": "Emotions",
+    "url": "Liquid_Paranoia",
+    "image": "Currency/DistilledEmotions/DistilledParanoia.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Liquid Envy",
+    "code": "lE",
+    "category": "Emotions",
+    "url": "Liquid_Envy",
+    "image": "Currency/DistilledEmotions/DistilledEnvy.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Liquid Disgust",
+    "code": "lD",
+    "category": "Emotions",
+    "url": "Liquid_Disgust",
+    "image": "Currency/DistilledEmotions/DistilledDisgust.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Liquid Despair",
+    "code": "lDe",
+    "category": "Emotions",
+    "url": "Liquid_Despair",
+    "image": "Currency/DistilledEmotions/DistilledDespair.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Concentrated Liquid Fear",
+    "code": "clF",
+    "category": "Emotions",
+    "url": "Concentrated_Liquid_Fear",
+    "image": "Currency/DistilledEmotions/ConcentratedDistilledFear.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Concentrated Liquid Suffering",
+    "code": "clS",
+    "category": "Emotions",
+    "url": "Concentrated_Liquid_Suffering",
+    "image": "Currency/DistilledEmotions/ConcentratedDistilledSuffering.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Concentrated Liquid Isolation",
+    "code": "clI",
+    "category": "Emotions",
+    "url": "Concentrated_Liquid_Isolation",
+    "image": "Currency/DistilledEmotions/ConcentratedDistilledIsolation.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Diluted Liquid Ire",
+    "code": "lADI",
+    "category": "Emotions",
+    "url": "Ancient_Diluted_Liquid_Ire",
+    "image": "Currency/DistilledEmotions/TimelostDilutedDistilledIre.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Diluted Liquid Guilt",
+    "code": "lADG",
+    "category": "Emotions",
+    "url": "Ancient_Diluted_Liquid_Guilt",
+    "image": "Currency/DistilledEmotions/TimelostDilutedDistilledGuilt.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Diluted Liquid Greed",
+    "code": "lADGr",
+    "category": "Emotions",
+    "url": "Ancient_Diluted_Liquid_Greed",
+    "image": "Currency/DistilledEmotions/TimelostDilutedDistilledGreed.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Liquid Paranoia",
+    "code": "lAP",
+    "category": "Emotions",
+    "url": "Ancient_Liquid_Paranoia",
+    "image": "Currency/DistilledEmotions/TimelostDistilledParanoia.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Liquid Envy",
+    "code": "lAEn",
+    "category": "Emotions",
+    "url": "Ancient_Liquid_Envy",
+    "image": "Currency/DistilledEmotions/TimelostDistilledEnvy.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Liquid Disgust",
+    "code": "lAD",
+    "category": "Emotions",
+    "url": "Ancient_Liquid_Disgust",
+    "image": "Currency/DistilledEmotions/TimelostDistilledDisgust.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Liquid Despair",
+    "code": "lADe",
+    "category": "Emotions",
+    "url": "Ancient_Liquid_Despair",
+    "image": "Currency/DistilledEmotions/TimelostDistilledDespair.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Concentrated Liquid Fear",
+    "code": "clAF",
+    "category": "Emotions",
+    "url": "Ancient_Concentrated_Liquid_Fear",
+    "image": "Currency/DistilledEmotions/TimelostConcentratedDistilledFear.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Concentrated Liquid Suffering",
+    "code": "clAS",
+    "category": "Emotions",
+    "url": "Ancient_Concentrated_Liquid_Suffering",
+    "image": "Currency/DistilledEmotions/TimelostConcentratedDistilledSuffering.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Concentrated Liquid Isolation",
+    "code": "clAI",
+    "category": "Emotions",
+    "url": "Ancient_Concentrated_Liquid_Isolation",
+    "image": "Currency/DistilledEmotions/TimelostConcentratedDistilledIsolation.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Potent Liquid Melancholy",
+    "code": "lPM",
+    "category": "Emotions",
+    "url": "Potent_Liquid_Melancholy",
+    "image": "Currency/DistilledEmotions/UniqueHumansEmotion.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Potent Liquid Ferocity",
+    "code": "lPF",
+    "category": "Emotions",
+    "url": "Potent_Liquid_Ferocity",
+    "image": "Currency/DistilledEmotions/UniqueConstructsEmotion.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Potent Liquid Contempt",
+    "code": "lPC",
+    "category": "Emotions",
+    "url": "Potent_Liquid_Contempt",
+    "image": "Currency/DistilledEmotions/UniqueBeastEmotion.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Potent Liquid Melancholy",
+    "code": "lAPM",
+    "category": "Emotions",
+    "url": "Ancient_Potent_Liquid_Melancholy",
+    "image": "Currency/DistilledEmotions/TimelessUniqueHumansEmotion.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Potent Liquid Ferocity",
+    "code": "lAPF",
+    "category": "Emotions",
+    "url": "Ancient_Potent_Liquid_Ferocity",
+    "image": "Currency/DistilledEmotions/TimlessUniqueConstructsEmotion.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Ancient Potent Liquid Contempt",
+    "code": "lAPC",
+    "category": "Emotions",
+    "url": "Ancient_Potent_Liquid_Contempt",
+    "image": "Currency/DistilledEmotions/TimelessUniqueBeastEmotion.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Liquid Verisium",
+    "code": "lV",
+    "category": "Emotions",
+    "url": "Liquid_Verisium",
+    "image": "Currency/Expedition2/LiquidMetalVerisium.webp",
+    "maxStackSize": 20
+  },
+  {
+    "name": "Lesser Essence of the Body",
+    "code": "eEBl",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_the_Body",
+    "image": "Currency/Essence/LifeEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of the Mind",
+    "code": "eEMl",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_the_Mind",
+    "image": "Currency/Essence/ManaEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Enhancement",
+    "code": "eEEl",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_Enhancement",
+    "image": "Currency/Essence/DefencesEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Abrasion",
+    "code": "eEAbl",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_Abrasion",
+    "image": "Currency/Essence/PhysicalEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Flames",
+    "code": "eEFl",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_Flames",
+    "image": "Currency/Essence/FireEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Ice",
+    "code": "eEIl",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_Ice",
+    "image": "Currency/Essence/ColdEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Electricity",
+    "code": "eEEcl",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_Electricity",
+    "image": "Currency/Essence/LightningEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Ruin",
+    "code": "eERl",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_Ruin",
+    "image": "Currency/Essence/ChaosEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Battle",
+    "code": "eEBal",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_Battle",
+    "image": "Currency/Essence/AttackEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Sorcery",
+    "code": "eESl",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_Sorcery",
+    "image": "Currency/Essence/CasterEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Haste",
+    "code": "eEHl",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_Haste",
+    "image": "Currency/Essence/SpeedEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of the Infinite",
+    "code": "eEInl",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_the_Infinite",
+    "image": "Currency/Essence/AttributeEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of the Body",
+    "code": "eEB",
+    "category": "Essence",
+    "url": "Essence_of_the_Body",
+    "image": "Currency/Essence/LifeEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of the Mind",
+    "code": "eEM",
+    "category": "Essence",
+    "url": "Essence_of_the_Mind",
+    "image": "Currency/Essence/ManaEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Enhancement",
+    "code": "eEE",
+    "category": "Essence",
+    "url": "Essence_of_Enhancement",
+    "image": "Currency/Essence/DefencesEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Abrasion",
+    "code": "eEAb",
+    "category": "Essence",
+    "url": "Essence_of_Abrasion",
+    "image": "Currency/Essence/PhysicalEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Flames",
+    "code": "eEF",
+    "category": "Essence",
+    "url": "Essence_of_Flames",
+    "image": "Currency/Essence/FireEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Ice",
+    "code": "eEI",
+    "category": "Essence",
+    "url": "Essence_of_Ice",
+    "image": "Currency/Essence/ColdEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Electricity",
+    "code": "eEEc",
+    "category": "Essence",
+    "url": "Essence_of_Electricity",
+    "image": "Currency/Essence/LightningEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Ruin",
+    "code": "eER",
+    "category": "Essence",
+    "url": "Essence_of_Ruin",
+    "image": "Currency/Essence/ChaosEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Battle",
+    "code": "eEBa",
+    "category": "Essence",
+    "url": "Essence_of_Battle",
+    "image": "Currency/Essence/AttackEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Sorcery",
+    "code": "eES",
+    "category": "Essence",
+    "url": "Essence_of_Sorcery",
+    "image": "Currency/Essence/CasterEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Haste",
+    "code": "eEH",
+    "category": "Essence",
+    "url": "Essence_of_Haste",
+    "image": "Currency/Essence/SpeedEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of the Infinite",
+    "code": "eEIn",
+    "category": "Essence",
+    "url": "Essence_of_the_Infinite",
+    "image": "Currency/Essence/AttributeEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of the Body",
+    "code": "eEBg",
+    "category": "Essence",
+    "url": "Greater_Essence_of_the_Body",
+    "image": "Currency/Essence/GreaterLifeEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of the Mind",
+    "code": "eEMg",
+    "category": "Essence",
+    "url": "Greater_Essence_of_the_Mind",
+    "image": "Currency/Essence/GreaterManaEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Enhancement",
+    "code": "eEEg",
+    "category": "Essence",
+    "url": "Greater_Essence_of_Enhancement",
+    "image": "Currency/Essence/GreaterDefencesEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Abrasion",
+    "code": "eEAbg",
+    "category": "Essence",
+    "url": "Greater_Essence_of_Abrasion",
+    "image": "Currency/Essence/GreaterPhysicalEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Flames",
+    "code": "eEFg",
+    "category": "Essence",
+    "url": "Greater_Essence_of_Flames",
+    "image": "Currency/Essence/GreaterFireEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Ice",
+    "code": "eEIg",
+    "category": "Essence",
+    "url": "Greater_Essence_of_Ice",
+    "image": "Currency/Essence/GreaterColdEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Electricity",
+    "code": "eEEcg",
+    "category": "Essence",
+    "url": "Greater_Essence_of_Electricity",
+    "image": "Currency/Essence/GreaterLightningEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Ruin",
+    "code": "eERg",
+    "category": "Essence",
+    "url": "Greater_Essence_of_Ruin",
+    "image": "Currency/Essence/GreaterChaosEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Battle",
+    "code": "eEBag",
+    "category": "Essence",
+    "url": "Greater_Essence_of_Battle",
+    "image": "Currency/Essence/GreaterAttackEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Sorcery",
+    "code": "eESg",
+    "category": "Essence",
+    "url": "Greater_Essence_of_Sorcery",
+    "image": "Currency/Essence/GreaterCasterEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Haste",
+    "code": "eEHg",
+    "category": "Essence",
+    "url": "Greater_Essence_of_Haste",
+    "image": "Currency/Essence/GreaterSpeedEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of the Infinite",
+    "code": "eEIng",
+    "category": "Essence",
+    "url": "Greater_Essence_of_the_Infinite",
+    "image": "Currency/Essence/GreaterAttributeEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of the Body",
+    "code": "eEBp",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_the_Body",
+    "image": "Currency/Essence/LifeEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of the Mind",
+    "code": "eEMp",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_the_Mind",
+    "image": "Currency/Essence/ManaEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Enhancement",
+    "code": "eEEp",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_Enhancement",
+    "image": "Currency/Essence/DefencesEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Abrasion",
+    "code": "eEAbp",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_Abrasion",
+    "image": "Currency/Essence/PhysicalEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Flames",
+    "code": "eEFp",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_Flames",
+    "image": "Currency/Essence/FireEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Ice",
+    "code": "eEIp",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_Ice",
+    "image": "Currency/Essence/ColdEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Electricity",
+    "code": "eEEcp",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_Electricity",
+    "image": "Currency/Essence/LightningEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Ruin",
+    "code": "eERp",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_Ruin",
+    "image": "Currency/Essence/ChaosEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Battle",
+    "code": "eEBap",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_Battle",
+    "image": "Currency/Essence/AttackEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Sorcery",
+    "code": "eESp",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_Sorcery",
+    "image": "Currency/Essence/CasterEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Haste",
+    "code": "eEHp",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_Haste",
+    "image": "Currency/Essence/SpeedEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of the Infinite",
+    "code": "eEInp",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_the_Infinite",
+    "image": "Currency/Essence/AttributeEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Seeking",
+    "code": "eESel",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_Seeking",
+    "image": "Currency/Essence/CriticalEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Seeking",
+    "code": "eESe",
+    "category": "Essence",
+    "url": "Essence_of_Seeking",
+    "image": "Currency/Essence/CriticalEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Seeking",
+    "code": "eESeg",
+    "category": "Essence",
+    "url": "Greater_Essence_of_Seeking",
+    "image": "Currency/Essence/GreaterCriticalEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Seeking",
+    "code": "eESep",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_Seeking",
+    "image": "Currency/Essence/CriticalEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Hysteria",
+    "code": "eEHy",
+    "category": "Essence",
+    "url": "Essence_of_Hysteria",
+    "image": "Currency/Essence/CorruptedEssenceHysteria.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Delirium",
+    "code": "eED",
+    "category": "Essence",
+    "url": "Essence_of_Delirium",
+    "image": "Currency/Essence/CorruptedEssenceDelirium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Horror",
+    "code": "eEHo",
+    "category": "Essence",
+    "url": "Essence_of_Horror",
+    "image": "Currency/Essence/CorruptedEssenceHorror.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Insanity",
+    "code": "eEsI",
+    "category": "Essence",
+    "url": "Essence_of_Insanity",
+    "image": "Currency/Essence/CorruptedEssenceInsanity.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of the Abyss",
+    "code": "eEsA",
+    "category": "Essence",
+    "url": "Essence_of_the_Abyss",
+    "image": "Currency/Essence/AbyssalEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of the Breach",
+    "code": "eEBr",
+    "category": "Essence",
+    "url": "Essence_of_the_Breach",
+    "image": "Currency/Essence/BreachEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Insulation",
+    "code": "eEInsl",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_Insulation",
+    "image": "Currency/Essence/FireResistanceEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Insulation",
+    "code": "eEIns",
+    "category": "Essence",
+    "url": "Essence_of_Insulation",
+    "image": "Currency/Essence/FireResistanceEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Insulation",
+    "code": "eEInsg",
+    "category": "Essence",
+    "url": "Greater_Essence_of_Insulation",
+    "image": "Currency/Essence/GreaterFireResistanceEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Insulation",
+    "code": "eEInsp",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_Insulation",
+    "image": "Currency/Essence/FireResistanceEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Thawing",
+    "code": "eETl",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_Thawing",
+    "image": "Currency/Essence/ColdResistanceEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Thawing",
+    "code": "eET",
+    "category": "Essence",
+    "url": "Essence_of_Thawing",
+    "image": "Currency/Essence/ColdResistanceEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Thawing",
+    "code": "eETg",
+    "category": "Essence",
+    "url": "Greater_Essence_of_Thawing",
+    "image": "Currency/Essence/GreaterColdResistanceEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Thawing",
+    "code": "eETp",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_Thawing",
+    "image": "Currency/Essence/ColdResistanceEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Grounding",
+    "code": "eEGl",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_Grounding",
+    "image": "Currency/Essence/LightningResistanceEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Grounding",
+    "code": "eEG",
+    "category": "Essence",
+    "url": "Essence_of_Grounding",
+    "image": "Currency/Essence/LightningResistanceEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Grounding",
+    "code": "eEGg",
+    "category": "Essence",
+    "url": "Greater_Essence_of_Grounding",
+    "image": "Currency/Essence/GreaterLightningResistanceEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Grounding",
+    "code": "eEGp",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_Grounding",
+    "image": "Currency/Essence/LightningResistanceEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Alacrity",
+    "code": "eEAll",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_Alacrity",
+    "image": "Currency/Essence/SpeedCasterEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Alacrity",
+    "code": "eEAl",
+    "category": "Essence",
+    "url": "Essence_of_Alacrity",
+    "image": "Currency/Essence/SpeedCasterEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Alacrity",
+    "code": "eEAlg",
+    "category": "Essence",
+    "url": "Greater_Essence_of_Alacrity",
+    "image": "Currency/Essence/GreaterSpeedCasterEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Alacrity",
+    "code": "eEAlp",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_Alacrity",
+    "image": "Currency/Essence/SpeedCasterEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Opulence",
+    "code": "eEsOl",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_Opulence",
+    "image": "Currency/Essence/RarityResistanceEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Opulence",
+    "code": "eEsO",
+    "category": "Essence",
+    "url": "Essence_of_Opulence",
+    "image": "Currency/Essence/RarityResistanceEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Opulence",
+    "code": "eEsOg",
+    "category": "Essence",
+    "url": "Greater_Essence_of_Opulence",
+    "image": "Currency/Essence/GreaterRarityResistanceEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Opulence",
+    "code": "eEsOp",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_Opulence",
+    "image": "Currency/Essence/RarityResistanceEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Lesser Essence of Command",
+    "code": "eECol",
+    "category": "Essence",
+    "url": "Lesser_Essence_of_Command",
+    "image": "Currency/Essence/AllyEssenceLesser.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Essence of Command",
+    "code": "eECo",
+    "category": "Essence",
+    "url": "Essence_of_Command",
+    "image": "Currency/Essence/AllyEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Greater Essence of Command",
+    "code": "eECog",
+    "category": "Essence",
+    "url": "Greater_Essence_of_Command",
+    "image": "Currency/Essence/GreaterAllyEssence.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Perfect Essence of Command",
+    "code": "eECop",
+    "category": "Essence",
+    "url": "Perfect_Essence_of_Command",
+    "image": "Currency/Essence/AllyEssencePerfect.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Runic Alloy",
+    "code": "eRA",
+    "category": "Essence",
+    "url": "Runic_Alloy",
+    "image": "Currency/Expedition2/ScrapVerisium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Adaptive Alloy",
+    "code": "eAA",
+    "category": "Essence",
+    "url": "Adaptive_Alloy",
+    "image": "Currency/Expedition2/ChippedVerisium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Protective Alloy",
+    "code": "ePA",
+    "category": "Essence",
+    "url": "Protective_Alloy",
+    "image": "Currency/Expedition2/ImpureVerisium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Expansive Alloy",
+    "code": "eEA",
+    "category": "Essence",
+    "url": "Expansive_Alloy",
+    "image": "Currency/Expedition2/StandardVerisium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Swift Alloy",
+    "code": "eSAl",
+    "category": "Essence",
+    "url": "Swift_Alloy",
+    "image": "Currency/Expedition2/PureVerisium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Cyclonic Alloy",
+    "code": "eCA",
+    "category": "Essence",
+    "url": "Cyclonic_Alloy",
+    "image": "Currency/Expedition2/ImbuedVerisium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Prismatic Alloy",
+    "code": "ePAl",
+    "category": "Essence",
+    "url": "Prismatic_Alloy",
+    "image": "Currency/Expedition2/SovereignVerisium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Mystic Alloy",
+    "code": "eMA",
+    "category": "Essence",
+    "url": "Mystic_Alloy",
+    "image": "Currency/Expedition2/CelestialVerisium.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Sovereign Alloy",
+    "code": "eSoA",
+    "category": "Essence",
+    "url": "Sovereign_Alloy",
+    "image": "Currency/Expedition2/Alloy1.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Celestial Alloy",
+    "code": "eCAl",
+    "category": "Essence",
+    "url": "Celestial_Alloy",
+    "image": "Currency/Expedition2/Alloy4.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Transcendent Alloy",
+    "code": "eTA",
+    "category": "Essence",
+    "url": "Transcendent_Alloy",
+    "image": "Currency/Expedition2/Alloy5.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "The Runebinder's Alloy",
+    "code": "eRAl",
+    "category": "Essence",
+    "url": "The_Runebinders_Alloy",
+    "image": "Currency/Expedition2/Alloy2.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "The Runefather's Alloy",
+    "code": "eRuA",
+    "category": "Essence",
+    "url": "The_Runefathers_Alloy",
+    "image": "Currency/Expedition2/Alloy3.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Dextral Crystallisation",
+    "code": "eODCr",
+    "category": "Essence",
+    "url": "Omen_of_Dextral_Crystallisation",
+    "image": "Currency/Omens/OmenOnPerfectEssenceSuffix.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Sinistral Crystallisation",
+    "code": "eOSCr",
+    "category": "Essence",
+    "url": "Omen_of_Sinistral_Crystallisation",
+    "image": "Currency/Omens/OmenOnPerfectEssencePrefix.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Flesh Catalyst",
+    "code": "cFC",
+    "category": "Catalysts",
+    "url": "Flesh_Catalyst",
+    "image": "Currency/Breach/BreachCatalystLife.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Neural Catalyst",
+    "code": "cNC",
+    "category": "Catalysts",
+    "url": "Neural_Catalyst",
+    "image": "Currency/Breach/BreachCatalystMana.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Carapace Catalyst",
+    "code": "cCCa",
+    "category": "Catalysts",
+    "url": "Carapace_Catalyst",
+    "image": "Currency/Breach/BreachCatalystDefences.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Uul-Netol's Catalyst",
+    "code": "cUNC",
+    "category": "Catalysts",
+    "url": "Uul-Netols_Catalyst",
+    "image": "Currency/Breach/BreachCatalystPhysical.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Xoph's Catalyst",
+    "code": "cXC",
+    "category": "Catalysts",
+    "url": "Xophs_Catalyst",
+    "image": "Currency/Breach/BreachCatalystFire.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Tul's Catalyst",
+    "code": "cTC",
+    "category": "Catalysts",
+    "url": "Tuls_Catalyst",
+    "image": "Currency/Breach/BreachCatalystCold.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Esh's Catalyst",
+    "code": "cECa",
+    "category": "Catalysts",
+    "url": "Eshs_Catalyst",
+    "image": "Currency/Breach/BreachCatalystLightning.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Chayula's Catalyst",
+    "code": "cChC",
+    "category": "Catalysts",
+    "url": "Chayulas_Catalyst",
+    "image": "Currency/Breach/BreachCatalystChaos.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Reaver Catalyst",
+    "code": "cRC",
+    "category": "Catalysts",
+    "url": "Reaver_Catalyst",
+    "image": "Currency/Breach/BreachCatalystAttack.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Sibilant Catalyst",
+    "code": "cSC",
+    "category": "Catalysts",
+    "url": "Sibilant_Catalyst",
+    "image": "Currency/Breach/BreachCatalystCaster.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Skittering Catalyst",
+    "code": "cSCa",
+    "category": "Catalysts",
+    "url": "Skittering_Catalyst",
+    "image": "Currency/Breach/BreachCatalystSpeed.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Adaptive Catalyst",
+    "code": "cACa",
+    "category": "Catalysts",
+    "url": "Adaptive_Catalyst",
+    "image": "Currency/Breach/BreachCatalystAttribute.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Necrotic Catalyst",
+    "code": "cNCa",
+    "category": "Catalysts",
+    "url": "Necrotic_Catalyst",
+    "image": "Currency/Breach/BreachCatalystNecrotic.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Flesh Catalyst",
+    "code": "cRFC",
+    "category": "Catalysts",
+    "url": "Refined_Flesh_Catalyst",
+    "image": "Currency/Breach/JewelCatalystLife.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Neural Catalyst",
+    "code": "cRNC",
+    "category": "Catalysts",
+    "url": "Refined_Neural_Catalyst",
+    "image": "Currency/Breach/JewelCatalystMana.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Carapace Catalyst",
+    "code": "cRCC",
+    "category": "Catalysts",
+    "url": "Refined_Carapace_Catalyst",
+    "image": "Currency/Breach/JewelCatalystDefences.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Uul-Netol's Catalyst",
+    "code": "cRUNC",
+    "category": "Catalysts",
+    "url": "Refined_Uul-Netols_Catalyst",
+    "image": "Currency/Breach/JewelCatalystPhysical.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Xoph's Catalyst",
+    "code": "cRXC",
+    "category": "Catalysts",
+    "url": "Refined_Xophs_Catalyst",
+    "image": "Currency/Breach/JewelCatalystFire.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Tul's Catalyst",
+    "code": "cRTC",
+    "category": "Catalysts",
+    "url": "Refined_Tuls_Catalyst",
+    "image": "Currency/Breach/JewelCatalystCold.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Esh's Catalyst",
+    "code": "cREC",
+    "category": "Catalysts",
+    "url": "Refined_Eshs_Catalyst",
+    "image": "Currency/Breach/JewelCatalystLightning.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Chayula's Catalyst",
+    "code": "cRCCa",
+    "category": "Catalysts",
+    "url": "Refined_Chayulas_Catalyst",
+    "image": "Currency/Breach/JewelCatalystChaos.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Reaver Catalyst",
+    "code": "cRRC",
+    "category": "Catalysts",
+    "url": "Refined_Reaver_Catalyst",
+    "image": "Currency/Breach/JewelCatalystAttack.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Sibilant Catalyst",
+    "code": "cRSC",
+    "category": "Catalysts",
+    "url": "Refined_Sibilant_Catalyst",
+    "image": "Currency/Breach/JewelCatalystCaster.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Skittering Catalyst",
+    "code": "cRSCa",
+    "category": "Catalysts",
+    "url": "Refined_Skittering_Catalyst",
+    "image": "Currency/Breach/JewelCatalystSpeed.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Adaptive Catalyst",
+    "code": "cRAC",
+    "category": "Catalysts",
+    "url": "Refined_Adaptive_Catalyst",
+    "image": "Currency/Breach/JewelCatalystAttribute.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Refined Necrotic Catalyst",
+    "code": "cRNCa",
+    "category": "Catalysts",
+    "url": "Refined_Necrotic_Catalyst",
+    "image": "Currency/Breach/JewelCatalystNecrotic.webp",
+    "maxStackSize": 10
+  },
+  {
+    "name": "Omen of Catalysing Exaltation",
+    "code": "cOCEx",
+    "category": "Catalysts",
+    "url": "Omen_of_Catalysing_Exaltation",
+    "image": "Currency/Omens/OmenOnExaltConsumeQuality.webp",
+    "maxStackSize": 10
+  }
+]

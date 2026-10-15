@@ -1,0 +1,71 @@
+<!-- The session's captures: stackables, items and sweeps tables with the recording session's corrections. -->
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Ww.ExiledData.App.ViewModels"
+             x:Class="Ww.ExiledData.App.Views.CapturesView"
+             x:DataType="vm:SessionViewModel">
+  <Border Classes="card flush">
+    <DockPanel>
+      <!-- Wraps in the narrow side strip of a mapping session -->
+      <WrapPanel DockPanel.Dock="Top" Margin="16,14,16,6" ItemSpacing="16" LineSpacing="8">
+        <Border Classes="segmented">
+          <StackPanel Orientation="Horizontal">
+            <RadioButton Classes="segment" GroupName="view" IsChecked="{Binding ShowStackables}"
+                         Content="{Binding Detail.Stackables.Count, StringFormat='Stackables ({0})', FallbackValue='Stackables'}" />
+            <RadioButton Classes="segment" GroupName="view" IsChecked="{Binding ShowItems}"
+                         Content="{Binding Detail.Items.Count, StringFormat='Items ({0})', FallbackValue='Items'}" />
+            <RadioButton Classes="segment" GroupName="view" IsChecked="{Binding ShowSweeps}"
+                         Content="{Binding Detail.Sweeps.Count, StringFormat='Sweeps ({0})', FallbackValue='Sweeps'}" />
+          </StackPanel>
+        </Border>
+        <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding IsRecording}">
+          <Button Classes="ui" Content="Remove stackable" Command="{Binding RemoveStackableCommand}" IsVisible="{Binding ShowStackables}" />
+          <Button Classes="ui" Content="Remove item" Command="{Binding RemoveItemCommand}" IsVisible="{Binding ShowItems}" />
+          <Button Classes="ui" Content="Split covered cell" Command="{Binding SplitCoveredCommand}" IsVisible="{Binding ShowItems}"
+                  ToolTip.Tip="The selected item took in an adjacent cell with the same text. If those are really two items, split the last covered cell into its own item." />
+          <Button Classes="ui" Content="Undo" Command="{Binding UndoCommand}" />
+          <Button Classes="ui" Content="Redo" Command="{Binding RedoCommand}" />
+        </StackPanel>
+      </WrapPanel>
+
+      <Panel Margin="0,0,0,4">
+        <DataGrid Classes="ui" x:CompileBindings="False" IsVisible="{Binding ShowStackables}"
+                  ItemsSource="{Binding Detail.Stackables}" SelectedItem="{Binding Detail.SelectedStackable}"
+                  IsReadOnly="True" CanUserSortColumns="True" CanUserResizeColumns="True" GridLinesVisibility="Horizontal">
+          <DataGrid.Columns>
+            <DataGridTextColumn Header="NAME" Binding="{Binding Name}" Width="*" />
+            <DataGridTextColumn Header="COUNT" Binding="{Binding Count}" Width="90" FontFamily="{StaticResource MonoFont}" />
+            <DataGridTextColumn Header="MAX" Binding="{Binding MaxStack}" Width="90" FontFamily="{StaticResource MonoFont}" />
+            <DataGridTextColumn Header="CLASS" Binding="{Binding ItemClass}" Width="180" />
+            <DataGridTextColumn Header="UPDATED" Binding="{Binding Updated}" Width="110" FontFamily="{StaticResource MonoFont}" />
+          </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Classes="ui" x:CompileBindings="False" IsVisible="{Binding ShowItems}"
+                  ItemsSource="{Binding Detail.Items}" SelectedItem="{Binding Detail.SelectedItem}"
+                  IsReadOnly="True" CanUserSortColumns="True" CanUserResizeColumns="True" GridLinesVisibility="Horizontal">
+          <DataGrid.Columns>
+            <DataGridTextColumn Header="ITEM" Binding="{Binding Label}" Width="*" />
+            <DataGridTextColumn Header="X" Binding="{Binding X}" Width="70" FontFamily="{StaticResource MonoFont}" />
+            <DataGridTextColumn Header="Y" Binding="{Binding Y}" Width="70" FontFamily="{StaticResource MonoFont}" />
+            <DataGridTextColumn Header="CELL" Binding="{Binding Cell}" Width="140" />
+            <DataGridTextColumn Header="LAST SEEN" Binding="{Binding LastSeen}" Width="120" FontFamily="{StaticResource MonoFont}" />
+            <DataGridTextColumn Header="FLAGS" Binding="{Binding Flags}" Width="220" />
+          </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Classes="ui" x:CompileBindings="False" IsVisible="{Binding ShowSweeps}"
+                  ItemsSource="{Binding Detail.Sweeps}"
+                  IsReadOnly="True" CanUserSortColumns="True" CanUserResizeColumns="True" GridLinesVisibility="Horizontal">
+          <DataGrid.Columns>
+            <DataGridTextColumn Header="SWEEP" Binding="{Binding Label}" Width="*" />
+            <DataGridTextColumn Header="AREA" Binding="{Binding Grid}" Width="160" />
+            <DataGridTextColumn Header="STATUS" Binding="{Binding Status}" Width="100" />
+            <DataGridTextColumn Header="ITEMS" Binding="{Binding ItemCount}" Width="70" FontFamily="{StaticResource MonoFont}" />
+            <DataGridTextColumn Header="STARTED" Binding="{Binding Started}" Width="110" FontFamily="{StaticResource MonoFont}" />
+            <DataGridTextColumn Header="ENDED" Binding="{Binding Ended}" Width="110" FontFamily="{StaticResource MonoFont}" />
+            <DataGridTextColumn Header="GRID" Binding="{Binding Rectangle}" Width="200" />
+          </DataGrid.Columns>
+        </DataGrid>
+      </Panel>
+    </DockPanel>
+  </Border>
+</UserControl>

@@ -1,0 +1,552 @@
+<!--
+  Settings dialog: category list on the left, one page
+  per category, Save / Cancel in the footer. Field rows are data templates over the field view models.
+-->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Ww.ExiledData.App.ViewModels"
+        xmlns:s="using:Ww.ExiledData.App.ViewModels.Settings"
+        xmlns:c="using:Ww.ExiledData.App.Controls"
+        x:Class="Ww.ExiledData.App.Views.SettingsWindow"
+        x:DataType="vm:SettingsViewModel"
+        Classes="app"
+        Title="Settings"
+        Width="960" Height="720" MinWidth="820" MinHeight="560"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+
+  <Window.Resources>
+    <!-- Compact stepper for the area columns / rows -->
+    <DataTemplate x:Key="SmallStepper" x:DataType="s:NumberField">
+      <Border Classes="stepper" Classes.error="{Binding HasError}" Height="38">
+        <Grid ColumnDefinitions="Auto,*,Auto">
+          <Button Classes="step small" Content="−" BorderThickness="0,0,1,0" Command="{Binding DecreaseCommand}"
+                  AutomationProperties.Name="{Binding DecreaseName}" />
+          <TextBox Grid.Column="1" Classes="bare number" Padding="2,0" TextAlignment="Center" FontSize="14"
+                   Text="{Binding Text}" AutomationProperties.Name="{Binding Label}" />
+          <Button Grid.Column="2" Classes="step small" Content="+" BorderThickness="1,0,0,0" Command="{Binding IncreaseCommand}"
+                  AutomationProperties.Name="{Binding IncreaseName}" />
+        </Grid>
+      </Border>
+    </DataTemplate>
+  </Window.Resources>
+
+  <Window.DataTemplates>
+    <!-- Number row: label column, stepper with unit, helper line -->
+    <DataTemplate DataType="s:NumberField">
+      <Grid ColumnDefinitions="290,*" ColumnSpacing="24" Margin="0,18">
+        <StackPanel Spacing="4">
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <TextBlock Classes="rowlabel" Text="{Binding Label}" />
+            <Ellipse Classes="dot" IsVisible="{Binding IsChanged}" />
+          </StackPanel>
+          <TextBlock Classes="desc" Text="{Binding Description}" />
+          <TextBlock Classes="helper" Margin="0,4,0,0" Text="{Binding ApplyNote}" IsVisible="{Binding HasApplyNote}" />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Spacing="6" HorizontalAlignment="Left">
+          <Border Classes="stepper" Classes.changed="{Binding IsChanged}" Classes.error="{Binding HasError}"
+                  Height="40" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal">
+              <Button Classes="step" Content="−" BorderThickness="0,0,1,0" Command="{Binding DecreaseCommand}"
+                      AutomationProperties.Name="{Binding DecreaseName}" />
+              <TextBox Classes="bare number" Width="76" Text="{Binding Text}"
+                       AutomationProperties.Name="{Binding Label, StringFormat='{}{0} in units'}" />
+              <TextBlock Classes="muted" FontSize="13" Margin="6,0,12,0" VerticalAlignment="Center" Text="{Binding Unit}" />
+              <Button Classes="step" Content="+" BorderThickness="1,0,0,0" Command="{Binding IncreaseCommand}"
+                      AutomationProperties.Name="{Binding IncreaseName}" />
+            </StackPanel>
+          </Border>
+          <TextBlock Classes="helper danger" Text="{Binding Error}" IsVisible="{Binding HasError}" />
+          <StackPanel Orientation="Horizontal" Spacing="4">
+            <TextBlock Classes="helper" Text="{Binding HelperText}" />
+            <TextBlock Classes="helper" Text="·" IsVisible="{Binding CanReset}" />
+            <Button Classes="inline" Content="{Binding ResetText}" Command="{Binding ResetCommand}" IsVisible="{Binding CanReset}" />
+          </StackPanel>
+        </StackPanel>
+      </Grid>
+    </DataTemplate>
+
+    <!-- Text row -->
+    <DataTemplate DataType="s:TextField">
+      <Grid ColumnDefinitions="290,*" ColumnSpacing="24" Margin="0,18">
+        <StackPanel Spacing="4">
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <TextBlock Classes="rowlabel" Text="{Binding Label}" />
+            <Ellipse Classes="dot" IsVisible="{Binding IsChanged}" />
+          </StackPanel>
+          <TextBlock Classes="desc" Text="{Binding Description}" />
+          <TextBlock Classes="helper" Margin="0,4,0,0" Text="{Binding ApplyNote}" IsVisible="{Binding HasApplyNote}" />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Spacing="6">
+          <Border Classes="field" Classes.changed="{Binding IsChanged}">
+            <TextBox Classes="bare" Text="{Binding Value}" AutomationProperties.Name="{Binding Label}" />
+          </Border>
+          <StackPanel Orientation="Horizontal" Spacing="4">
+            <TextBlock Classes="helper" Text="{Binding HelperText}" />
+            <TextBlock Classes="helper" Text="·" IsVisible="{Binding CanReset}" />
+            <Button Classes="inline" Content="{Binding ResetText}" Command="{Binding ResetCommand}" IsVisible="{Binding CanReset}" />
+          </StackPanel>
+        </StackPanel>
+      </Grid>
+    </DataTemplate>
+
+    <!-- Hotkey row: label, recorder (keycaps / recording / typed text), message, Record + menu -->
+    <DataTemplate DataType="s:HotkeyField">
+      <Border BorderBrush="{DynamicResource LineBrush}" BorderThickness="0,1,0,0" Padding="0,10">
+        <Grid ColumnDefinitions="230,*,Auto" ColumnSpacing="20">
+          <StackPanel Spacing="2" Margin="0,6,0,0">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <TextBlock Classes="rowlabel" Text="{Binding Label}" />
+              <Ellipse Classes="dot" IsVisible="{Binding IsChanged}" />
+            </StackPanel>
+            <TextBlock Classes="desc" Text="{Binding Description}" />
+          </StackPanel>
+          <StackPanel Grid.Column="1" Spacing="6" HorizontalAlignment="Left">
+            <c:KeyRecorderBox Classes="recorder" HorizontalAlignment="Left"
+                              Classes.warning="{Binding IsWarning}" Classes.changed="{Binding IsChanged}"
+                              Classes.error="{Binding HasError}" Classes.recording="{Binding IsRecording}">
+              <Panel VerticalAlignment="Center">
+                <ItemsControl ItemsSource="{Binding Keys}" IsVisible="{Binding ShowKeys}">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <StackPanel Orientation="Horizontal" Spacing="6" />
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                      <Border Classes="keycap">
+                        <TextBlock Text="{Binding}" />
+                      </Border>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <TextBlock Classes="amber" FontSize="13" FontWeight="Medium" IsVisible="{Binding IsRecording}"
+                           Text="● Press the new combination…  Esc cancels" />
+                <TextBox Classes="bare" Padding="0" MinWidth="180" FontFamily="{StaticResource MonoFont}" FontSize="13"
+                         Text="{Binding Text}" IsVisible="{Binding ShowTextBox}" PlaceholderText="for example Ctrl+Alt+Z"
+                         AutomationProperties.Name="{Binding Label, StringFormat='{}{0} hotkey'}" />
+              </Panel>
+            </c:KeyRecorderBox>
+            <TextBlock Classes="helper" FontSize="12" LineHeight="17" MaxWidth="420" HorizontalAlignment="Left"
+                       Classes.danger="{Binding HasError}" Classes.warning="{Binding IsWarning}"
+                       Text="{Binding Message}" IsVisible="{Binding HasMessage}" />
+            <StackPanel Orientation="Horizontal" Spacing="4" IsVisible="{Binding CanReset}">
+              <TextBlock Classes="helper" Text="{Binding Default, StringFormat='default {0} ·'}" />
+              <Button Classes="inline" Content="{Binding ResetText}" Command="{Binding ResetCommand}" />
+            </StackPanel>
+          </StackPanel>
+          <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="6" VerticalAlignment="Top" Margin="0,1,0,0">
+            <Button Classes="ui" Content="{Binding RecordButtonText}" Command="{Binding ToggleRecordingCommand}" MinWidth="76"
+                    HorizontalContentAlignment="Center"
+                    AutomationProperties.Name="{Binding Label, StringFormat='Record {0} hotkey'}" />
+            <Button Classes="ui" Content="⋯" Padding="10,8" AutomationProperties.Name="{Binding Label, StringFormat='More options for {0}'}">
+              <Button.Flyout>
+                <MenuFlyout Placement="BottomEdgeAlignedRight">
+                  <MenuItem Header="Type it instead" Command="{Binding TypeInsteadCommand}" />
+                  <MenuItem Header="Reset to default" Command="{Binding ResetCommand}" />
+                </MenuFlyout>
+              </Button.Flyout>
+            </Button>
+          </StackPanel>
+        </Grid>
+      </Border>
+    </DataTemplate>
+
+    <!-- Area row: name, columns, rows, preview, remove; error under it -->
+    <DataTemplate DataType="s:AreaRow">
+      <Border BorderBrush="{DynamicResource LineBrush}" BorderThickness="0,1,0,0" Padding="0,10">
+        <StackPanel Spacing="6">
+          <Grid ColumnDefinitions="*,112,112,64,40" ColumnSpacing="14">
+            <Border Classes="field" Classes.error="{Binding NameInvalid}" Height="38">
+              <TextBox Classes="bare" Text="{Binding Name}" AutomationProperties.Name="Area name" />
+            </Border>
+            <ContentControl Grid.Column="1" Content="{Binding Columns}" ContentTemplate="{StaticResource SmallStepper}" />
+            <ContentControl Grid.Column="2" Content="{Binding Rows}" ContentTemplate="{StaticResource SmallStepper}" />
+            <c:GridPreview Grid.Column="3" Height="56" Columns="{Binding PreviewColumns}" Rows="{Binding PreviewRows}"
+                           LineBrush="{DynamicResource LineStrongBrush}" Fill="{DynamicResource PanelRaisedBrush}" />
+            <Button Grid.Column="4" Classes="ui icon" Content="✕" Command="{Binding RemoveCommand}"
+                    AutomationProperties.Name="{Binding Name, StringFormat='Remove area {0}'}" />
+          </Grid>
+          <TextBlock Classes="helper danger" Text="{Binding Error}" IsVisible="{Binding HasError}" />
+        </StackPanel>
+      </Border>
+    </DataTemplate>
+  </Window.DataTemplates>
+
+  <Grid RowDefinitions="52,*,68">
+
+    <!-- Title bar -->
+    <Border Grid.Row="0" Classes="chrome" BorderThickness="0,0,0,1" Padding="24,0">
+      <Grid ColumnDefinitions="*,Auto">
+        <TextBlock Text="Settings" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" />
+        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+          <Ellipse Classes="dot" IsVisible="{Binding IsDirty}" />
+          <TextBlock Classes="muted" FontSize="13" Text="{Binding DirtyText}" />
+        </StackPanel>
+      </Grid>
+    </Border>
+
+    <Grid Grid.Row="1" ColumnDefinitions="236,*">
+
+      <!-- Category list -->
+      <Border Background="{DynamicResource PanelBrush}" BorderBrush="{DynamicResource LineBrush}" BorderThickness="0,0,1,0" Padding="12,16">
+        <DockPanel>
+          <Border DockPanel.Dock="Top" Classes="field" Margin="0,0,0,14">
+            <TextBox Classes="bare" FontSize="13" Text="{Binding SearchText}" PlaceholderText="Search settings"
+                     AutomationProperties.Name="Search settings" />
+          </Border>
+          <ListBox Classes="nav" ItemsSource="{Binding VisiblePages}" SelectedItem="{Binding SelectedPage}"
+                   AutomationProperties.Name="Settings categories">
+            <ListBox.ItemTemplate>
+              <DataTemplate x:DataType="vm:SettingsPage">
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                  <TextBlock Classes="navlabel" Classes.soon="{Binding IsSoon}" Text="{Binding Title}" FontSize="14" VerticalAlignment="Center" />
+                  <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                    <Border Classes="soonchip" IsVisible="{Binding IsSoon}">
+                      <TextBlock Text="soon" />
+                    </Border>
+                    <Border Classes="errorpill" IsVisible="{Binding HasErrors}">
+                      <TextBlock Text="{Binding ErrorText}" />
+                    </Border>
+                    <Ellipse Classes="dot" IsVisible="{Binding IsDirty}" />
+                  </StackPanel>
+                </Grid>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+        </DockPanel>
+      </Border>
+
+      <!-- Page -->
+      <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="32,24,32,28" Spacing="16">
+
+          <Border Classes="banner" IsVisible="{Binding ShowUnreadableBanner}">
+            <TextBlock Text="Your settings file could not be read, so defaults are shown. Saving will replace it." />
+          </Border>
+
+          <StackPanel Spacing="4">
+            <TextBlock Classes="pagetitle" Text="{Binding SelectedPage.Title, FallbackValue=''}" />
+            <TextBlock Classes="muted" Text="{Binding SelectedPage.Subtitle, FallbackValue=''}" />
+          </StackPanel>
+
+          <!-- General -->
+          <StackPanel Spacing="16" IsVisible="{Binding General.IsSelected}">
+            <TextBlock Classes="label" Text="APPEARANCE" Margin="0,4,0,-8" />
+            <Border Classes="card" Padding="20,0">
+              <Grid ColumnDefinitions="290,*" ColumnSpacing="24" Margin="0,18">
+                <StackPanel Spacing="4">
+                  <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Classes="rowlabel" Text="{Binding Theme.Label}" />
+                    <Ellipse Classes="dot" IsVisible="{Binding Theme.IsChanged}" />
+                  </StackPanel>
+                  <TextBlock Classes="desc" Text="{Binding Theme.Description}" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Spacing="6" HorizontalAlignment="Left">
+                  <Border Classes="segmented" HorizontalAlignment="Left">
+                    <ItemsControl ItemsSource="{Binding Theme.Options}">
+                      <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                          <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                      </ItemsControl.ItemsPanel>
+                      <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="s:ChoiceOption">
+                          <RadioButton Classes="segment" GroupName="theme" Padding="16,6" FontSize="14"
+                                       Content="{Binding Label}" IsChecked="{Binding IsSelected}" />
+                        </DataTemplate>
+                      </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                  </Border>
+                  <StackPanel Orientation="Horizontal" Spacing="4">
+                    <TextBlock Classes="helper" Text="Previews now; Cancel puts it back." />
+                    <Button Classes="inline" Content="{Binding Theme.ResetText}" Command="{Binding Theme.ResetCommand}"
+                            IsVisible="{Binding Theme.CanReset}" />
+                  </StackPanel>
+                </StackPanel>
+              </Grid>
+            </Border>
+
+            <TextBlock Classes="label" Text="DIAGNOSTICS" Margin="0,4,0,-8" />
+            <Border Classes="card" Padding="20,0">
+              <StackPanel>
+                <Grid ColumnDefinitions="290,*" ColumnSpacing="24" Margin="0,18">
+                  <StackPanel Spacing="4">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                      <TextBlock Classes="rowlabel" Text="{Binding LogLevel.Label}" />
+                      <Ellipse Classes="dot" IsVisible="{Binding LogLevel.IsChanged}" />
+                    </StackPanel>
+                    <TextBlock Classes="desc" Text="{Binding LogLevel.Description}" />
+                  </StackPanel>
+                  <StackPanel Grid.Column="1" Spacing="6" HorizontalAlignment="Left">
+                    <ComboBox Classes="filter" MinWidth="180" ItemsSource="{Binding LogLevel.Options}" SelectedItem="{Binding LogLevel.Selected}"
+                              AutomationProperties.Name="Log level" />
+                    <StackPanel Orientation="Horizontal" Spacing="4">
+                      <TextBlock Classes="helper" Text="Applies when you save." />
+                      <Button Classes="inline" Content="{Binding LogLevel.ResetText}" Command="{Binding LogLevel.ResetCommand}"
+                              IsVisible="{Binding LogLevel.CanReset}" />
+                    </StackPanel>
+                  </StackPanel>
+                </Grid>
+                <Border Classes="sep" />
+                <Grid ColumnDefinitions="290,*" ColumnSpacing="24" Margin="0,18">
+                  <StackPanel Spacing="4">
+                    <TextBlock Classes="rowlabel" Text="Data folder" />
+                    <TextBlock Classes="desc" Text="The database, settings.json and the logs live here." />
+                  </StackPanel>
+                  <StackPanel Grid.Column="1" Spacing="10">
+                    <SelectableTextBlock FontFamily="{StaticResource MonoFont}" FontSize="13" TextTrimming="PrefixCharacterEllipsis"
+                                         ToolTip.Tip="{Binding DataDirectory}"
+                                         Foreground="{DynamicResource TextSecondaryBrush}" Text="{Binding DataDirectory}" />
+                    <Button Classes="ui" Content="Open logs folder" HorizontalAlignment="Left" Command="{Binding OpenLogsFolderCommand}" />
+                  </StackPanel>
+                </Grid>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+
+          <!-- Capture -->
+          <Border Classes="card" Padding="20,0" IsVisible="{Binding Capture.IsSelected}">
+            <StackPanel>
+              <ContentControl Content="{Binding GameWindowTitle}" />
+              <Border Classes="sep" />
+              <ContentControl Content="{Binding ClipboardWait}" />
+              <Border Classes="sep" />
+              <ContentControl Content="{Binding PositionTolerance}" />
+            </StackPanel>
+          </Border>
+
+          <!-- Hotkeys -->
+          <StackPanel IsVisible="{Binding HotkeysPage.IsSelected}">
+            <Border Classes="info">
+              <TextBlock Text="Hotkeys are global: while registered, the game does not receive them. Use Ctrl, Alt, Shift or Win with A–Z, 0–9 or F1–F24, and keys the game doesn’t use. Ctrl+C is reserved for item capture." />
+            </Border>
+            <TextBlock Classes="label" Text="SESSION" Margin="0,18,0,6" />
+            <ItemsControl ItemsSource="{Binding SessionHotkeys}" />
+            <TextBlock Classes="label" Text="SWEEP" Margin="0,16,0,0" />
+            <TextBlock Classes="helper" Margin="0,3,0,6"
+                       Text="While the sweep grid editor is open, Space, arrows, Enter and Escape go to the editor instead of the game." />
+            <ItemsControl ItemsSource="{Binding SweepHotkeys}" />
+            <TextBlock Classes="label" Text="MAPPING" Margin="0,16,0,0" />
+            <TextBlock Classes="helper" Margin="0,3,0,6"
+                       Text="Act on the recording mapping session. A scan sweeps the inventory area; finish it with the sweep finish hotkey." />
+            <ItemsControl ItemsSource="{Binding MappingHotkeys}" />
+            <TextBlock Classes="helper" Margin="0,10,0,0" Text="{x:Static vm:SettingsViewModel.RestartsCapture}" />
+          </StackPanel>
+
+          <!-- Sweeps -->
+          <StackPanel Spacing="10" IsVisible="{Binding Sweeps.IsSelected}">
+            <Border Classes="card" Padding="20,6,20,16">
+              <StackPanel>
+                <Grid ColumnDefinitions="*,112,112,64,40" ColumnSpacing="14" Margin="0,10">
+                  <TextBlock Classes="label" Text="NAME" />
+                  <TextBlock Grid.Column="1" Classes="label" Text="COLUMNS" />
+                  <TextBlock Grid.Column="2" Classes="label" Text="ROWS" />
+                  <TextBlock Grid.Column="3" Classes="label" Text="PREVIEW" />
+                </Grid>
+                <ItemsControl ItemsSource="{Binding Areas.Rows}" />
+                <Border BorderBrush="{DynamicResource LineBrush}" BorderThickness="0,1,0,0" Padding="0,14,0,0">
+                  <StackPanel Spacing="8">
+                    <StackPanel Orientation="Horizontal" Spacing="14">
+                      <Button Classes="dashed" Content="+ Add area" Command="{Binding Areas.AddCommand}" />
+                      <TextBlock Classes="helper" VerticalAlignment="Center"
+                                 Text="1 to 64 columns and rows. Names must be unique, ignoring case. At least one area is needed." />
+                    </StackPanel>
+                    <TextBlock Classes="helper danger" Text="{Binding Areas.ListError}" IsVisible="{Binding Areas.HasListError}" />
+                  </StackPanel>
+                </Border>
+              </StackPanel>
+            </Border>
+            <StackPanel Orientation="Horizontal" Spacing="4">
+              <TextBlock Classes="helper" Text="The area you picked last is kept when its name still exists after saving." />
+              <Button Classes="inline" Content="{Binding Areas.ResetText}" Command="{Binding Areas.ResetCommand}" IsVisible="{Binding Areas.CanReset}" />
+            </StackPanel>
+          </StackPanel>
+
+          <!-- Feedback overlay -->
+          <StackPanel Spacing="16" IsVisible="{Binding Feedback.IsSelected}">
+            <Border Classes="card" Padding="20,16">
+              <Grid ColumnDefinitions="200,*" ColumnSpacing="24">
+                <StackPanel Spacing="4">
+                  <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Classes="rowlabel" Text="{Binding Placement.Label}" />
+                    <Ellipse Classes="dot" IsVisible="{Binding Placement.IsChanged}" />
+                  </StackPanel>
+                  <TextBlock Classes="desc" Text="{Binding Placement.Description}" Margin="0,0,0,6" />
+                  <ItemsControl ItemsSource="{Binding Placement.Options}" AutomationProperties.Name="Feedback placement">
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate x:DataType="s:ChoiceOption">
+                        <RadioButton Classes="option" GroupName="placement" Margin="0,0,0,2"
+                                     Content="{Binding Label}" IsChecked="{Binding IsSelected}" />
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ItemsControl>
+                  <Button Classes="inline" Margin="0,6,0,0" Content="{Binding Placement.ResetText}" Command="{Binding Placement.ResetCommand}"
+                          IsVisible="{Binding Placement.CanReset}" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Spacing="8" HorizontalAlignment="Right">
+                  <c:PlacementPreview x:Name="Preview" Width="380" Height="190" Placement="{Binding Placement.Value}"
+                                      Fill="{DynamicResource BgBrush}" LineBrush="{DynamicResource LineStrongBrush}"
+                                      AccentBrush="{DynamicResource AmberAccentBrush}" CursorBrush="{DynamicResource TextBrush}"
+                                      Foreground="{DynamicResource TextMutedBrush}" AutomationProperties.AccessibilityView="Raw" />
+                  <TextBlock Classes="helper" HorizontalAlignment="Right" Text="Preview: the circle partway through its sweep." />
+                </StackPanel>
+              </Grid>
+            </Border>
+
+            <Border Classes="card" Padding="20,0">
+              <StackPanel>
+                <ContentControl Content="{Binding FeedbackSweep}" />
+                <Border Classes="sep" />
+                <ContentControl Content="{Binding FeedbackResult}" />
+                <Border Classes="sep" />
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16" Margin="0,16">
+                  <c:TimingBar VerticalAlignment="Center"
+                               SweepMs="{Binding FeedbackSweep.Value, FallbackValue=0, TargetNullValue=0}"
+                               ResultMs="{Binding FeedbackResult.Value, FallbackValue=0, TargetNullValue=0}"
+                               SweepBrush="{DynamicResource AmberAccentBrush}" ResultBrush="{DynamicResource AmberTintLineBrush}"
+                               TrackBrush="{DynamicResource PanelRaisedBrush}" Foreground="{DynamicResource TextMutedBrush}" />
+                  <Button Grid.Column="1" Classes="ui" Content="▶ Play preview" Click="OnPlayPreview" />
+                </Grid>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+
+          <!-- Mapping: the loot grid, nine equal columns; one empty row at the end is always there to add a row. -->
+          <StackPanel Spacing="10" IsVisible="{Binding Mapping.IsSelected}">
+            <Border Classes="card" Padding="20,16">
+              <StackPanel Spacing="12">
+                <StackPanel Spacing="4">
+                  <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Classes="rowlabel" Text="{Binding LootGrid.Label}" />
+                    <Ellipse Classes="dot" IsVisible="{Binding LootGrid.IsChanged}" />
+                  </StackPanel>
+                  <TextBlock Classes="desc" TextWrapping="Wrap"
+                             Text="Click a place to choose a currency. Picking one in the last row adds a new row; empty places are not drawn." />
+                </StackPanel>
+                <ItemsControl ItemsSource="{Binding LootGrid.Rows}" AutomationProperties.Name="Loot grid">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="s:LootGridRow">
+                      <Grid ColumnDefinitions="484,Auto" ColumnSpacing="6">
+                        <!-- Three groups of three, 8 apart: 3 x (3 x 52) + 2 x 8 = 484 -->
+                        <ItemsControl ItemsSource="{Binding Groups}">
+                          <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                              <StackPanel Orientation="Horizontal" Spacing="8" />
+                            </ItemsPanelTemplate>
+                          </ItemsControl.ItemsPanel>
+                          <ItemsControl.ItemTemplate>
+                            <DataTemplate x:CompileBindings="False">
+                        <ItemsControl ItemsSource="{Binding}" Width="156">
+                          <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                              <UniformGrid Columns="3" />
+                            </ItemsPanelTemplate>
+                          </ItemsControl.ItemsPanel>
+                          <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="s:LootGridCell">
+                              <Panel>
+                                <Button x:Name="Slot" Classes="lootslot" Classes.empty="{Binding IsEmpty}" Command="{Binding OpenPickerCommand}"
+                                        ToolTip.Tip="{Binding Tip}" AutomationProperties.Name="{Binding Tip}">
+                                  <Panel>
+                                    <TextBlock Text="+" FontSize="14" Foreground="{DynamicResource TextFaintBrush}" IsVisible="{Binding IsEmpty}"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <StackPanel Spacing="1" IsVisible="{Binding IsFilled}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                      <Panel Width="22" Height="22" HorizontalAlignment="Center">
+                                        <Border CornerRadius="4" Background="{DynamicResource CurrencyIconTileBrush}">
+                                          <Image Stretch="Uniform" Source="{Binding Choice.Image, FallbackValue={x:Null}, Converter={x:Static c:CurrencyIconConverter.Instance}}" />
+                                        </Border>
+                                        <Border Background="{DynamicResource LineBrush}" CornerRadius="3" Padding="2,0" Margin="0,-3,-6,0"
+                                                HorizontalAlignment="Right" VerticalAlignment="Top"
+                                                IsVisible="{Binding Choice.Badge, FallbackValue={x:Null}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                                          <TextBlock Text="{Binding Choice.Badge, FallbackValue=''}" FontSize="8" FontWeight="SemiBold"
+                                                     Foreground="{DynamicResource TextSecondaryBrush}" />
+                                        </Border>
+                                      </Panel>
+                                      <TextBlock Text="{Binding Choice.Code, FallbackValue=''}" FontFamily="{StaticResource MonoFont}" FontSize="9"
+                                                 HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" MaxWidth="42" />
+                                    </StackPanel>
+                                  </Panel>
+                                </Button>
+                                <Popup IsOpen="{Binding IsPickerOpen, Mode=TwoWay}" PlacementTarget="{Binding #Slot}" Placement="BottomEdgeAlignedLeft"
+                                       IsLightDismissEnabled="True" Opened="OnLootPickerOpened">
+                                  <Border Background="{DynamicResource PanelBrush}" BorderBrush="{DynamicResource LineStrongBrush}" BorderThickness="1"
+                                          CornerRadius="6" Padding="8" Width="320">
+                                    <DockPanel>
+                                      <Border DockPanel.Dock="Top" Classes="field" Margin="0,0,0,6">
+                                        <TextBox Classes="bare" FontSize="13" Text="{Binding Filter}" PlaceholderText="Search currencies"
+                                                 AutomationProperties.Name="Search currencies">
+                                          <TextBox.KeyBindings>
+                                            <KeyBinding Gesture="Enter" Command="{Binding PickFirstCommand}" />
+                                            <KeyBinding Gesture="Escape" Command="{Binding ClosePickerCommand}" />
+                                          </TextBox.KeyBindings>
+                                        </TextBox>
+                                      </Border>
+                                      <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="14" Margin="0,6,0,0">
+                                        <Button Classes="inline" Content="Clear this place" Command="{Binding ClearCommand}" IsVisible="{Binding IsFilled}" />
+                                        <Button Classes="inline" Content="{Binding UseTypedText}" Command="{Binding UseTypedCommand}" IsVisible="{Binding CanUseTyped}" />
+                                      </StackPanel>
+                                      <ScrollViewer MaxHeight="280" HorizontalScrollBarVisibility="Disabled">
+                                        <ItemsControl ItemsSource="{Binding Matches}">
+                                          <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="s:LootMatch">
+                                              <Button Classes="lootmatch" Command="{Binding PickCommand}">
+                                                <Grid ColumnDefinitions="22,64,*" ColumnSpacing="8">
+                                                  <Image Classes="currencyIcon" Source="{Binding Choice.Image, Converter={x:Static c:CurrencyIconConverter.Instance}}" />
+                                                  <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="3" VerticalAlignment="Center">
+                                                    <TextBlock Classes="mono amber" FontSize="12" Text="{Binding Choice.Code}" />
+                                                    <TextBlock Classes="muted" FontSize="10" Text="{Binding Choice.Badge}" />
+                                                  </StackPanel>
+                                                  <TextBlock Grid.Column="2" FontSize="13" Text="{Binding Choice.Name}" TextTrimming="CharacterEllipsis"
+                                                             VerticalAlignment="Center" />
+                                                </Grid>
+                                              </Button>
+                                            </DataTemplate>
+                                          </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                      </ScrollViewer>
+                                    </DockPanel>
+                                  </Border>
+                                </Popup>
+                              </Panel>
+                            </DataTemplate>
+                          </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                            </DataTemplate>
+                          </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <Button Grid.Column="1" Classes="ui icon small bare" Command="{Binding RemoveCommand}" IsVisible="{Binding CanRemove}"
+                                VerticalAlignment="Center" ToolTip.Tip="Remove this row" AutomationProperties.Name="Remove row">
+                          <c:StrokeIcon Classes="small" Data="{StaticResource IconClose}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Button>
+                      </Grid>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </StackPanel>
+            </Border>
+            <StackPanel Orientation="Horizontal" Spacing="4">
+              <TextBlock Classes="helper" Text="Currencies not in the grid still show in the List view." />
+              <Button Classes="inline" Content="{Binding LootGrid.ResetText}" Command="{Binding LootGrid.ResetCommand}" IsVisible="{Binding LootGrid.CanReset}" />
+            </StackPanel>
+          </StackPanel>
+        </StackPanel>
+      </ScrollViewer>
+    </Grid>
+
+    <!-- Footer -->
+    <Border Grid.Row="2" Classes="chrome" BorderThickness="0,1,0,0" Padding="24,0">
+      <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="12">
+        <Button Classes="ui link" FontSize="13" Content="↺ Reset this page to defaults" Command="{Binding ResetPageCommand}"
+                IsEnabled="{Binding !SelectedPage.IsSoon, FallbackValue=False}" />
+        <Panel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+          <TextBlock Classes="muted" FontSize="13" Text="{Binding FooterMessage}" IsVisible="{Binding !FooterIsError}"
+                     TextTrimming="CharacterEllipsis" />
+          <Button Classes="inline danger" Content="{Binding FooterMessage}" Command="{Binding JumpToFirstErrorCommand}"
+                  IsVisible="{Binding FooterIsError}" ToolTip.Tip="Show the first problem" />
+        </Panel>
+        <Button Grid.Column="2" Classes="ui" FontSize="14" Padding="18,10" Content="{Binding CancelText}" IsCancel="True" Click="OnCancel" />
+        <Button Grid.Column="3" Classes="ui primary" Padding="22,10" Content="Save" IsDefault="True" Command="{Binding SaveCommand}" />
+      </Grid>
+    </Border>
+  </Grid>
+</Window>

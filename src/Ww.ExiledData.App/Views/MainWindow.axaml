@@ -1,0 +1,96 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Ww.ExiledData.App.ViewModels"
+        xmlns:v="using:Ww.ExiledData.App.Views"
+        xmlns:c="using:Ww.ExiledData.App.Controls"
+        x:Class="Ww.ExiledData.App.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Classes="app"
+        Title="{Binding Title}"
+        Width="1360" Height="900" MinWidth="980" MinHeight="600">
+
+  <Window.DataTemplates>
+    <DataTemplate DataType="vm:SessionListViewModel">
+      <v:SessionListView />
+    </DataTemplate>
+    <DataTemplate DataType="vm:SessionViewModel">
+      <v:SessionView />
+    </DataTemplate>
+  </Window.DataTemplates>
+
+  <Window.KeyBindings>
+    <KeyBinding Gesture="Alt+Left" Command="{Binding BackCommand}" />
+  </Window.KeyBindings>
+
+  <Grid RowDefinitions="52,*">
+
+    <!-- App bar: back, breadcrumb (Sessions / session ▾ / Run N), the recording session's pill, settings -->
+    <Border Grid.Row="0" Classes="chrome" BorderThickness="0,0,0,1" Padding="10,0,20,0">
+      <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+        <StackPanel Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
+          <Button Classes="ui icon bare small" Command="{Binding BackCommand}" Margin="0,0,6,0"
+                  ToolTip.Tip="Back (Alt+Left)" AutomationProperties.Name="Back">
+            <c:StrokeIcon Data="{StaticResource IconBack}" />
+          </Button>
+          <Image Source="/Assets/app-icon.ico" Width="34" Height="34" VerticalAlignment="Center" Margin="0,0,8,0"
+                 RenderOptions.BitmapInterpolationMode="HighQuality" ToolTip.Tip="Ww.ExiledData" AutomationProperties.Name="Ww.ExiledData" />
+          <Button Classes="ui crumb" Classes.current="{Binding IsListPage}" Content="Sessions" Command="{Binding ShowListCommand}"
+                  ToolTip.Tip="The session list" />
+          <TextBlock Classes="faint" Text="/" VerticalAlignment="Center" IsVisible="{Binding IsSessionPage}" />
+          <Button Classes="ui crumb" Classes.current="{Binding IsSessionCrumbCurrent}"
+                  Content="{Binding CurrentSession.Name, FallbackValue=''}" IsVisible="{Binding IsSessionPage}" MaxWidth="360"
+                  Command="{Binding CurrentSession.ShowCurrentRunCommand, FallbackValue={x:Null}}"
+                  ToolTip.Tip="This session; from a picked run, back to the current run" />
+          <TextBlock Classes="faint" Text="/" VerticalAlignment="Center" IsVisible="{Binding HasPickedRun}" />
+          <Button Classes="ui crumb current" Content="{Binding PickedRunText}" IsVisible="{Binding HasPickedRun}"
+                  ToolTip.Tip="The run picked in the run history" />
+          <Button Name="SwitcherButton" Classes="ui icon bare small" ToolTip.Tip="Switch session (Ctrl+K)"
+                  AutomationProperties.Name="Switch session">
+            <c:StrokeIcon Data="{StaticResource IconChevronDown}" />
+            <Button.Flyout>
+              <Flyout Placement="BottomEdgeAlignedLeft" Opening="OnSwitcherOpening" Opened="OnSwitcherOpened">
+                <DockPanel Width="420">
+                  <TextBlock DockPanel.Dock="Top" Classes="label" Text="SWITCH SESSION" Margin="8,4,8,8" />
+                  <ListBox Name="SwitcherList" Classes="table" ItemsSource="{Binding SwitcherItems}" MaxHeight="460"
+                           Tapped="OnSwitcherTapped" KeyDown="OnSwitcherKeyDown">
+                    <ListBox.ItemTemplate>
+                      <DataTemplate x:DataType="vm:SwitcherItem">
+                        <Grid ColumnDefinitions="16,*" Background="Transparent">
+                          <Ellipse Classes="recdot" IsVisible="{Binding IsRecording}" />
+                          <StackPanel Grid.Column="1" Spacing="2">
+                            <TextBlock Text="{Binding Name}" FontWeight="Medium" TextTrimming="CharacterEllipsis"
+                                       Classes.amber="{Binding IsRecording}" />
+                            <TextBlock Classes="muted small" Text="{Binding Detail}" TextTrimming="CharacterEllipsis" />
+                          </StackPanel>
+                        </Grid>
+                      </DataTemplate>
+                    </ListBox.ItemTemplate>
+                  </ListBox>
+                </DockPanel>
+              </Flyout>
+            </Button.Flyout>
+          </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+          <Button Classes="ui recpill" Command="{Binding OpenRecordingCommand}" IsVisible="{Binding ShowRecPill}"
+                  ToolTip.Tip="The recording session: captures go here. Click to open it."
+                  AutomationProperties.Name="Open the recording session">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <Ellipse Classes="recdot" />
+              <TextBlock Classes="amber" Text="REC" FontWeight="SemiBold" FontSize="12" VerticalAlignment="Center" />
+              <TextBlock Classes="amber" Text="{Binding RecordingName}" FontSize="13" MaxWidth="240" TextTrimming="CharacterEllipsis"
+                         VerticalAlignment="Center" />
+              <TextBlock Classes="mono amber" Text="{Binding RecordingElapsed}" FontSize="13" VerticalAlignment="Center" />
+            </StackPanel>
+          </Button>
+          <Button Classes="ui icon bare" Command="{Binding SettingsCommand}" ToolTip.Tip="Settings" AutomationProperties.Name="Settings">
+            <c:StrokeIcon Data="{StaticResource IconSettings}" />
+          </Button>
+        </StackPanel>
+      </Grid>
+    </Border>
+
+    <ContentControl Grid.Row="1" Content="{Binding CurrentPage}" />
+  </Grid>
+</Window>

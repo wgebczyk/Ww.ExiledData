@@ -1,0 +1,380 @@
+<!--
+  Styles for the mapping screens: ModeTab, IconButton, CurrencyCell, scan kind chips,
+  tablet slots and tag chips. Colors only from Tokens.axaml.
+-->
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="using:Ww.ExiledData.App.Controls">
+
+  <!-- Line icons (24 x 24, drawn with StrokeIcon). -->
+  <Styles.Resources>
+    <StreamGeometry x:Key="IconSettings">M4 21V14 M4 10V3 M12 21V12 M12 8V3 M20 21V16 M20 12V3 M1 14H7 M9 8H15 M17 16H23</StreamGeometry>
+    <StreamGeometry x:Key="IconRename">M12 20H21 M16.5 3.5A2.1 2.1 0 0 1 19.5 6.5L7 19L3 20L4 16Z</StreamGeometry>
+    <StreamGeometry x:Key="IconExport">M21 15V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V15 M7 10L12 15L17 10 M12 15V3</StreamGeometry>
+    <StreamGeometry x:Key="IconDelete">M3 6H21 M19 6L18 20A2 2 0 0 1 16 22H8A2 2 0 0 1 6 20L5 6 M10 11V17 M14 11V17 M9 6V4A1 1 0 0 1 10 3H14A1 1 0 0 1 15 4V6</StreamGeometry>
+    <StreamGeometry x:Key="IconStop">M7 5H17A2 2 0 0 1 19 7V17A2 2 0 0 1 17 19H7A2 2 0 0 1 5 17V7A2 2 0 0 1 7 5Z</StreamGeometry>
+    <StreamGeometry x:Key="IconPlay">M8 5.7V18.3A1 1 0 0 0 9.5 19.2L19.3 12.9A1 1 0 0 0 19.3 11.1L9.5 4.8A1 1 0 0 0 8 5.7Z</StreamGeometry>
+    <StreamGeometry x:Key="IconRecall">M17 1L21 5L17 9 M3 11V9A4 4 0 0 1 7 5H21 M7 23L3 19L7 15 M21 13V15A4 4 0 0 1 17 19H3</StreamGeometry>
+    <StreamGeometry x:Key="IconSwipe">M3 12H17 M13 7L18 12L13 17 M21 5V19</StreamGeometry>
+    <StreamGeometry x:Key="IconFinal">M5 21V4 M5 4H17L15 8L17 12H5</StreamGeometry>
+    <StreamGeometry x:Key="IconUndo">M9 14L4 9L9 4 M4 9H14A6 6 0 0 1 14 21H11</StreamGeometry>
+    <StreamGeometry x:Key="IconRedo">M15 14L20 9L15 4 M20 9H10A6 6 0 0 0 10 21H13</StreamGeometry>
+    <StreamGeometry x:Key="IconWarning">M10.3 3.9L1.8 18A2 2 0 0 0 3.5 21H20.5A2 2 0 0 0 22.2 18L13.7 3.9A2 2 0 0 0 10.3 3.9Z M12 9V13 M12 17H12.01</StreamGeometry>
+    <StreamGeometry x:Key="IconClose">M18 6L6 18 M6 6L18 18</StreamGeometry>
+    <StreamGeometry x:Key="IconBack">M19 12H5 M12 19L5 12L12 5</StreamGeometry>
+    <StreamGeometry x:Key="IconChevronDown">M6 9L12 15L18 9</StreamGeometry>
+  </Styles.Resources>
+
+  <!--
+    ModeTab (Gather amber / Analyse blue): a classic tab on the header line. The active tab takes the page background
+    and covers the header's bottom line, so it connects to the content, with a 3 px top accent in the mode color.
+    The text label always shows: color is never the only cue.
+  -->
+  <Style Selector="RadioButton.modetab">
+    <Setter Property="Foreground" Value="{DynamicResource TextMutedBrush}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="Padding" Value="24,0" />
+    <Setter Property="Height" Value="46" />
+    <Setter Property="FontSize" Value="16" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="VerticalAlignment" Value="Bottom" />
+    <Setter Property="Margin" Value="0,0,0,-1" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <Border Name="PART_Body" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="1,1,1,0" CornerRadius="{StaticResource ModeTabCorners}" Padding="{TemplateBinding Padding}">
+            <ContentPresenter Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Content}" VerticalAlignment="Center" />
+          </Border>
+          <Border Name="PART_Accent" Height="3" VerticalAlignment="Top" CornerRadius="{StaticResource ModeTabCorners}" IsVisible="False" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+  <Style Selector="RadioButton.modetab:pointerover">
+    <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+  </Style>
+  <Style Selector="RadioButton.modetab:disabled">
+    <Setter Property="Opacity" Value="0.5" />
+  </Style>
+  <Style Selector="RadioButton.modetab:checked">
+    <Setter Property="Background" Value="{DynamicResource BgBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LineBrush}" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+  </Style>
+  <Style Selector="RadioButton.modetab:checked /template/ Border#PART_Accent">
+    <Setter Property="IsVisible" Value="True" />
+  </Style>
+  <Style Selector="RadioButton.modetab.gather:checked">
+    <Setter Property="Foreground" Value="{DynamicResource AmberTextBrush}" />
+  </Style>
+  <Style Selector="RadioButton.modetab.gather:checked /template/ Border#PART_Accent">
+    <Setter Property="Background" Value="{DynamicResource AmberAccentBrush}" />
+  </Style>
+  <Style Selector="RadioButton.modetab.analyse:checked">
+    <Setter Property="Foreground" Value="{DynamicResource BlueTextBrush}" />
+  </Style>
+  <Style Selector="RadioButton.modetab.analyse:checked /template/ Border#PART_Accent">
+    <Setter Property="Background" Value="{DynamicResource BlueFillBrush}" />
+  </Style>
+
+  <!-- IconButton: 36 x 36, an 18 px line icon; always with a tooltip and an accessible name. -->
+  <Style Selector="Button.ui.icon">
+    <Setter Property="Width" Value="36" />
+    <Setter Property="Height" Value="36" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+  </Style>
+  <Style Selector="Button.ui.icon.bare">
+    <Setter Property="BorderThickness" Value="0" />
+  </Style>
+  <Style Selector="Button.ui.icon.square">
+    <Setter Property="Width" Value="38" />
+    <Setter Property="Height" Value="38" />
+  </Style>
+  <Style Selector="Button.ui.icon.small">
+    <Setter Property="Width" Value="30" />
+    <Setter Property="Height" Value="30" />
+  </Style>
+  <Style Selector="Button.ui.icon:pointerover /template/ ContentPresenter#PART_Body">
+    <Setter Property="Background" Value="{DynamicResource PanelRaisedBrush}" />
+  </Style>
+  <Style Selector="Button.ui.icon.danger">
+    <Setter Property="Foreground" Value="{DynamicResource DangerTextBrush}" />
+  </Style>
+  <!-- Recording toggle, the header's last button: stop (red tint) while recording, play (green tint) when ended. -->
+  <Style Selector="Button.ui.icon.stop">
+    <Setter Property="Background" Value="{DynamicResource DangerTintBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource DangerLineBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource DangerTextBrush}" />
+  </Style>
+  <Style Selector="Button.ui.icon.stop:pointerover /template/ ContentPresenter#PART_Body">
+    <Setter Property="Background" Value="{DynamicResource DangerTintBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource DangerTextBrush}" />
+  </Style>
+  <Style Selector="Button.ui.icon.play">
+    <Setter Property="Background" Value="{DynamicResource SuccessTintBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource SuccessLineBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource SuccessTextBrush}" />
+  </Style>
+  <Style Selector="Button.ui.icon.play:pointerover /template/ ContentPresenter#PART_Body">
+    <Setter Property="Background" Value="{DynamicResource SuccessTintBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource SuccessTextBrush}" />
+  </Style>
+  <Style Selector="c|StrokeIcon">
+    <Setter Property="Width" Value="18" />
+    <Setter Property="Height" Value="18" />
+  </Style>
+  <Style Selector="c|StrokeIcon.small">
+    <Setter Property="Width" Value="16" />
+    <Setter Property="Height" Value="16" />
+  </Style>
+
+  <!-- FilterChip (Analyse scope): blue tint, with a small remove button -->
+  <Style Selector="Border.filterchip">
+    <Setter Property="Background" Value="{DynamicResource BlueTintBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BlueTintLineBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{StaticResource ControlRadius}" />
+    <Setter Property="Padding" Value="9,4" />
+  </Style>
+  <Style Selector="Border.filterchip TextBlock">
+    <Setter Property="FontSize" Value="13" />
+    <Setter Property="Foreground" Value="{DynamicResource BlueTextSoftBrush}" />
+  </Style>
+  <Style Selector="Border.filterchip.neutral">
+    <Setter Property="Background" Value="{DynamicResource PanelRaisedBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LineStrongBrush}" />
+  </Style>
+  <Style Selector="Border.filterchip.neutral TextBlock">
+    <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}" />
+  </Style>
+  <Style Selector="TextBlock.blue">
+    <Setter Property="Foreground" Value="{DynamicResource BlueTextBrush}" />
+  </Style>
+  <Style Selector="TextBlock.up">
+    <Setter Property="Foreground" Value="{DynamicResource BlueTextBrush}" />
+  </Style>
+
+  <!-- Statistics bar: 8 px, blue on raised -->
+  <Style Selector="ProgressBar.statbar">
+    <Setter Property="Height" Value="8" />
+    <Setter Property="MinHeight" Value="8" />
+    <Setter Property="MinWidth" Value="0" />
+    <Setter Property="Minimum" Value="0" />
+    <Setter Property="Maximum" Value="1" />
+    <Setter Property="CornerRadius" Value="4" />
+    <Setter Property="Background" Value="{DynamicResource PanelRaisedBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource BlueFillBrush}" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <!-- Per run chart -->
+  <Style Selector="c|BarChart">
+    <Setter Property="BarBrush" Value="{DynamicResource BlueFillBrush}" />
+    <Setter Property="AverageBrush" Value="{DynamicResource TextMutedBrush}" />
+    <Setter Property="LabelBrush" Value="{DynamicResource TextMutedBrush}" />
+    <Setter Property="FontFamily" Value="{StaticResource MonoFont}" />
+  </Style>
+
+  <!-- Include checkbox of the runs table: blue accent -->
+  <Style Selector="CheckBox.use">
+    <Setter Property="MinWidth" Value="0" />
+    <Setter Property="Padding" Value="0" />
+  </Style>
+  <Style Selector="CheckBox.use:checked /template/ Border#NormalRectangle">
+    <Setter Property="Background" Value="{DynamicResource BlueFillBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BlueFillBrush}" />
+  </Style>
+
+  <!--
+    CurrencyCell: fixed 84 x 60 (the grid's width is fixed, see GatherView). Inside the padding and border, 72 x 48:
+    left 30 = icon 26 with the code below (badge on the icon's corner); right ~38 = the value at 26, centered, which
+    fills ~80% of the width and ~70% of the height for two digits (the usual case); longer values shrink to fit.
+  -->
+  <Style Selector="c|CurrencyCell">
+    <Setter Property="Height" Value="60" />
+    <Setter Property="Background" Value="{DynamicResource PanelRaisedBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LineBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="6" />
+    <Setter Property="Padding" Value="5" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <Border Name="PART_Body" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}"
+                  Padding="{TemplateBinding Padding}">
+            <Border.Transitions>
+              <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.4" />
+              </Transitions>
+            </Border.Transitions>
+            <Grid Name="PART_Content" ColumnDefinitions="30,*" ColumnSpacing="4">
+              <StackPanel VerticalAlignment="Center" Spacing="2">
+                <Panel Width="26" Height="26" HorizontalAlignment="Center">
+                  <Border Name="PART_Icon" CornerRadius="5" Background="{DynamicResource CurrencyIconTileBrush}">
+                    <Panel>
+                      <TextBlock Name="PART_Letter" Text="{TemplateBinding Letter}" FontFamily="{StaticResource MonoFont}" FontSize="12"
+                                 FontWeight="SemiBold" Foreground="{DynamicResource AmberTextBrush}"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center" />
+                      <Image Source="{TemplateBinding Icon}" Stretch="Uniform" />
+                    </Panel>
+                  </Border>
+                  <Border Name="PART_Badge" Background="{DynamicResource LineBrush}" CornerRadius="3" Padding="2,0" IsVisible="False"
+                          HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-3,-5,0">
+                    <TextBlock Text="{TemplateBinding Badge}" FontSize="9" FontWeight="SemiBold" Foreground="{DynamicResource TextSecondaryBrush}" />
+                  </Border>
+                </Panel>
+                <TextBlock Text="{TemplateBinding Code}" FontFamily="{StaticResource MonoFont}" FontSize="10"
+                           Foreground="{DynamicResource TextMutedBrush}" HorizontalAlignment="Center" />
+              </StackPanel>
+              <Viewbox Grid.Column="1" Stretch="Uniform" StretchDirection="DownOnly" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Name="PART_Count" Text="{TemplateBinding CountText}" FontFamily="{StaticResource MonoFont}" FontSize="26" FontWeight="Medium" />
+              </Viewbox>
+            </Grid>
+          </Border>
+          <Rectangle Name="PART_Dashes" Stroke="{DynamicResource LineStrongBrush}" StrokeThickness="1" StrokeDashArray="3,2"
+                     RadiusX="6" RadiusY="6" IsVisible="False" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+  <!-- A currency icon in front of a code in lists (hidden when the icon file is missing). -->
+  <Style Selector="Image.currencyIcon">
+    <Setter Property="Width" Value="18" />
+    <Setter Property="Height" Value="18" />
+    <Setter Property="Stretch" Value="Uniform" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <!-- With an icon: no tile, the letter is only the fallback. -->
+  <Style Selector="c|CurrencyCell:icon /template/ Border#PART_Icon">
+    <Setter Property="Background" Value="Transparent" />
+  </Style>
+  <Style Selector="c|CurrencyCell:icon /template/ TextBlock#PART_Letter">
+    <Setter Property="IsVisible" Value="False" />
+  </Style>
+  <Style Selector="c|CurrencyCell:badge /template/ Border#PART_Badge">
+    <Setter Property="IsVisible" Value="True" />
+  </Style>
+  <!-- Zero: no fill, a faint border and a muted count; the icon and code stay as they are (not grayed out). -->
+  <Style Selector="c|CurrencyCell:zero /template/ Border#PART_Body">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LineFaintBrush}" />
+  </Style>
+  <Style Selector="c|CurrencyCell:zero /template/ TextBlock#PART_Count">
+    <Setter Property="Foreground" Value="{DynamicResource TextMutedBrush}" />
+  </Style>
+  <Style Selector="c|CurrencyCell:placeholder /template/ Border#PART_Body">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+  </Style>
+  <Style Selector="c|CurrencyCell:placeholder /template/ Grid#PART_Content">
+    <Setter Property="Opacity" Value="0.6" />
+  </Style>
+  <Style Selector="c|CurrencyCell:placeholder /template/ Rectangle#PART_Dashes">
+    <Setter Property="IsVisible" Value="True" />
+  </Style>
+  <Style Selector="c|CurrencyCell:changed /template/ Border#PART_Body">
+    <Setter Property="Background" Value="{DynamicResource AmberTintBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource AmberAccentBrush}" />
+  </Style>
+
+  <!-- Scan kind chip: Swipe neutral, Stash amber, Final blue; a button when it can change. -->
+  <Style Selector="Button.kindchip">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LineStrongBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{StaticResource ChipRadius}" />
+    <Setter Property="Padding" Value="7,1" />
+    <Setter Property="MinWidth" Value="52" />
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ContentPresenter Name="PART_Body" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}"
+                          Padding="{TemplateBinding Padding}" Foreground="{TemplateBinding Foreground}"
+                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          Content="{TemplateBinding Content}" />
+      </ControlTemplate>
+    </Setter>
+  </Style>
+  <Style Selector="Button.kindchip.stash">
+    <Setter Property="Background" Value="{DynamicResource AmberTintBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource AmberTintLineBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource AmberTextBrush}" />
+  </Style>
+  <Style Selector="Button.kindchip.final">
+    <Setter Property="Background" Value="{DynamicResource BlueTintBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BlueTintLineBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource BlueTextBrush}" />
+  </Style>
+  <Style Selector="Button.kindchip:pointerover /template/ ContentPresenter#PART_Body">
+    <Setter Property="BorderBrush" Value="{DynamicResource TextMutedBrush}" />
+  </Style>
+  <Style Selector="Button.kindchip:disabled /template/ ContentPresenter#PART_Body">
+    <Setter Property="Opacity" Value="0.8" />
+  </Style>
+
+  <!-- Tablet slots: filled = raised block; empty = dashed. -->
+  <Style Selector="Panel.slot">
+    <Setter Property="Height" Value="36" />
+  </Style>
+  <Style Selector="Panel.slot > Rectangle.dashes">
+    <Setter Property="Stroke" Value="{DynamicResource LineStrongBrush}" />
+    <Setter Property="StrokeThickness" Value="1" />
+    <Setter Property="StrokeDashArray" Value="3,2" />
+    <Setter Property="RadiusX" Value="6" />
+    <Setter Property="RadiusY" Value="6" />
+  </Style>
+
+  <!-- Tag chip with a small remove button. -->
+  <Style Selector="Button.chipx">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="4,0,0,0" />
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="Foreground" Value="{DynamicResource TextMutedBrush}" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ContentPresenter Background="Transparent" Padding="{TemplateBinding Padding}" Foreground="{TemplateBinding Foreground}"
+                          Content="{TemplateBinding Content}" />
+      </ControlTemplate>
+    </Setter>
+  </Style>
+  <Style Selector="Button.chipx:pointerover">
+    <Setter Property="Foreground" Value="{DynamicResource DangerTextBrush}" />
+  </Style>
+
+  <!-- Badge next to a currency code in lists. -->
+  <Style Selector="Border.badge">
+    <Setter Property="Background" Value="{DynamicResource LineBrush}" />
+    <Setter Property="CornerRadius" Value="3" />
+    <Setter Property="Padding" Value="3,0" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+  <Style Selector="Border.badge > TextBlock">
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}" />
+  </Style>
+  <Style Selector="TextBlock.down">
+    <Setter Property="Foreground" Value="{DynamicResource DeltaDownBrush}" />
+  </Style>
+  <Style Selector="TextBlock.warning">
+    <Setter Property="Foreground" Value="{DynamicResource DeltaDownBrush}" />
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+  </Style>
+</Styles>

@@ -1,0 +1,23 @@
+Item Class: Body Armours
+Rarity: Rare
+Horror Salvation
+Ironclad Vestments
+--------
+Armour: 164 (augmented)
+Energy Shield: 51 (augmented)
+--------
+Requires: Level 36, 31 Str, 31 Int
+--------
+Item Level: 59
+--------
+{ Prefix Modifier "Rotund" (Tier: 7) — Life }
++86(85-99) to maximum Life
+{ Prefix Modifier "Augur's" (Tier: 6) — Life, Armour, Energy Shield }
+10(6-13)% increased Armour and Energy Shield
++9(7-10) to maximum Life
+{ Prefix Modifier "Viscountess'" (Tier: 6) }
++40(38-42) to Spirit
+{ Suffix Modifier "of the Seal" (Tier: 8) — Elemental, Cold, Resistance }
++9(6-10)% to Cold Resistance
+{ Suffix Modifier "of Sealing" (Tier: 5) — Physical, Ailment }
+36(40-36)% reduced Duration of Bleeding on You

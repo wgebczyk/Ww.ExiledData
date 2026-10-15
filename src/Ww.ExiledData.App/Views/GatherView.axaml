@@ -1,0 +1,397 @@
+<!-- Gather tab of a mapping session: run card, loot panel, run history. -->
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Ww.ExiledData.App.ViewModels"
+             xmlns:c="using:Ww.ExiledData.App.Controls"
+             x:Class="Ww.ExiledData.App.Views.GatherView"
+             x:DataType="vm:GatherViewModel">
+
+  <UserControl.Resources>
+    <!-- An empty place keeps its column (the Panel) but draws nothing. -->
+    <DataTemplate x:Key="CellTemplate" x:DataType="vm:CurrencyCellViewModel">
+      <Panel>
+        <c:CurrencyCell Code="{Binding Code}" Letter="{Binding Letter}" Icon="{Binding Image, Converter={x:Static c:CurrencyIconConverter.Instance}}" Badge="{Binding Badge}" Count="{Binding Count}"
+                        CountText="{Binding CountText}" IsPlaceholder="{Binding IsPlaceholder}" IsZero="{Binding IsZero}"
+                        ToolTip.Tip="{Binding Tip}" Margin="2" IsVisible="{Binding !IsPlaceholder}" />
+      </Panel>
+    </DataTemplate>
+    <ItemsPanelTemplate x:Key="ThreeColumns">
+      <UniformGrid Columns="3" />
+    </ItemsPanelTemplate>
+  </UserControl.Resources>
+
+  <Grid RowDefinitions="*,16,200" ColumnDefinitions="400,16,*">
+
+    <!-- Run card -->
+    <Border Grid.Row="0" Grid.Column="0" Classes="card">
+      <Panel>
+        <StackPanel IsVisible="{Binding HasNoRuns}" VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="14" MaxWidth="320">
+          <TextBlock Classes="label" Text="RUN" HorizontalAlignment="Center" />
+          <TextBlock Classes="muted" Text="{Binding EmptyText}" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" />
+          <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center" IsVisible="{Binding IsRecording}">
+            <Button Classes="ui primary" Content="Start new run" Command="{Binding StartNewRunCommand}" />
+            <Button Classes="ui" Content="Initial swipe" Command="{Binding SwipeCommand}"
+                    ToolTip.Tip="Scan what you keep in the inventory: it starts run 1 and is its Initial" />
+          </StackPanel>
+        </StackPanel>
+
+        <ScrollViewer IsVisible="{Binding HasRun}" HorizontalScrollBarVisibility="Disabled">
+          <!-- Right margin: the overlay scroll bar must not cover the content -->
+          <StackPanel Spacing="14" Margin="0,0,14,0">
+            <!-- Header: RUN n OF x, state, timer -->
+            <Grid ColumnDefinitions="Auto,Auto,Auto,Auto,*,Auto">
+              <TextBlock Classes="label" Text="RUN" VerticalAlignment="Center" Margin="0,0,10,0" />
+              <TextBlock Grid.Column="1" Classes="mono" FontSize="26" FontWeight="Medium" Text="{Binding RunNumberText}" Margin="0,0,8,0" />
+              <TextBlock Grid.Column="2" Classes="label" Text="{Binding RunOfText}" VerticalAlignment="Center" Margin="0,0,12,0" />
+              <Border Grid.Column="3" Classes="pill" IsVisible="{Binding IsRunRunning}" VerticalAlignment="Center">
+                <TextBlock Text="Running" />
+              </Border>
+              <Border Grid.Column="3" Classes="chip" IsVisible="{Binding !IsRunRunning}" VerticalAlignment="Center">
+                <TextBlock Text="{Binding RunStateText}" />
+              </Border>
+              <TextBlock Grid.Column="5" Classes="mono" FontSize="26" FontWeight="Medium" Text="{Binding RunTimerText}" />
+            </Grid>
+            <Button Classes="ui link" Content="‹ Back to the current run" Command="{Binding ShowCurrentRunCommand}"
+                    IsVisible="{Binding IsPickedRun}" HorizontalAlignment="Left" Margin="-4,-8,0,0" />
+
+            <!-- Waystone, with a change button (recall list) -->
+            <StackPanel Spacing="6">
+              <TextBlock Classes="label" Text="WAYSTONE" />
+              <Border Classes="raised" Padding="12,8,8,8">
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                  <StackPanel Spacing="2" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding WaystoneText}" FontWeight="Medium" TextTrimming="CharacterEllipsis"
+                               Classes.muted="{Binding HasNoWaystone}" />
+                    <TextBlock Classes="muted small" Text="{Binding WaystoneSubText}" TextTrimming="CharacterEllipsis" />
+                  </StackPanel>
+                  <Button Grid.Column="1" Classes="ui icon small" Command="{Binding ChangeWaystoneCommand}"
+                          ToolTip.Tip="Change waystone from earlier scans" AutomationProperties.Name="Change waystone from earlier scans">
+                    <c:StrokeIcon Classes="small" Data="{StaticResource IconRecall}" />
+                  </Button>
+                </Grid>
+              </Border>
+            </StackPanel>
+
+            <!-- Tablets: filled slots can be corrected or cleared, empty ones open the recall list -->
+            <StackPanel Spacing="6">
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <TextBlock Classes="label" Text="TABLETS" />
+                <TextBlock Classes="mono muted small" Text="{Binding TabletCountText}" VerticalAlignment="Center" />
+              </StackPanel>
+              <ItemsControl ItemsSource="{Binding Tablets}">
+                <ItemsControl.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <UniformGrid Columns="2" />
+                  </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate x:DataType="vm:TabletSlotViewModel">
+                    <Panel Classes="slot" Margin="0,0,6,6" ToolTip.Tip="{Binding Tip}">
+                      <Rectangle Classes="dashes" IsVisible="{Binding IsEmpty}" />
+                      <Button Classes="ui link" IsVisible="{Binding IsEmpty}" Command="{Binding PickCommand}" HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10,0"
+                              AutomationProperties.Name="Pick a tablet from earlier scans">
+                        <TextBlock Classes="muted small" Text="{Binding Label}" />
+                      </Button>
+                      <Button Classes="ui" IsVisible="{Binding IsFilled}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                              HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10,0" FontSize="13">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                          <TextBlock Text="{Binding Label}" TextTrimming="CharacterEllipsis" MaxWidth="140" />
+                          <TextBlock Classes="amber" Text="?" FontWeight="SemiBold" IsVisible="{Binding IsPossible}" />
+                          <TextBlock Classes="muted" Text="↺" IsVisible="{Binding IsRecalled}" />
+                        </StackPanel>
+                        <Button.Flyout>
+                          <MenuFlyout>
+                            <MenuItem Header="It is a tablet" Command="{Binding ConfirmCommand}" />
+                            <MenuItem Header="Not a tablet (keep as a capture of the run)" Command="{Binding RejectCommand}" />
+                            <MenuItem Header="Not sure (possible tablet)" Command="{Binding PossibleCommand}" />
+                            <MenuItem Header="-" />
+                            <MenuItem Header="Clear this slot" Command="{Binding RemoveCommand}" />
+                          </MenuFlyout>
+                        </Button.Flyout>
+                      </Button>
+                    </Panel>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+              <StackPanel Orientation="Horizontal" Spacing="12" Margin="0,-2,0,0">
+                <Button Classes="ui link" Content="↺ Use previous run’s tablets" Command="{Binding UsePreviousTabletsCommand}" Margin="-4,0,0,0"
+                        ToolTip.Tip="Tablets with uses left usually carry over to the next run (one use fewer)" />
+                <Button Classes="ui link" Content="Pick from earlier…" Command="{Binding ChangeTabletsCommand}" />
+              </StackPanel>
+            </StackPanel>
+
+            <!-- Scans: Initial swipe, stash scans, swipes, Final -->
+            <StackPanel Spacing="8">
+              <TextBlock Classes="label" Text="SCANS" />
+              <ItemsControl ItemsSource="{Binding ScanRows}">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate x:DataType="vm:ScanRowViewModel">
+                    <Grid ColumnDefinitions="Auto,78,48,*,Auto" ColumnSpacing="8" Margin="0,0,0,6" Opacity="{Binding RowOpacity}">
+                      <Button Classes="kindchip" Classes.stash="{Binding IsStash}" Classes.final="{Binding IsFinal}" Content="{Binding KindText}"
+                              IsEnabled="{Binding CanEditKind}" ToolTip.Tip="{Binding KindTip}">
+                        <Button.Flyout>
+                          <MenuFlyout>
+                            <MenuItem Header="Swipe (not counted)" Command="{Binding SetSwipeCommand}" />
+                            <MenuItem Header="Stash scan (counts)" Command="{Binding SetStashCommand}" />
+                            <MenuItem Header="Final scan (check)" Command="{Binding SetFinalCommand}" />
+                            <MenuItem Header="-" />
+                            <MenuItem Header="Remove this scan" Command="{Binding RemoveCommand}" />
+                          </MenuFlyout>
+                        </Button.Flyout>
+                      </Button>
+                      <TextBlock Grid.Column="1" Text="{Binding Name}" FontWeight="Medium" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                      <TextBlock Grid.Column="2" Classes="mono muted small" Text="{Binding TimeText}" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="3" Classes="secondary small" Text="{Binding Summary}" VerticalAlignment="Center"
+                                 TextTrimming="CharacterEllipsis" ToolTip.Tip="{Binding Summary}" />
+                      <Button Grid.Column="4" Classes="ui filter" Command="{Binding ReviewCommand}" Padding="8,2"
+                              IsVisible="{Binding ReviewCommand, Converter={x:Static ObjectConverters.IsNotNull}}"
+                              ToolTip.Tip="Compare the Final scan with the Initial swipe; apply or dismiss the proposed adjustment">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                          <c:StrokeIcon Classes="small" Data="{StaticResource IconWarning}" IsVisible="{Binding HasWarning}" />
+                          <TextBlock Text="Review" VerticalAlignment="Center" />
+                        </StackPanel>
+                      </Button>
+                    </Grid>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+              <TextBlock Classes="muted small" TextWrapping="Wrap" IsVisible="{Binding HasNoScans}"
+                         Text="No scan yet. Swipe what you keep (the Initial), then take a stash scan right before each stash trip." />
+
+              <!-- Scan actions (or finish / cancel the running scan) -->
+              <Panel IsVisible="{Binding IsRecording}">
+                <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding IsNotScanning}">
+                  <Button Classes="ui" Content="Initial" Command="{Binding InitialScanCommand}"
+                          ToolTip.Tip="Swipe what you keep in the inventory before the map: the run's Initial (once per run)" />
+                  <Button Classes="ui primary" Content="Stash" Command="{Binding StashScanCommand}"
+                          ToolTip.Tip="Scan the inventory right before stashing it: counts toward the loot" />
+                  <Button Classes="ui" Content="Swipe" Command="{Binding SwipeCommand}"
+                          ToolTip.Tip="Swipe: a snapshot, not counted" />
+                  <Button Classes="ui" Content="Final" Command="{Binding FinalScanCommand}"
+                          ToolTip.Tip="Final scan: compared with the Initial as a consistency check" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding IsScanning}">
+                  <Button Classes="ui primary" Content="Finish scan" Command="{Binding FinishScanNowCommand}" />
+                  <Button Classes="ui danger" Content="Cancel…" Command="{Binding CancelScanNowCommand}" />
+                </StackPanel>
+              </Panel>
+            </StackPanel>
+
+            <!-- Run actions -->
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <Button Classes="ui" Content="Start new run" Command="{Binding StartNewRunCommand}" IsVisible="{Binding IsRecording}"
+                      ToolTip.Tip="Start a run without copying a waystone (it ends this one)" />
+              <Button Classes="ui" Content="End run" Command="{Binding EndRunCommand}" />
+              <Button Classes="ui icon" Command="{Binding UndoCommand}" ToolTip.Tip="Undo the last mapping edit" AutomationProperties.Name="Undo">
+                <c:StrokeIcon Data="{StaticResource IconUndo}" />
+              </Button>
+              <Button Classes="ui icon" Command="{Binding RedoCommand}" ToolTip.Tip="Redo" AutomationProperties.Name="Redo">
+                <c:StrokeIcon Data="{StaticResource IconRedo}" />
+              </Button>
+            </StackPanel>
+
+            <!-- Summary of the last scan: totals (or, for a Final, the differences from the Initial), warnings -->
+            <Border Classes="raised" IsVisible="{Binding HasSummary}">
+              <StackPanel Spacing="6">
+                <TextBlock Classes="muted small" Text="{Binding SummaryTitle}" TextWrapping="Wrap" />
+                <ItemsControl ItemsSource="{Binding SummaryDeltas}">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <WrapPanel />
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:ScanDeltaRow">
+                      <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,0,12,2" ToolTip.Tip="{Binding Name}">
+                        <TextBlock Classes="mono amber small" Text="{Binding Code}" />
+                        <Border Classes="badge" IsVisible="{Binding Badge, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                          <TextBlock Text="{Binding Badge}" />
+                        </Border>
+                        <TextBlock Classes="mono small" Classes.down="{Binding IsDown}" Text="{Binding ValueText}" />
+                      </StackPanel>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl ItemsSource="{Binding SummaryWarnings}">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                      <TextBlock Classes="warning" Text="{Binding StringFormat='⚠ {0}'}" />
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </StackPanel>
+            </Border>
+
+            <!-- Run tags and note -->
+            <StackPanel Spacing="8">
+              <WrapPanel>
+                <ItemsControl ItemsSource="{Binding RunTags}">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <WrapPanel />
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:TagChipViewModel">
+                      <Border Classes="chip" Margin="0,0,6,6">
+                        <StackPanel Orientation="Horizontal">
+                          <TextBlock Text="{Binding Text}" />
+                          <Button Classes="chipx" Content="✕" Command="{Binding RemoveCommand}" ToolTip.Tip="Remove the tag" />
+                        </StackPanel>
+                      </Border>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Button Classes="addchip" Content="+ run tag" Command="{Binding AddRunTagCommand}" Margin="0,0,8,6" />
+                <Button Classes="ui link" Content="{Binding NoteButtonText}" Command="{Binding EditNoteCommand}" Margin="0,0,0,6" Padding="4,2" />
+              </WrapPanel>
+              <TextBlock Classes="secondary small" Text="{Binding NoteText}" IsVisible="{Binding HasNote}" TextWrapping="Wrap" />
+            </StackPanel>
+          </StackPanel>
+        </ScrollViewer>
+      </Panel>
+    </Border>
+
+    <!-- Loot card -->
+    <Border Grid.Row="0" Grid.Column="2" Classes="card">
+      <DockPanel>
+        <!-- Title left, toggles right (wrapping below when the card is narrow): what, how (currencies only), which scope -->
+        <Grid DockPanel.Dock="Top" ColumnDefinitions="Auto,*" ColumnSpacing="10" Margin="0,0,0,12">
+          <StackPanel Spacing="2" VerticalAlignment="Center">
+            <TextBlock Text="Loot" FontWeight="SemiBold" FontSize="15" VerticalAlignment="Center" />
+            <TextBlock Classes="muted small" Text="{Binding LootCaption}" VerticalAlignment="Center" IsVisible="{Binding ShowCurrencies}" />
+            <TextBlock Classes="muted small" VerticalAlignment="Center" IsVisible="{Binding ShowItems}"
+                       Text="{Binding LootItems.Count, StringFormat='{}{0} captured item(s), every copy'}" />
+          </StackPanel>
+          <WrapPanel Grid.Column="1" HorizontalAlignment="Right" ItemSpacing="10" LineSpacing="6">
+            <Border Classes="segmented">
+              <StackPanel Orientation="Horizontal">
+                <RadioButton Classes="segment" GroupName="lootkind" Content="Currencies" IsChecked="{Binding ShowCurrencies}" />
+                <RadioButton Classes="segment" GroupName="lootkind" Content="Items" IsChecked="{Binding ShowItems}" />
+              </StackPanel>
+            </Border>
+            <Border Classes="segmented" IsVisible="{Binding ShowCurrencies}">
+              <StackPanel Orientation="Horizontal">
+                <RadioButton Classes="segment" GroupName="lootview" Content="Grid" IsChecked="{Binding ShowGrid}" />
+                <RadioButton Classes="segment" GroupName="lootview" Content="List" IsChecked="{Binding ShowList}" />
+              </StackPanel>
+            </Border>
+            <Border Classes="segmented">
+              <StackPanel Orientation="Horizontal">
+                <RadioButton Classes="segment" GroupName="lootscope" Content="Run" IsChecked="{Binding LootOfRun}" />
+                <RadioButton Classes="segment" GroupName="lootscope" Content="Session" IsChecked="{Binding LootOfSession}" />
+              </StackPanel>
+            </Border>
+          </WrapPanel>
+        </Grid>
+
+        <TextBlock DockPanel.Dock="Bottom" Classes="muted small" Margin="0,10,0,0" Text="{Binding OutsideGridText}"
+                   IsVisible="{Binding ShowOutsideGridNote}" />
+
+        <Panel>
+          <Panel IsVisible="{Binding ShowCurrencyGrid}">
+            <!-- Condensed grid: rows of nine equally wide cells in three groups (layout from Settings > Mapping). Fixed size: 9 x (84 + 2x2 margin) + 2 gaps of 12 = 816. -->
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" IsVisible="{Binding HasLootGrid}">
+              <ItemsControl ItemsSource="{Binding LootRows}" Margin="0,0,14,0" Width="816" HorizontalAlignment="Left">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate x:DataType="vm:LootRowViewModel">
+                    <Grid ColumnDefinitions="*,12,*,12,*">
+                      <ItemsControl Grid.Column="0" ItemsSource="{Binding Groups[0]}" ItemsPanel="{StaticResource ThreeColumns}"
+                                    ItemTemplate="{StaticResource CellTemplate}" />
+                      <ItemsControl Grid.Column="2" ItemsSource="{Binding Groups[1]}" ItemsPanel="{StaticResource ThreeColumns}"
+                                    ItemTemplate="{StaticResource CellTemplate}" />
+                      <ItemsControl Grid.Column="4" ItemsSource="{Binding Groups[2]}" ItemsPanel="{StaticResource ThreeColumns}"
+                                    ItemTemplate="{StaticResource CellTemplate}" />
+                    </Grid>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </ScrollViewer>
+            <TextBlock Classes="muted" IsVisible="{Binding HasNoLootGrid}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       TextWrapping="Wrap" TextAlignment="Center" MaxWidth="360"
+                       Text="No loot grid is set up. Choose its currencies in Settings, Mapping; the List shows everything meanwhile." />
+          </Panel>
+          <!-- List: every currency that dropped, by count -->
+          <DockPanel IsVisible="{Binding ShowCurrencyList}">
+            <Grid DockPanel.Dock="Top" ColumnDefinitions="56,100,*" ColumnSpacing="16" Margin="0,0,14,6">
+              <TextBlock Classes="label" Text="COUNT" HorizontalAlignment="Right" />
+              <TextBlock Grid.Column="1" Classes="label" Text="CODE" />
+              <TextBlock Grid.Column="2" Classes="label" Text="CURRENCY" />
+            </Grid>
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+              <ItemsControl ItemsSource="{Binding LootList}" Margin="0,0,14,0">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate x:DataType="vm:LootListRow">
+                    <Border BorderBrush="{DynamicResource LineBrush}" BorderThickness="0,1,0,0" Padding="0,8">
+                      <Grid ColumnDefinitions="56,100,*" ColumnSpacing="16">
+                        <TextBlock Classes="mono" FontWeight="Medium" Text="{Binding CountText}" HorizontalAlignment="Right" />
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4">
+                          <Image Classes="currencyIcon" Source="{Binding Image, Converter={x:Static c:CurrencyIconConverter.Instance}}"
+                                 IsVisible="{Binding $self.Source, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                          <TextBlock Classes="mono amber" Text="{Binding Code}" />
+                          <Border Classes="badge" IsVisible="{Binding Badge, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                            <TextBlock Text="{Binding Badge}" />
+                          </Border>
+                        </StackPanel>
+                        <TextBlock Grid.Column="2" Text="{Binding Name}" TextTrimming="CharacterEllipsis" />
+                      </Grid>
+                    </Border>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </ScrollViewer>
+          </DockPanel>
+          <!-- Items: every captured item of the run or session (also outside scans); a grid makes no sense here -->
+          <DataGrid Classes="ui" x:CompileBindings="False" IsVisible="{Binding ShowItems}" ItemsSource="{Binding LootItems}"
+                    IsReadOnly="True" CanUserSortColumns="True" CanUserResizeColumns="True" GridLinesVisibility="Horizontal">
+            <DataGrid.Columns>
+              <DataGridTextColumn Header="ITEM" Binding="{Binding Label}" Width="*" />
+              <DataGridTextColumn Header="LAST SEEN" Binding="{Binding LastSeen}" Width="124" FontFamily="{StaticResource MonoFont}" />
+              <DataGridTextColumn Header="X" Binding="{Binding X}" Width="80" FontFamily="{StaticResource MonoFont}" />
+              <DataGridTextColumn Header="Y" Binding="{Binding Y}" Width="80" FontFamily="{StaticResource MonoFont}" />
+              <DataGridTextColumn Header="FLAGS" Binding="{Binding Flags}" Width="200" />
+            </DataGrid.Columns>
+          </DataGrid>
+          <TextBlock Classes="muted" Text="No items captured yet." IsVisible="{Binding ShowNoItems}"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" />
+          <TextBlock Classes="muted" Text="No loot yet: it is the sum of the stash scans."
+                     IsVisible="{Binding ShowNoLoot}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,8" />
+        </Panel>
+      </DockPanel>
+    </Border>
+
+    <!-- Run history -->
+    <Border Grid.Row="2" Grid.ColumnSpan="3" Classes="card flush">
+      <DockPanel>
+        <Grid DockPanel.Dock="Top" Classes="tablehead" ColumnDefinitions="60,90,1.1*,1.5*,1.6*,1.1*" ColumnSpacing="10">
+          <TextBlock Classes="label" Text="RUN" />
+          <TextBlock Grid.Column="1" Classes="label" Text="DURATION" />
+          <TextBlock Grid.Column="2" Classes="label" Text="SETUP" />
+          <TextBlock Grid.Column="3" Classes="label" Text="SCANS" />
+          <TextBlock Grid.Column="4" Classes="label" Text="LOOT (TOP)" />
+          <TextBlock Grid.Column="5" Classes="label" Text="TAGS" />
+        </Grid>
+        <Panel>
+          <ListBox Classes="table" ItemsSource="{Binding Runs}" SelectedItem="{Binding SelectedRun}"
+                   AutomationProperties.Name="Run history">
+            <ListBox.ItemTemplate>
+              <DataTemplate x:DataType="vm:RunRowViewModel">
+                <Grid ColumnDefinitions="60,90,1.1*,1.5*,1.6*,1.1*" ColumnSpacing="10">
+                  <TextBlock Classes="mono" Text="{Binding NumberText}" FontWeight="Medium" />
+                  <TextBlock Grid.Column="1" Classes="mono secondary" Text="{Binding DurationText}" />
+                  <TextBlock Grid.Column="2" Text="{Binding SetupText}" TextTrimming="CharacterEllipsis" />
+                  <TextBlock Grid.Column="3" Classes="secondary" Classes.amber="{Binding HasWarning}" Text="{Binding ScansText}" TextTrimming="CharacterEllipsis" />
+                  <TextBlock Grid.Column="4" Classes="mono secondary" Text="{Binding TopText}" TextTrimming="CharacterEllipsis" />
+                  <TextBlock Grid.Column="5" Classes="muted" Text="{Binding TagsText}" TextTrimming="CharacterEllipsis" />
+                </Grid>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+          <TextBlock Classes="muted" Text="Runs appear here, newest first. Pick one to see it in the run card."
+                     IsVisible="{Binding HasNoHistory}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Panel>
+      </DockPanel>
+    </Border>
+  </Grid>
+</UserControl>

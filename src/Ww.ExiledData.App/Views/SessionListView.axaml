@@ -1,0 +1,111 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Ww.ExiledData.App.ViewModels"
+             x:Class="Ww.ExiledData.App.Views.SessionListView"
+             x:DataType="vm:SessionListViewModel">
+
+  <UserControl.KeyBindings>
+    <KeyBinding Gesture="F5" Command="{Binding RefreshCommand}" />
+  </UserControl.KeyBindings>
+
+  <!-- The sessions page of the main window, under its app bar -->
+  <Grid RowDefinitions="Auto,*,Auto">
+
+    <!-- Toolbar -->
+    <Grid Grid.Row="0" Margin="20,16" ColumnDefinitions="*,Auto" ColumnSpacing="12">
+      <WrapPanel ItemSpacing="12" LineSpacing="10">
+        <Button Classes="ui primary" Content="+ New session" Command="{Binding NewSessionCommand}" />
+        <TextBox Classes="search" Width="260" Text="{Binding SearchText}" PlaceholderText="Search sessions or tags"
+                 AutomationProperties.Name="Search sessions" />
+        <ComboBox Classes="filter" ItemsSource="{Binding KindFilters}" SelectedItem="{Binding KindFilter}" />
+        <ComboBox Classes="filter" ItemsSource="{Binding TagFilters}" SelectedItem="{Binding TagFilter}" MaxWidth="220"
+                  AutomationProperties.Name="Tag filter" ToolTip.Tip="Sessions with this session tag" />
+        <ComboBox Classes="filter" ItemsSource="{Binding StateFilters}" SelectedItem="{Binding StateFilter}" />
+        <ComboBox Classes="filter" ItemsSource="{Binding StartedFilters}" SelectedItem="{Binding StartedFilter}" AutomationProperties.Name="Started filter" />
+        <StackPanel Orientation="Horizontal" Spacing="6" IsVisible="{Binding IsStartedBetween}">
+          <CalendarDatePicker SelectedDate="{Binding StartedFrom}" PlaceholderText="From" Width="130" AutomationProperties.Name="Started from" />
+          <TextBlock Classes="muted" Text="–" VerticalAlignment="Center" />
+          <CalendarDatePicker SelectedDate="{Binding StartedTo}" PlaceholderText="To" Width="130" AutomationProperties.Name="Started to" />
+        </StackPanel>
+      </WrapPanel>
+      <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Top">
+        <Button Classes="ui filter" Content="{Binding EmptyCount, StringFormat='Delete empty ({0})'}"
+                Command="{Binding DeleteEmptyCommand}" IsVisible="{Binding HasEmptySessions}" />
+        <Button Classes="ui filter" Content="{Binding ThemeToggleText}" Command="{Binding ThemeCommand}"
+                ToolTip.Tip="Switch between the dark and light theme (Settings has System too)" />
+      </StackPanel>
+    </Grid>
+
+    <!-- Session table -->
+    <Border Grid.Row="1" Classes="card flush" Margin="20,0,20,16" CornerRadius="8">
+      <DockPanel>
+        <Grid DockPanel.Dock="Top" Classes="tablehead" ColumnDefinitions="1.3*,130,130,70,150,90,1.2*" ColumnSpacing="12">
+          <TextBlock Grid.Column="0" Classes="label" Text="SESSION" />
+          <TextBlock Grid.Column="1" Classes="label" Text="KIND" />
+          <TextBlock Grid.Column="2" Classes="label" Text="STATE" />
+          <TextBlock Grid.Column="3" Classes="label" Text="RUNS" />
+          <TextBlock Grid.Column="4" Classes="label" Text="STARTED" />
+          <TextBlock Grid.Column="5" Classes="label" Text="DURATION" />
+          <TextBlock Grid.Column="6" Classes="label" Text="TAGS" />
+        </Grid>
+        <Panel>
+          <ListBox Name="Table" Classes="table" ItemsSource="{Binding Sessions}" SelectedItem="{Binding Selected}"
+                   DoubleTapped="OnRowDoubleTapped" KeyDown="OnTableKeyDown">
+            <ListBox.ItemTemplate>
+              <DataTemplate x:DataType="vm:SessionListRow">
+                <Grid ColumnDefinitions="1.3*,130,130,70,150,90,1.2*" ColumnSpacing="12" Background="Transparent"
+                      ToolTip.Tip="{Binding CountsText}">
+                  <TextBlock Grid.Column="0" Text="{Binding Name}" FontWeight="Medium" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+                  <TextBlock Grid.Column="1" Classes="secondary" Text="{Binding Kind}" VerticalAlignment="Center" />
+                  <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                    <Ellipse Classes="recdot" IsVisible="{Binding IsRecording}" />
+                    <TextBlock Classes="muted" Classes.amber="{Binding IsRecording}" Text="{Binding StateText}" />
+                  </StackPanel>
+                  <TextBlock Grid.Column="3" Classes="mono secondary" Text="{Binding RunsText}" VerticalAlignment="Center" />
+                  <TextBlock Grid.Column="4" Classes="secondary" FontSize="13" Text="{Binding StartedText}" VerticalAlignment="Center" />
+                  <TextBlock Grid.Column="5" Classes="mono secondary" FontSize="13" Text="{Binding DurationText}" VerticalAlignment="Center" />
+                  <ItemsControl Grid.Column="6" ItemsSource="{Binding Tags}" VerticalAlignment="Center">
+                    <ItemsControl.ItemsPanel>
+                      <ItemsPanelTemplate>
+                        <WrapPanel ItemSpacing="6" LineSpacing="6" />
+                      </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate x:DataType="x:String">
+                        <Border Classes="chip">
+                          <TextBlock Text="{Binding}" />
+                        </Border>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ItemsControl>
+                </Grid>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+          <TextBlock Classes="muted" Text="{Binding EmptyText}" IsVisible="{Binding HasNoRows}"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Panel>
+      </DockPanel>
+    </Border>
+
+    <!-- Action bar -->
+    <Border Grid.Row="2" Classes="chrome" BorderThickness="0,1,0,0" Padding="20,14">
+      <Grid ColumnDefinitions="*,Auto">
+        <StackPanel VerticalAlignment="Center" Spacing="2">
+          <TextBlock Classes="muted" FontSize="13" Text="{Binding SelectionText}" TextTrimming="CharacterEllipsis" />
+          <TextBlock Classes="muted small" Text="{Binding StatusText}" TextTrimming="CharacterEllipsis"
+                     IsVisible="{Binding StatusText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+          <Button Classes="ui outline" Content="Open" Command="{Binding OpenCommand}" />
+          <Button Classes="ui" Content="Continue" Command="{Binding ContinueCommand}"
+                  ToolTip.Tip="Make the selected ended session the recording session again (the recording one ends)" />
+          <Button Classes="ui" Content="Rename" Command="{Binding RenameCommand}" />
+          <Button Classes="ui" Content="Tags" Command="{Binding TagsCommand}"
+                  ToolTip.Tip="Add a session tag to the selected mapping session (remove tags in its window)" ToolTip.ShowOnDisabled="True" />
+          <Button Classes="ui danger" Content="Delete" Command="{Binding DeleteCommand}" />
+        </StackPanel>
+      </Grid>
+    </Border>
+  </Grid>
+</UserControl>

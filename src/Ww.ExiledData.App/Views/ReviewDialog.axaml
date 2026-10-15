@@ -1,0 +1,58 @@
+<!-- Final-vs-Initial review (MAPPING_PLAN.md 3.3): the differences and the proposed loot adjustment. -->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Ww.ExiledData.App.ViewModels"
+        x:Class="Ww.ExiledData.App.Views.ReviewDialog"
+        x:DataType="vm:ReviewDialogViewModel"
+        Classes="app"
+        Title="{Binding Title}"
+        Width="560" SizeToContent="Height" CanResize="False"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+
+  <StackPanel Margin="20" Spacing="12">
+    <TextBlock Classes="title" Text="{Binding Title}" />
+    <TextBlock Classes="secondary small" Text="{Binding Text}" TextWrapping="Wrap" />
+
+    <Border Classes="card flush">
+      <StackPanel>
+        <Grid Classes="tablehead" ColumnDefinitions="60,*,70,70,130" ColumnSpacing="10">
+          <TextBlock Classes="label" Text="CODE" />
+          <TextBlock Grid.Column="1" Classes="label" Text="CURRENCY" />
+          <TextBlock Grid.Column="2" Classes="label" Text="INITIAL" />
+          <TextBlock Grid.Column="3" Classes="label" Text="FINAL" />
+          <TextBlock Grid.Column="4" Classes="label" Text="ADD TO LOOT" />
+        </Grid>
+        <ItemsControl ItemsSource="{Binding Rows}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="vm:ReviewRowViewModel">
+              <Grid ColumnDefinitions="60,*,70,70,130" ColumnSpacing="10" Margin="16,6">
+                <TextBlock Classes="mono amber" Text="{Binding Code}" VerticalAlignment="Center" />
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                  <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" />
+                  <TextBlock Classes="muted small" Text="{Binding AppliedText}"
+                             IsVisible="{Binding AppliedText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                </StackPanel>
+                <TextBlock Grid.Column="2" Classes="mono" Text="{Binding InitialText}" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="3" Classes="mono" Text="{Binding FinalText}" VerticalAlignment="Center" />
+                <NumericUpDown Grid.Column="4" Value="{Binding Amount}" Increment="1" FormatString="+0;-0;0" Minimum="-100000" Maximum="100000"
+                               AutomationProperties.Name="{Binding Name, StringFormat='Adjustment for {0}'}" />
+              </Grid>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </StackPanel>
+    </Border>
+
+    <TextBlock Classes="muted small" TextWrapping="Wrap"
+               Text="Applied adjustments are added to the run's loot as their own entries; Undo removes them. Dismiss keeps the loot as it is and hides the warning." />
+
+    <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="8" Margin="0,4,0,0">
+      <Button Classes="ui" Content="Dismiss" Click="OnDismiss" IsVisible="{Binding IsNotDismissed}"
+              ToolTip.Tip="Keep the loot as it is and stop warning about this run" />
+      <Button Classes="ui" Content="Warn again" Click="OnRestore" IsVisible="{Binding IsDismissed}"
+              ToolTip.Tip="Show the warning for this run again" />
+      <Button Grid.Column="2" Classes="ui" Content="Cancel" IsCancel="True" Click="OnCancel" />
+      <Button Grid.Column="3" Classes="ui primary" Content="Apply adjustment" IsDefault="True" Click="OnApply" />
+    </Grid>
+  </StackPanel>
+</Window>

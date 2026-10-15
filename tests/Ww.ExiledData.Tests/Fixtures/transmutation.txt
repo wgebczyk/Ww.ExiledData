@@ -1,0 +1,10 @@
+Item Class: Stackable Currency
+Rarity: Currency
+Orb of Transmutation
+--------
+Stack Size: 2/40
+--------
+Upgrades a Normal item to a Magic item with 1 modifier
+--------
+Right click this item then left click a normal item to apply it.
+Shift click to unstack.

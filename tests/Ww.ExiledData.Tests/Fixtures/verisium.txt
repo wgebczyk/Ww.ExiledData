@@ -1,0 +1,8 @@
+Item Class: Stackable Currency
+Rarity: Currency
+Verisium
+--------
+Stack Size: 31/1,000
+--------
+Can be used at the Verisium Anvil to transform Equipment.
+Shift click to unstack.
