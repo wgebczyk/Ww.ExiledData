@@ -312,21 +312,36 @@
                        TextWrapping="Wrap" TextAlignment="Center" MaxWidth="360"
                        Text="No loot grid is set up. Choose its currencies in Settings, Mapping; the List shows everything meanwhile." />
           </Panel>
-          <!-- List: every currency that dropped, by count -->
+          <!-- List: every currency that dropped, by count, with the whole count's value at poe.ninja prices (unit from Settings) -->
           <DockPanel IsVisible="{Binding ShowCurrencyList}">
-            <Grid DockPanel.Dock="Top" ColumnDefinitions="56,100,*" ColumnSpacing="16" Margin="0,0,14,6">
-              <TextBlock Classes="label" Text="COUNT" HorizontalAlignment="Right" />
-              <TextBlock Grid.Column="1" Classes="label" Text="CODE" />
-              <TextBlock Grid.Column="2" Classes="label" Text="CURRENCY" />
+            <Grid DockPanel.Dock="Top" ColumnDefinitions="100,*,56,110" ColumnSpacing="12" Margin="0,0,14,6">
+              <TextBlock Classes="label" Text="CODE" />
+              <TextBlock Grid.Column="1" Classes="label" Text="CURRENCY" />
+              <TextBlock Grid.Column="2" Classes="label" Text="COUNT" HorizontalAlignment="Right" />
+              <TextBlock Grid.Column="3" Classes="label" Text="{Binding ValueHeader}" HorizontalAlignment="Right"
+                         ToolTip.Tip="Value of the count at poe.ninja prices; the unit is set in Settings, Mapping" />
             </Grid>
+            <!-- Footer: the sum of the priced rows -->
+            <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource LineStrongBrush}" BorderThickness="0,1,0,0" Padding="0,8,0,0" Margin="0,0,14,0"
+                    IsVisible="{Binding HasLoot}">
+              <Grid ColumnDefinitions="100,*,56,110" ColumnSpacing="12">
+                <TextBlock Classes="label" Text="TOTAL" />
+                <TextBlock Grid.Column="1" Classes="muted small" Text="{Binding LootTotalNote}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="2" Classes="mono" FontWeight="Medium" Text="{Binding LootTotal.CountText, FallbackValue=''}" HorizontalAlignment="Right" />
+                <DockPanel Grid.Column="3">
+                  <TextBlock DockPanel.Dock="Right" Classes="mono" FontWeight="SemiBold" Width="30" Margin="6,0,0,0" Text="{Binding LootTotal.UnitText, FallbackValue=''}"
+                             IsVisible="{Binding LootTotal.ShowsUnit, FallbackValue=False}" />
+                  <TextBlock Classes="mono" FontWeight="SemiBold" Text="{Binding LootTotal.AmountText, FallbackValue=''}" HorizontalAlignment="Right" />
+                </DockPanel>
+              </Grid>
+            </Border>
             <ScrollViewer HorizontalScrollBarVisibility="Disabled">
               <ItemsControl ItemsSource="{Binding LootList}" Margin="0,0,14,0">
                 <ItemsControl.ItemTemplate>
                   <DataTemplate x:DataType="vm:LootListRow">
                     <Border BorderBrush="{DynamicResource LineBrush}" BorderThickness="0,1,0,0" Padding="0,8">
-                      <Grid ColumnDefinitions="56,100,*" ColumnSpacing="16">
-                        <TextBlock Classes="mono" FontWeight="Medium" Text="{Binding CountText}" HorizontalAlignment="Right" />
-                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4">
+                      <Grid ColumnDefinitions="100,*,56,110" ColumnSpacing="12">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
                           <Image Classes="currencyIcon" Source="{Binding Image, Converter={x:Static c:CurrencyIconConverter.Instance}}"
                                  IsVisible="{Binding $self.Source, Converter={x:Static ObjectConverters.IsNotNull}}" />
                           <TextBlock Classes="mono amber" Text="{Binding Code}" />
@@ -334,7 +349,14 @@
                             <TextBlock Text="{Binding Badge}" />
                           </Border>
                         </StackPanel>
-                        <TextBlock Grid.Column="2" Text="{Binding Name}" TextTrimming="CharacterEllipsis" />
+                        <TextBlock Grid.Column="1" Text="{Binding Name}" TextTrimming="CharacterEllipsis" />
+                        <TextBlock Grid.Column="2" Classes="mono" FontWeight="Medium" Text="{Binding CountText}" HorizontalAlignment="Right" />
+                        <!-- The amounts line up on the right; an adaptive unit follows in a slot of its own, left aligned -->
+                        <DockPanel Grid.Column="3">
+                          <TextBlock DockPanel.Dock="Right" Classes="mono secondary" Width="30" Margin="6,0,0,0" Text="{Binding UnitText}"
+                                     IsVisible="{Binding ShowsUnit}" />
+                          <TextBlock Classes="mono" Text="{Binding AmountText}" HorizontalAlignment="Right" />
+                        </DockPanel>
                       </Grid>
                     </Border>
                   </DataTemplate>

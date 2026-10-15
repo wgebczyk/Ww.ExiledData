@@ -9,6 +9,8 @@
   <!-- Line icons (24 x 24, drawn with StrokeIcon). -->
   <Styles.Resources>
     <StreamGeometry x:Key="IconSettings">M4 21V14 M4 10V3 M12 21V12 M12 8V3 M20 21V16 M20 12V3 M1 14H7 M9 8H15 M17 16H23</StreamGeometry>
+    <!-- An orb between refresh arrows: the poe.ninja price chip (pulls prices on click). -->
+    <StreamGeometry x:Key="IconPrices">M20 11A8 8 0 0 0 5.3 6.7 M4 3V7H8 M4 13A8 8 0 0 0 18.7 17.3 M20 21V17H16 M12 9L14.5 12L12 15L9.5 12Z</StreamGeometry>
     <StreamGeometry x:Key="IconRename">M12 20H21 M16.5 3.5A2.1 2.1 0 0 1 19.5 6.5L7 19L3 20L4 16Z</StreamGeometry>
     <StreamGeometry x:Key="IconExport">M21 15V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V15 M7 10L12 15L17 10 M12 15V3</StreamGeometry>
     <StreamGeometry x:Key="IconDelete">M3 6H21 M19 6L18 20A2 2 0 0 1 16 22H8A2 2 0 0 1 6 20L5 6 M10 11V17 M14 11V17 M9 6V4A1 1 0 0 1 10 3H14A1 1 0 0 1 15 4V6</StreamGeometry>

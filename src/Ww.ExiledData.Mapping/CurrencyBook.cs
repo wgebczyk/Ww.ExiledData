@@ -53,18 +53,35 @@ public sealed class CurrencyBook
     private static readonly (string Prefix, string Letter)[] Tiers = [("Lesser ", "L"), ("Greater ", "G"), ("Perfect ", "P")];
     private readonly CurrencyCatalog _catalog;
 
-    public CurrencyBook(LootLayout? layout = null, CurrencyCatalog? catalog = null)
+    public CurrencyBook(LootLayout? layout = null, CurrencyCatalog? catalog = null, PriceBook? prices = null, PriceUnit unit = PriceUnit.Adaptive)
     {
+        Unit = unit;
         Layout = layout ?? LootLayout.Empty;
         _catalog = catalog ?? CurrencyCatalog.Default;
+        Prices = prices ?? PriceBook.Empty;
     }
 
     public LootLayout Layout { get; }
 
     public CurrencyCatalog Catalog => _catalog;
 
+    /// <summary>The last poe.ninja prices (<see cref="PriceBook.Empty"/> until the first pull).</summary>
+    public PriceBook Prices { get; }
+
+    /// <summary>How values are shown (settings).</summary>
+    public PriceUnit Unit { get; }
+
     /// <summary>The same catalog with another grid.</summary>
-    public CurrencyBook WithLayout(LootLayout layout) => new(layout, _catalog);
+    public CurrencyBook WithLayout(LootLayout layout) => new(layout, _catalog, Prices, Unit);
+
+    /// <summary>The same catalog and grid with other prices.</summary>
+    public CurrencyBook WithPrices(PriceBook prices) => new(Layout, _catalog, prices, Unit);
+
+    /// <summary>The same catalog, grid and prices, shown in another unit.</summary>
+    public CurrencyBook WithUnit(PriceUnit unit) => new(Layout, _catalog, Prices, unit);
+
+    /// <summary>The value of <paramref name="count"/> <paramref name="name"/>, or null when it has no price.</summary>
+    public CurrencyValue? ValueOf(string name, int count) => Prices.UnitValue(name) * count;
 
     /// <summary>The built-in catalog, no grid.</summary>
     public static CurrencyBook Default { get; } = new();

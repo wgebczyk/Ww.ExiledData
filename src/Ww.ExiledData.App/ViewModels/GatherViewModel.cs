@@ -202,6 +202,17 @@ public sealed partial class GatherViewModel : ObservableObject
     public bool HasNoLootGrid => !HasLootGrid;
     public ObservableCollection<LootListRow> LootList { get; } = [];
 
+    /// <summary>The list's footer: every currency's count and the value of those with a price.</summary>
+    [ObservableProperty]
+    public partial LootListRow? LootTotal { get; private set; }
+
+    [ObservableProperty]
+    public partial string LootTotalNote { get; private set; } = "";
+
+    /// <summary>The value column's header: the unit of the settings, or VALUE when each row names its own.</summary>
+    [ObservableProperty]
+    public partial string ValueHeader { get; private set; } = "VALUE";
+
     /// <summary>The loot card shows currencies (grid or list) or the captured items (list only).</summary>
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ShowItems), nameof(ShowCurrencyGrid), nameof(ShowCurrencyList), nameof(ShowOutsideGridNote), nameof(ShowNoLoot))]
@@ -506,9 +517,23 @@ public sealed partial class GatherViewModel : ObservableObject
         foreach (var (name, count) in byName.OrderByDescending(p => p.Value).ThenBy(p => p.Key, StringComparer.Ordinal))
         {
             var display = _book.Describe(name);
-            LootList.Add(new LootListRow(display.Code, display.Badge, name, count, inGrid.Contains(name), display.Image));
+            LootList.Add(new LootListRow(display.Code, display.Badge, name, count, inGrid.Contains(name), display.Image, _book.ValueOf(name, count), _book.Unit));
         }
         HasLoot = LootList.Count > 0;
+        var priced = LootList.Where(r => r.Value is not null).ToList();
+        var total = priced.Aggregate(CurrencyValue.Zero, (sum, r) => sum + r.Value!.Value);
+        LootTotal = new LootListRow("", null, "Total", LootList.Sum(r => r.Count), true, Value: priced.Count > 0 ? total : null, Unit: _book.Unit);
+        ValueHeader = _book.Unit switch
+        {
+            PriceUnit.Divine => "DIV",
+            PriceUnit.Exalted => "EX",
+            PriceUnit.Chaos => "CHAOS",
+            _ => "VALUE",
+        };
+        var unpriced = LootList.Count - priced.Count;
+        LootTotalNote = !_book.Prices.HasPrices ? "No poe.ninja prices yet."
+            : unpriced == 0 ? $"poe.ninja, {_book.Prices.League}"
+            : $"poe.ninja, {_book.Prices.League}; {unpriced} without a price";
         var outside = LootList.Count(r => !r.InGrid);
         OutsideGridText = outside == 0 ? "" : $"{outside} more currenc{(outside == 1 ? "y" : "ies")} not in the grid: see List";
     }

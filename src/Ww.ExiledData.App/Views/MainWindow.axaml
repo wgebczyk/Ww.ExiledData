@@ -84,6 +84,13 @@
               <TextBlock Classes="mono amber" Text="{Binding RecordingElapsed}" FontSize="13" VerticalAlignment="Center" />
             </StackPanel>
           </Button>
+          <Button Classes="ui pricechip" Classes.stale="{Binding PricesStale}" Command="{Binding PullPricesCommand}"
+                  ToolTip.Tip="{Binding PricesTip}" ToolTip.ShowOnDisabled="True" AutomationProperties.Name="Pull prices from poe.ninja">
+            <StackPanel Orientation="Horizontal" Spacing="6">
+              <c:StrokeIcon Classes="small" Data="{StaticResource IconPrices}" VerticalAlignment="Center" />
+              <TextBlock Text="{Binding PricesText}" VerticalAlignment="Center" />
+            </StackPanel>
+          </Button>
           <Button Classes="ui icon bare" Command="{Binding SettingsCommand}" ToolTip.Tip="Settings" AutomationProperties.Name="Settings">
             <c:StrokeIcon Data="{StaticResource IconSettings}" />
           </Button>

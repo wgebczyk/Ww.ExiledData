@@ -29,6 +29,7 @@ public sealed class AppHost : IDisposable
     private readonly SessionController _controller;
     private readonly MappingStore _mappingStore;
     private readonly MappingService _mapping;
+    private readonly PriceService _prices;
     /// <summary>Currency codes and icons (catalog) and the loot grid layout (settings).</summary>
     private CurrencyBook _currencies;
     private readonly SweepControlViewModel _sweeps;
@@ -69,7 +70,8 @@ public sealed class AppHost : IDisposable
         // The mapping module: own tables in the same database, fed by the capture stream (the seam).
         _mappingStore = MappingStore.Open(_paths.Database);
         _mapping = new MappingService(_mappingStore, _controller, logger: _logging.Factory.CreateLogger<MappingService>());
-        _currencies = CurrencyBook.Default.WithLayout(_settings.ParsedLootGrid());
+        _prices = new PriceService(_paths.Prices, () => _settings.PriceLeague, _logging.Factory.CreateLogger<PriceService>());
+        _currencies = CurrencyBook.Default.WithLayout(_settings.ParsedLootGrid()).WithPrices(_prices.Prices).WithUnit(_settings.PriceUnit);
         CurrencyIcons.Directory = _paths.IconsDirectory;
         _sweeps = new SweepControlViewModel(_controller);
         _list = new SessionListViewModel(_controller, _logging.Factory.CreateLogger<SessionListViewModel>())
@@ -84,7 +86,10 @@ public sealed class AppHost : IDisposable
             new SessionViewModel(_controller, _sweeps, id, _logging.Factory.CreateLogger<SessionViewModel>(), _mapping, _currencies)))
         {
             OpenSettings = EditSettings,
+            RefreshPrices = () => _prices.RefreshIfNeeded(force: true),
         };
+        _prices.Changed += OnPricesChanged;
+        _main.ShowPrices(_prices);
         ApplyTheme();
         if (Application.Current is { } app)
             app.ActualThemeVariantChanged += (_, _) => UpdateThemeToggleText(); // System theme: the OS switched
@@ -143,6 +148,11 @@ public sealed class AppHost : IDisposable
             if (recovered.Count > 0)
                 SetStatus($"Closed {recovered.Count} session(s) left open by the previous run (marked interrupted).");
             await Task.WhenAll(_list.RefreshAsync(), _sweeps.Refresh());
+            if (_screenshotDir is null)
+            {
+                new DispatcherTimer(TimeSpan.FromMinutes(5), DispatcherPriority.Background, (_, _) => _ = _prices.RefreshIfNeeded()).Start();
+                _ = _prices.RefreshIfNeeded();
+            }
             if (_overlayDemo)
                 RunOverlayDemo();
             if (_screenshotDir is { } dir)
@@ -268,12 +278,15 @@ public sealed class AppHost : IDisposable
             await _controller.SetPositionTolerance(updated.PositionTolerance);
             ApplyOverlaySettings();
             _sweeps.SetGridKinds(updated.ParsedGridKinds(), updated.LastGridKind);
-            if (!updated.ParsedLootGrid().SameAs(_currencies.Layout))
+            if (!updated.ParsedLootGrid().SameAs(_currencies.Layout) || updated.PriceUnit != _currencies.Unit)
             {
-                _currencies = _currencies.WithLayout(updated.ParsedLootGrid());
+                _currencies = _currencies.WithLayout(updated.ParsedLootGrid()).WithUnit(updated.PriceUnit);
                 foreach (var session in _main.Sessions)
                     session.SetCurrencies(_currencies);
             }
+
+            if (updated.PriceLeague != previous.PriceLeague)
+                _ = _prices.RefreshIfNeeded();
 
             var restart = updated.ToCaptureOptions() is var o && previous.ToCaptureOptions() is var p
                 && (o.ClipboardTimeout != p.ClipboardTimeout || o.GameWindowTitle != p.GameWindowTitle
@@ -291,6 +304,17 @@ public sealed class AppHost : IDisposable
             SetStatus($"Applying settings failed: {ex.Message}");
             return ex.Message;
         }
+    }
+
+    /// <summary>A pull finished or started: the app bar chip follows; new prices go to the open session pages.</summary>
+    private void OnPricesChanged()
+    {
+        _main.ShowPrices(_prices);
+        if (ReferenceEquals(_prices.Prices, _currencies.Prices))
+            return;
+        _currencies = _currencies.WithPrices(_prices.Prices);
+        foreach (var session in _main.Sessions)
+            session.SetCurrencies(_currencies);
     }
 
     private void OpenLogsFolder()

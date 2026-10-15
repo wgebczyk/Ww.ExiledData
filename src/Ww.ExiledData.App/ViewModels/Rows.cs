@@ -1,6 +1,8 @@
+using System.Globalization;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Ww.ExiledData.Core.Tracking;
+using Ww.ExiledData.Mapping;
 using Ww.ExiledData.Storage;
 
 namespace Ww.ExiledData.App.ViewModels;
@@ -16,6 +18,44 @@ internal static class Format
 
     /// <summary>Session-length style, e.g. <c>2h 14m</c>.</summary>
     public static string HoursMinutes(TimeSpan d) => $"{(int)d.TotalHours}h {d.Minutes:00}m";
+
+    /// <summary>How old something is, coarse: <c>now</c>, <c>12m</c>, <c>3h</c>, <c>2d</c>.</summary>
+    public static string Age(TimeSpan d) => d.TotalMinutes < 1 ? "now"
+        : d.TotalHours < 1 ? $"{(int)d.TotalMinutes}m"
+        : d.TotalDays < 1 ? $"{(int)d.TotalHours}h"
+        : $"{(int)d.TotalDays}d";
+
+    /// <summary>
+    /// A value in <paramref name="unit"/>, as its amount and, when adaptive, the unit it landed in (<c>23.1</c> + <c>DIV</c>); a fixed
+    /// unit is in the column header instead. A dash and no unit when unknown.
+    /// </summary>
+    public static (string Amount, string Unit) Value(CurrencyValue? value, PriceUnit unit)
+    {
+        if (value is not { } v)
+            return (Amount(null), "");
+        var (amount, shown) = v.In(unit);
+        return (Amount(amount), unit == PriceUnit.Adaptive ? UnitCode(shown) : "");
+    }
+
+    /// <summary>The catalog code of a unit's orb.</summary>
+    public static string UnitCode(PriceUnit unit) => unit switch
+    {
+        PriceUnit.Divine => "DIV",
+        PriceUnit.Exalted => "EX",
+        PriceUnit.Chaos => "ChO",
+        _ => "",
+    };
+
+    /// <summary>A currency amount with about three significant digits (<c>1234</c>, <c>12.3</c>, <c>0.0421</c>); a dash when unknown.</summary>
+    public static string Amount(double? value) => value switch
+    {
+        null => "–",
+        0 => "0",
+        >= 100 => value.Value.ToString("#,0", CultureInfo.InvariantCulture),
+        >= 10 => value.Value.ToString("0.0", CultureInfo.InvariantCulture),
+        >= 1 => value.Value.ToString("0.00", CultureInfo.InvariantCulture),
+        _ => value.Value.ToString("0." + new string('0', Math.Min(8, 2 - (int)Math.Floor(Math.Log10(value.Value)))), CultureInfo.InvariantCulture),
+    };
 }
 
 public sealed record ItemRow(Guid CaptureId, string Label, int X, int Y, string Cell, int CoveredCount, string LastSeen, string Flags, string RawText);

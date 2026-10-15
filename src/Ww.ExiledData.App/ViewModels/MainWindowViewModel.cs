@@ -39,7 +39,11 @@ public sealed partial class MainWindowViewModel : ObservableObject
         CurrentPage = list;
         controller.StateChanged += active => Dispatcher.UIThread.Post(() => SetRecording(active));
         _ = InitRecording(controller);
-        new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.Background, (_, _) => UpdateElapsed()).Start();
+        new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.Background, (_, _) =>
+        {
+            UpdateElapsed();
+            UpdatePrices();
+        }).Start();
     }
 
     public SessionListViewModel List { get; }
@@ -209,8 +213,61 @@ public sealed partial class MainWindowViewModel : ObservableObject
 
     public void OpenSwitcherItem(SwitcherItem item) => Open(item.Id);
 
+    public Func<Task>? RefreshPrices { get; set; }
+
     [RelayCommand]
     private Task Settings() => OpenSettings?.Invoke() ?? Task.CompletedTask;
+
+    // --- price chip ------------------------------------------------------------------------------
+
+    private PriceService? _prices;
+
+    /// <summary>"12m" next to the prices icon: the age of the last poe.ninja pull; amber once older than an hour or failing.</summary>
+    [ObservableProperty]
+    public partial string PricesText { get; private set; } = "";
+
+    [ObservableProperty]
+    public partial string PricesTip { get; private set; } = "";
+
+    [ObservableProperty]
+    public partial bool PricesStale { get; private set; }
+
+    /// <summary>Follows <paramref name="prices"/> (called again when a pull starts or ends).</summary>
+    public void ShowPrices(PriceService prices)
+    {
+        _prices = prices;
+        UpdatePrices();
+    }
+
+    /// <summary>A pull may start now: none running and the last one at least <see cref="PriceService.MinInterval"/> ago.</summary>
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(PullPricesCommand))]
+    public partial bool CanPullPrices { get; private set; }
+
+    [RelayCommand(CanExecute = nameof(CanPullPrices))]
+    private Task PullPrices() => RefreshPrices?.Invoke() ?? Task.CompletedTask;
+
+    private void UpdatePrices()
+    {
+        if (_prices is not { } p)
+            return;
+        var book = p.Prices;
+        var age = book.Age(DateTimeOffset.UtcNow);
+        PricesStale = p.IsStale || p.LastError is not null;
+        PricesText = p.IsRefreshing ? "…"
+            : age is { } a ? Format.Age(a)
+            : "none";
+        var state = p.IsRefreshing ? "Pulling prices from poe.ninja…"
+            : book.HasPrices ? $"poe.ninja prices of {book.League}, pulled {book.FetchedAt!.Value.LocalDateTime:g}: 1 div = {book.ExaltedPerDivine:0.#} ex = {book.ChaosPerDivine:0.#} c."
+            : "No prices yet.";
+        var error = p.LastError is { } e ? $" Last pull failed: {e}" : "";
+        var next = p.NextPullAt;
+        CanPullPrices = !p.IsRefreshing && next is null;
+        var action = p.IsRefreshing ? ""
+            : next is { } at ? $" Refreshed hourly; a pull by hand is possible again in {Math.Max(1, (int)Math.Ceiling((at - DateTimeOffset.UtcNow).TotalMinutes))}m."
+            : " Refreshed hourly; click to pull now.";
+        PricesTip = $"{state}{error}{action}";
+    }
 
     // --- recording pill -------------------------------------------------------------------------
 

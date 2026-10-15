@@ -413,6 +413,36 @@
 
           <!-- Mapping: the loot grid, nine equal columns; one empty row at the end is always there to add a row. -->
           <StackPanel Spacing="10" IsVisible="{Binding Mapping.IsSelected}">
+            <Border Classes="card" Padding="20,0">
+              <Grid ColumnDefinitions="290,*" ColumnSpacing="24" Margin="0,18">
+                <StackPanel Spacing="4">
+                  <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Classes="rowlabel" Text="{Binding PriceUnit.Label}" />
+                    <Ellipse Classes="dot" IsVisible="{Binding PriceUnit.IsChanged}" />
+                  </StackPanel>
+                  <TextBlock Classes="desc" Text="{Binding PriceUnit.Description}" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Spacing="6" HorizontalAlignment="Left">
+                  <Border Classes="segmented" HorizontalAlignment="Left">
+                    <ItemsControl ItemsSource="{Binding PriceUnit.Options}" AutomationProperties.Name="Value unit">
+                      <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                          <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                      </ItemsControl.ItemsPanel>
+                      <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="s:ChoiceOption">
+                          <RadioButton Classes="segment" GroupName="priceunit" Padding="16,6" FontSize="14"
+                                       Content="{Binding Label}" IsChecked="{Binding IsSelected}" />
+                        </DataTemplate>
+                      </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                  </Border>
+                  <Button Classes="inline" HorizontalAlignment="Left" Content="{Binding PriceUnit.ResetText}" Command="{Binding PriceUnit.ResetCommand}"
+                          IsVisible="{Binding PriceUnit.CanReset}" />
+                </StackPanel>
+              </Grid>
+            </Border>
             <Border Classes="card" Padding="20,16">
               <StackPanel Spacing="12">
                 <StackPanel Spacing="4">

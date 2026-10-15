@@ -50,9 +50,15 @@ public sealed record LootRowViewModel(IReadOnlyList<CurrencyCellViewModel> Cells
 }
 
 /// <summary>A row of the loot list view (and of "all currencies").</summary>
-public sealed record LootListRow(string Code, string? Badge, string Name, int Count, bool InGrid, string? Image = null)
+public sealed record LootListRow(string Code, string? Badge, string Name, int Count, bool InGrid, string? Image = null, CurrencyValue? Value = null,
+    PriceUnit Unit = PriceUnit.Adaptive)
 {
     public string CountText => Count.ToString(CultureInfo.InvariantCulture);
+    /// <summary>The whole count's value (poe.ninja) in the unit of the settings; a dash when it has no price.</summary>
+    public string AmountText => Format.Value(Value, Unit).Amount;
+    /// <summary>The unit an adaptive value landed in (<c>DIV</c>, <c>ChO</c>, <c>EX</c>); empty for a fixed unit.</summary>
+    public string UnitText => Format.Value(Value, Unit).Unit;
+    public bool ShowsUnit => Unit == PriceUnit.Adaptive;
 }
 
 /// <summary>

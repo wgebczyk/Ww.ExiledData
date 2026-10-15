@@ -56,6 +56,10 @@ public sealed record AppSettings
     /// <summary>How long the outcome glyph stays visible after the sweep.</summary>
     public int FeedbackResultMs { get; init; } = 700;
     public LogLevel LogLevel { get; init; } = LogLevel.Debug;
+    /// <summary>The poe.ninja league for prices; empty follows the current softcore league.</summary>
+    public string PriceLeague { get; init; } = "";
+    /// <summary>How currency values are shown in mapping sessions.</summary>
+    public PriceUnit PriceUnit { get; init; } = PriceUnit.Adaptive;
     /// <summary>
     /// The condensed loot grid of mapping sessions: rows of up to 9 currency names, null for an empty place. Missing or
     /// empty means <see cref="DefaultLootGrid"/>.
@@ -176,6 +180,8 @@ public sealed class AppPaths(string dataDirectory)
     public string DataDirectory { get; } = dataDirectory;
     public string Database => Path.Combine(DataDirectory, "exileddata.db");
     public string Settings => Path.Combine(DataDirectory, "settings.json");
+    /// <summary>The last poe.ninja price pull.</summary>
+    public string Prices => Path.Combine(DataDirectory, "prices.json");
     public string LogsDirectory => Path.Combine(DataDirectory, "logs");
     /// <summary>Currency icons, fetched by tools/currency-catalog/fetch-icons.</summary>
     public string IconsDirectory => Path.Combine(DataDirectory, "icons");

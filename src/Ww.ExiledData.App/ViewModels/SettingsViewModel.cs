@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using Ww.ExiledData.App.ViewModels.Settings;
 using Ww.ExiledData.Capture;
 using Ww.ExiledData.Mapping;
+using Unit = Ww.ExiledData.Mapping.PriceUnit;
 
 namespace Ww.ExiledData.App.ViewModels;
 
@@ -87,6 +88,10 @@ public sealed partial class SettingsViewModel : ObservableObject
         FeedbackResult = new NumberField("Result display", "How long the outcome glyph stays visible after the animation.", "",
             saved.FeedbackResultMs, defaults.FeedbackResultMs, 50, 5000, 50, "ms", "Shorter result display", "Longer result display");
 
+        PriceUnit = new ChoiceField("Value unit",
+            "The unit of the loot list's value column. Adaptive shows Divine Orbs, then Chaos, then Exalted Orbs once a value is under 1 (23.1 DIV, 4.20 ChO).",
+            [(Unit.Adaptive, "Adaptive"), (Unit.Divine, "Divine"), (Unit.Exalted, "Exalted"), (Unit.Chaos, "Chaos")],
+            saved.PriceUnit, defaults.PriceUnit);
         LootGrid = new LootGridField(saved.ParsedLootGrid(), defaults.ParsedLootGrid(), env.Currencies ?? CurrencyBook.Default);
 
         Hotkeys = [NewSession, Undo, Redo, SweepStart, SweepFinish, SkipCell, MapStashScan, MapSwipe, MapFinalScan, MapStartRun, MapEndRun];
@@ -103,8 +108,8 @@ public sealed partial class SettingsViewModel : ObservableObject
             "area areas grid inventory stash columns rows");
         Feedback = new SettingsPage("feedback", "Feedback overlay", "The small circle that confirms each capture over the game.",
             "Applies to the next capture.", [Placement, FeedbackSweep, FeedbackResult], "circle overlay");
-        Mapping = new SettingsPage("mapping", "Mapping", "Settings for mapping sessions.", "Applies to open sessions when you save.", [LootGrid],
-            "mapping loot grid currency currencies swipe stash final run");
+        Mapping = new SettingsPage("mapping", "Mapping", "Settings for mapping sessions.", "Applies to open sessions when you save.", [PriceUnit, LootGrid],
+            "mapping loot grid currency currencies swipe stash final run price prices value unit divine exalted chaos");
         Pages = [General, Capture, HotkeysPage, Sweeps, Feedback, Mapping];
 
         foreach (var page in Pages)
@@ -158,6 +163,7 @@ public sealed partial class SettingsViewModel : ObservableObject
     public ChoiceField Placement { get; }
     public NumberField FeedbackSweep { get; }
     public NumberField FeedbackResult { get; }
+    public ChoiceField PriceUnit { get; }
     public LootGridField LootGrid { get; }
 
     public SettingsPage General { get; }
@@ -389,6 +395,7 @@ public sealed partial class SettingsViewModel : ObservableObject
             FeedbackSweepMs = FeedbackSweep.Value!.Value,
             FeedbackResultMs = FeedbackResult.Value!.Value,
             LootGrid = LootGrid.IsChanged ? LootGrid.Value : _saved.LootGrid,
+            PriceUnit = (Unit)PriceUnit.Value,
         };
         return settings.Validate().Count == 0 ? settings : null;
     }

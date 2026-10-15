@@ -217,6 +217,19 @@
     <Setter Property="BorderBrush" Value="{DynamicResource AmberAccentBrush}" />
   </Style>
 
+  <!-- The price freshness chip in the app bar: age of the poe.ninja pull; amber when stale; click pulls now -->
+  <Style Selector="Button.pricechip">
+    <Setter Property="Padding" Value="8,3" />
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="FontFamily" Value="{StaticResource MonoFont}" />
+    <Setter Property="Foreground" Value="{DynamicResource TextMutedBrush}" />
+  </Style>
+  <Style Selector="Button.pricechip.stale">
+    <Setter Property="Foreground" Value="{DynamicResource AmberTextBrush}" />
+    <Setter Property="Background" Value="{DynamicResource AmberTintBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource AmberTintLineBrush}" />
+  </Style>
+
   <!-- AddTagChip and other dashed "add" affordances -->
   <Style Selector="Button.addchip">
     <Setter Property="Foreground" Value="{DynamicResource TextMutedBrush}" />
