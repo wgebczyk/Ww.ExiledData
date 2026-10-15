@@ -50,6 +50,15 @@ public static class SessionExporter
                 k.MaxStack,
                 k.UpdatedAt,
                 k.ParserVersion,
+                stacks = k.Stacks.Select(t => new
+                {
+                    t.Count,
+                    x = t.Position.X,
+                    y = t.Position.Y,
+                    t.SweepId,
+                    cell = Cell(t.Cell),
+                    t.CaptureId,
+                }),
             }),
             sweeps = data.Sweeps.Select(w => new
             {

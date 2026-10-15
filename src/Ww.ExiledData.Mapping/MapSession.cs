@@ -410,6 +410,41 @@ public sealed class MapSession(Guid sessionId)
         return Do(new RunExcludedEdit(runId, run.Excluded, excluded));
     }
 
+    /// <summary>
+    /// Deletes a run with its setup, scans, adjustments, tags and note. Not undoable (the app asks first): edits that
+    /// refer to it leave the undo/redo history. Its captures stay in the session's capture log, and the other runs keep
+    /// their numbers. Not while one of its scans is running.
+    /// </summary>
+    public bool DeleteRun(Guid runId)
+    {
+        var run = FindRun(runId) ?? throw new InvalidOperationException("Run not found.");
+        if (ScansOf(run).Any(s => s.Status == ScanStatus.Active))
+            throw new InvalidOperationException("Finish or cancel the running scan before deleting its run.");
+
+        var scanIds = ScansOf(run).Select(s => s.Id).ToHashSet();
+        var itemIds = _undo.Concat(_redo).OfType<SetupEdit>().Where(e => e.RunId == runId).SelectMany(e => e.Before.Concat(e.After))
+            .Concat(run.Setup).Select(i => i.Id).ToHashSet();
+        DropEdits(e => e switch
+        {
+            RunEndEdit x => x.RunId == runId,
+            RunExcludedEdit x => x.RunId == runId,
+            SetupEdit x => x.RunId == runId,
+            AdjustmentsEdit x => x.RunId == runId,
+            TagsEdit x => x.OwnerId == runId,
+            NoteEdit x => x.OwnerId == runId,
+            SetupKindEdit x => itemIds.Contains(x.ItemId),
+            ScanKindEdit x => scanIds.Contains(x.ScanId),
+            CheckDismissedEdit x => scanIds.Contains(x.ScanId),
+            ScanRemovedEdit x => scanIds.Contains(x.ScanId),
+            _ => false,
+        });
+        Scans.RemoveAll(s => s.RunId == runId);
+        Runs.Remove(run);
+        Tags.Remove(runId);
+        Notes.Remove(runId);
+        return true;
+    }
+
     public MappingEdit? Undo()
     {
         if (!_undo.TryPop(out var edit))

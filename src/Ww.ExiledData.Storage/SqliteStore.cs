@@ -160,8 +160,8 @@ public sealed class SqliteStore : IDisposable
 
         _connection.Execute("DELETE FROM stackables WHERE session_id = $s", tx, ("$s", sessionId));
         using (var cmd = _connection.Command("""
-            INSERT INTO stackables (session_id, key, ordinal, item_class, rarity, name, max_stack, count, latest_raw_text, updated_at, parser_version)
-            VALUES ($session, $key, $ord, $class, $rarity, $name, $max, $count, $raw, $at, $ver)
+            INSERT INTO stackables (session_id, key, ordinal, item_class, rarity, name, max_stack, count, latest_raw_text, updated_at, parser_version, stacks_json)
+            VALUES ($session, $key, $ord, $class, $rarity, $name, $max, $count, $raw, $at, $ver, $stacks)
             """, tx))
         {
             var ordinal = 0;
@@ -178,6 +178,7 @@ public sealed class SqliteStore : IDisposable
                 cmd.Set("$raw", s.LatestRawText);
                 cmd.Set("$at", s.UpdatedAt.ToDb());
                 cmd.Set("$ver", s.ParserVersion);
+                cmd.Set("$stacks", JsonSerializer.Serialize(s.Stacks));
                 cmd.ExecuteNonQuery();
             }
         }
@@ -315,7 +316,7 @@ public sealed class SqliteStore : IDisposable
 
         var stackables = new List<StackableItem>();
         using (var cmd = _connection.Command("""
-            SELECT key, item_class, rarity, name, max_stack, count, latest_raw_text, updated_at, parser_version
+            SELECT key, item_class, rarity, name, max_stack, count, latest_raw_text, updated_at, parser_version, stacks_json
             FROM stackables WHERE session_id = $s ORDER BY ordinal
             """))
         {
@@ -323,14 +324,17 @@ public sealed class SqliteStore : IDisposable
             using var r = cmd.ExecuteReader();
             while (r.Read())
             {
+                var key = r.GetString(0);
                 stackables.Add(new StackableItem
                 {
-                    Key = r.GetString(0),
+                    Key = key,
                     ItemClass = r.GetString(1),
                     Rarity = r.GetString(2),
                     Name = r.GetString(3),
                     MaxStack = r.GetInt32(4),
-                    Count = r.GetInt32(5),
+                    Stacks = r.GetStringOrNull(9) is { } json
+                        ? JsonSerializer.Deserialize<List<StackPlace>>(json)!
+                        : [LegacyStack(captures, key, r.GetInt32(5))],
                     LatestRawText = r.GetString(6),
                     UpdatedAt = r.GetTime(7),
                     ParserVersion = r.GetInt32(8),
@@ -496,6 +500,13 @@ public sealed class SqliteStore : IDisposable
         Interrupted = r.GetBoolean(4),
         Kind = (SessionKind)r.GetInt32(5),
     };
+
+    /// <summary>A stackable stored before stacks were tracked per place: its count as one stack at its latest capture.</summary>
+    private static StackPlace LegacyStack(List<Capture> captures, string key, int count)
+    {
+        var latest = captures.LastOrDefault(c => c.IdentityKey == key && !c.IsWithdrawn) ?? captures.Last(c => c.IdentityKey == key);
+        return new StackPlace(latest.Id, latest.Position, latest.SweepId, latest.Cell, count);
+    }
 
     private static StackableSnapshot? ReadSnapshot(string? json) =>
         json is null ? null : JsonSerializer.Deserialize<StackableSnapshot>(json);

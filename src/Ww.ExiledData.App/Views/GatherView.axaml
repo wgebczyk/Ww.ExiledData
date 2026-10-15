@@ -183,6 +183,8 @@
               <Button Classes="ui" Content="Start new run" Command="{Binding StartNewRunCommand}" IsVisible="{Binding IsRecording}"
                       ToolTip.Tip="Start a run without copying a waystone (it ends this one)" />
               <Button Classes="ui" Content="End run" Command="{Binding EndRunCommand}" />
+              <Button Classes="ui danger" Content="Delete run…" Command="{Binding DeleteRunCommand}"
+                      ToolTip.Tip="Delete this run with its setup, scans and loot (asks first; cannot be undone)" />
               <Button Classes="ui icon" Command="{Binding UndoCommand}" ToolTip.Tip="Undo the last mapping edit" AutomationProperties.Name="Undo">
                 <c:StrokeIcon Data="{StaticResource IconUndo}" />
               </Button>

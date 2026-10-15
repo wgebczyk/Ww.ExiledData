@@ -47,9 +47,9 @@ public sealed class SqliteStoreTests : IDisposable
     [Fact]
     public void Creates_schema_and_reopens_idempotently()
     {
-        Assert.Equal(3, _store.SchemaVersion);
+        Assert.Equal(4, _store.SchemaVersion);
         Reopen();
-        Assert.Equal(3, _store.SchemaVersion);
+        Assert.Equal(4, _store.SchemaVersion);
         Assert.Empty(_store.ListSessions());
     }
 
@@ -73,7 +73,8 @@ public sealed class SqliteStoreTests : IDisposable
         Assert.Equal(t.Items.Select(i => (i.CaptureId, i.IdentityKey, i.Label, i.Position, i.LastSeenAt, i.PossibleDuplicate)),
                      data.Items.Select(i => (i.CaptureId, i.IdentityKey, i.Label, i.Position, i.LastSeenAt, i.PossibleDuplicate)));
         var s = Assert.Single(data.Stackables);
-        Assert.Equal(("Verisium", 40, 1000, 1), (s.Name, s.Count, s.MaxStack, s.ParserVersion));
+        Assert.Equal(("Verisium", 71, 1000, 1), (s.Name, s.Count, s.MaxStack, s.ParserVersion)); // stacks at A and B
+        Assert.Equal(t.Stackables.Single().Stacks, s.Stacks);
         Assert.Equal(t.History.Reverse(), data.Changes.Select(c => c.Change));
         Assert.All(data.Changes, c => Assert.False(c.Undone));
     }

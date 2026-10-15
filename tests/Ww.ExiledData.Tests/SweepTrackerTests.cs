@@ -147,22 +147,35 @@ public class SweepTrackerTests
     }
 
     [Fact]
-    public void Stack_with_unchanged_count_still_marks_a_new_cell()
+    public void Same_stack_in_another_cell_adds_up_and_the_same_cell_again_does_not()
     {
         Start();
         Capture(Fixture.ChanceShard, At(0, 0));
 
-        var r = Capture(Fixture.ChanceShard, At(5, 5));
+        var r = Capture(Fixture.ChanceShard, At(5, 5)); // even with the same count
 
-        Assert.Equal(CaptureOutcome.AlreadyRecorded, r.Outcome);
-        Assert.Equal(ChangeType.CellMarked, r.Change!.Type);
+        Assert.Equal((CaptureOutcome.StackableUpdated, 2), (r.Outcome, r.StackCount));
         Assert.Equal(CellState.Captured, StateOf(new GridCell(5, 5)));
-        Assert.Equal(1, Assert.Single(_tracker.Stackables).Count);
-        Assert.Null(Capture(Fixture.ChanceShard, At(5, 5)).Change); // same cell again: nothing new
+        Assert.Equal(2, Assert.Single(_tracker.Stackables).Stacks.Count);
+        Assert.Null(Capture(Fixture.ChanceShard, At(5, 5, dx: 48, dy: 48)).Change); // same cell again: nothing new
 
         _tracker.Undo();
         Assert.Equal(CellState.Pending, StateOf(new GridCell(5, 5)));
-        Assert.Single(_tracker.Stackables);
+        Assert.Equal(1, Assert.Single(_tracker.Stackables).Count);
+    }
+
+    [Fact]
+    public void Same_cell_in_a_later_sweep_is_a_further_stash_and_adds_up()
+    {
+        Start();
+        Capture(Fixture.Verisium, At(0, 0));
+        _tracker.FinishSweep();
+        Start(); // stashed again later in the session: the inventory's first cell holds Verisium once more
+
+        var r = Capture(Fixture.Verisium, At(0, 0));
+
+        Assert.Equal((CaptureOutcome.StackableUpdated, 62), (r.Outcome, r.StackCount));
+        Assert.Equal(_tracker.Sweeps.Select(s => (Guid?)s.Id), Assert.Single(_tracker.Stackables).Stacks.Select(t => t.SweepId));
     }
 
     [Fact]
@@ -170,12 +183,16 @@ public class SweepTrackerTests
     {
         Start();
         Capture(Fixture.Verisium, At(0, 0));
-        Capture(Fixture.Verisium, At(1, 0), Fixture.Load(Fixture.Verisium).Replace("31/1,000", "12/1,000"));
+        Capture(Fixture.Verisium, At(0, 0), Fixture.Load(Fixture.Verisium).Replace("31/1,000", "12/1,000"));
+        Capture(Fixture.Verisium, At(1, 0), Fixture.Load(Fixture.Verisium).Replace("31/1,000", "5/1,000"));
 
+        Assert.Equal(17, Assert.Single(_tracker.Stackables).Count); // 12 replaced 31 in its cell
         Assert.Equal(CellState.Captured, StateOf(new GridCell(1, 0)));
         _tracker.Undo();
         Assert.Equal(CellState.Pending, StateOf(new GridCell(1, 0)));
+        _tracker.Undo();
         Assert.Equal(31, Assert.Single(_tracker.Stackables).Count);
+        Assert.Equal(CellState.Captured, StateOf(new GridCell(0, 0)));
     }
 
     [Fact]
@@ -307,7 +324,7 @@ public class SweepTrackerTests
         Assert.Equal(SweepStatus.Finished, sweep.Status);
         Assert.Single(_tracker.Items, i => i.CoveredCaptureIds.Count == 1);
         Assert.Equal(2, _tracker.Items.Count);
-        Assert.Equal(9, _tracker.Stackables.Single(s => s.Name == "Orb of Transmutation").Count);
+        Assert.Equal(11, _tracker.Stackables.Single(s => s.Name == "Orb of Transmutation").Count); // 2 outside + 9 in the cell
         Assert.Equal(2, _tracker.Stackables.Count);
         Assert.Equal(3, _tracker.ItemCountOf(sweep.Id));
 

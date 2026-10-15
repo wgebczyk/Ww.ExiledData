@@ -405,10 +405,15 @@ public sealed class SessionTracker
 
         if (_stackables.TryGetValue(key, out var existing))
         {
-            if (existing.Count == parse.Count)
+            // The same stack only at the same place: inside a sweep its cell (no pixel tolerance), outside pixels
+            // within tolerance. Anywhere else it is another stack of the same currency, and counts add up.
+            var same = place is { } p
+                ? existing.Stacks.FirstOrDefault(s => s.SweepId == p.SweepId && s.Cell == p.Cell)
+                : existing.Stacks.FirstOrDefault(s => s.Position.IsNear(position, PositionTolerance));
+            if (same?.Count == parse.Count)
             {
-                // Nothing changes for the stackable, but a sweep cell not yet showing it still gets marked.
-                if (place is { } p && LiveCaptureAt(p.SweepId, p.Cell)?.IdentityKey != key)
+                // Nothing changes for the stackable, but a sweep cell not showing it (any more) still gets marked.
+                if (place is { } q && LiveCaptureAt(q.SweepId, q.Cell)?.IdentityKey != key)
                 {
                     var marking = AppendCapture(text, position, place, now, CaptureKind.Stackable, key);
                     var marked = Record(new ChangeEntry(Guid.NewGuid(), now, ChangeType.CellMarked, marking.Id, key));
@@ -417,13 +422,15 @@ public sealed class SessionTracker
                 return new CaptureResult(CaptureOutcome.AlreadyRecorded, StackCount: existing.Count);
             }
 
-            // Last count wins (not summed); see PLAN.md §3 open question.
+            // A new count at the same place replaces that stack; a new place adds one.
             var before = Snapshot(existing);
             var updateCapture = AppendCapture(text, position, place, now, CaptureKind.Stackable, key);
-            var after = new StackableSnapshot(parse.Count, text, now, StackableParser.Version);
+            var stack = new StackPlace(updateCapture.Id, position, place?.SweepId, place?.Cell, parse.Count);
+            var stacks = same is null ? [.. existing.Stacks, stack] : existing.Stacks.Select(s => s == same ? stack : s).ToList();
+            var after = new StackableSnapshot(stacks.Sum(s => s.Count), text, now, StackableParser.Version, stacks);
             Restore(existing, after);
             var update = Record(new ChangeEntry(Guid.NewGuid(), now, ChangeType.StackableCountUpdated, updateCapture.Id, key, before, after));
-            return new CaptureResult(CaptureOutcome.StackableUpdated, update, parse.Count);
+            return new CaptureResult(CaptureOutcome.StackableUpdated, update, existing.Count);
         }
 
         var capture = AppendCapture(text, position, place, now, CaptureKind.Stackable, key);
@@ -434,7 +441,7 @@ public sealed class SessionTracker
             Rarity = parse.Rarity!,
             Name = parse.Name!,
             MaxStack = parse.MaxStack,
-            Count = parse.Count,
+            Stacks = [new StackPlace(capture.Id, position, place?.SweepId, place?.Cell, parse.Count)],
             LatestRawText = text,
             UpdatedAt = now,
             ParserVersion = StackableParser.Version,
@@ -628,11 +635,11 @@ public sealed class SessionTracker
         _ => null,
     };
 
-    private static StackableSnapshot Snapshot(StackableItem s) => new(s.Count, s.LatestRawText, s.UpdatedAt, s.ParserVersion);
+    private static StackableSnapshot Snapshot(StackableItem s) => new(s.Count, s.LatestRawText, s.UpdatedAt, s.ParserVersion, s.Stacks.ToList());
 
     private static void Restore(StackableItem s, StackableSnapshot snap)
     {
-        s.Count = snap.Count;
+        s.Stacks = snap.Stacks?.ToList() ?? throw new InvalidOperationException("Change entry has no stacks to restore.");
         s.LatestRawText = snap.LatestRawText;
         s.UpdatedAt = snap.UpdatedAt;
         s.ParserVersion = snap.ParserVersion;

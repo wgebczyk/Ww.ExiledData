@@ -141,6 +141,11 @@ internal static class Schema
         -- (no longer undoable or redoable) and are never rewritten.
         ALTER TABLE change_entries ADD COLUMN archived INTEGER NOT NULL DEFAULT 0;
         """,
+        """
+        -- JSON array of a stackable's stacks, one per place it was copied (count = their sum). NULL in rows written
+        -- before stacks were tracked per place: they load as one stack at the latest capture.
+        ALTER TABLE stackables ADD COLUMN stacks_json TEXT NULL;
+        """,
     ];
 
     public static int LatestVersion => Migrations.Length;

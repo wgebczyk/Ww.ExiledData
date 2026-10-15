@@ -47,6 +47,12 @@ public sealed class RegularItem
     public List<Guid> CoveredCaptureIds { get; init; } = [];
 }
 
+/// <summary>
+/// One stack of a stackable where it was copied: a sweep cell (a stack takes exactly one cell), or a screen position
+/// outside sweeps. <see cref="CaptureId"/> is the capture its count comes from.
+/// </summary>
+public sealed record StackPlace(Guid CaptureId, ScreenPoint Position, Guid? SweepId, GridCell? Cell, int Count);
+
 public sealed class StackableItem
 {
     public required string Key { get; init; }
@@ -54,14 +60,32 @@ public sealed class StackableItem
     public required string Rarity { get; init; }
     public required string Name { get; init; }
     public required int MaxStack { get; init; }
-    public required int Count { get; set; }
+    /// <summary>
+    /// Every stack copied in the session. Re-copying the same place replaces its stack; a stack elsewhere is another
+    /// stack, so stashing several times adds up.
+    /// </summary>
+    public List<StackPlace> Stacks { get; set; } = [];
+    /// <summary>Sum over all stacks.</summary>
+    public int Count => Stacks.Sum(s => s.Count);
     public required string LatestRawText { get; set; }
     public required DateTimeOffset UpdatedAt { get; set; }
     public required int ParserVersion { get; set; }
 }
 
-/// <summary>Values of a stackable that an update can change; used for undo/redo.</summary>
-public sealed record StackableSnapshot(int Count, string LatestRawText, DateTimeOffset UpdatedAt, int ParserVersion);
+/// <summary>
+/// Values of a stackable that an update can change; used for undo/redo. <see cref="Count"/> is the total;
+/// <see cref="Stacks"/> is null only in entries stored before stacks were tracked per place.
+/// </summary>
+public sealed record StackableSnapshot(int Count, string LatestRawText, DateTimeOffset UpdatedAt, int ParserVersion,
+    IReadOnlyList<StackPlace>? Stacks = null)
+{
+    // By value, stacks included (a stored entry reads back with its own list).
+    public bool Equals(StackableSnapshot? other) =>
+        other is not null && (Count, LatestRawText, UpdatedAt, ParserVersion) == (other.Count, other.LatestRawText, other.UpdatedAt, other.ParserVersion)
+        && (Stacks ?? []).SequenceEqual(other.Stacks ?? []);
+
+    public override int GetHashCode() => HashCode.Combine(Count, LatestRawText, UpdatedAt, ParserVersion);
+}
 
 public enum ChangeType
 {

@@ -59,17 +59,32 @@ public class SessionTrackerTests
     }
 
     [Fact]
-    public void Stackable_ignores_position_and_last_count_wins()
+    public void Stackable_elsewhere_is_another_stack_and_counts_add_up()
     {
         var added = _tracker.Apply(Fixture.Load(Fixture.Verisium), A);
-        var updated = _tracker.Apply(WithStack(Fixture.Verisium, "25/1,000"), B);
+        var another = _tracker.Apply(WithStack(Fixture.Verisium, "25/1,000"), B);
 
         Assert.Equal(CaptureOutcome.StackableAdded, added.Outcome);
-        Assert.Equal(CaptureOutcome.StackableUpdated, updated.Outcome);
-        Assert.Equal(25, updated.StackCount);
+        Assert.Equal(CaptureOutcome.StackableUpdated, another.Outcome);
+        Assert.Equal(56, another.StackCount);
         var s = Assert.Single(_tracker.Stackables);
-        Assert.Equal((25, 1000), (s.Count, s.MaxStack));
+        Assert.Equal((56, 1000), (s.Count, s.MaxStack));
+        Assert.Equal([31, 25], s.Stacks.Select(t => t.Count));
         Assert.Empty(_tracker.Items);
+    }
+
+    [Fact]
+    public void Stackable_at_the_same_place_with_a_new_count_replaces_that_stack()
+    {
+        _tracker.Apply(Fixture.Load(Fixture.Verisium), A);
+        _tracker.Apply(WithStack(Fixture.Verisium, "25/1,000"), B);
+
+        var r = _tracker.Apply(WithStack(Fixture.Verisium, "40/1,000"), A with { Y = A.Y + Tolerance });
+
+        Assert.Equal((CaptureOutcome.StackableUpdated, 65), (r.Outcome, r.StackCount));
+        Assert.Equal([40, 25], Assert.Single(_tracker.Stackables).Stacks.Select(t => t.Count));
+
+        Assert.Equal(56, _tracker.Undo()!.StackCount);
     }
 
     [Fact]
@@ -89,7 +104,7 @@ public class SessionTrackerTests
     {
         Capture(Fixture.ChanceShard, A);
 
-        var r = Capture(Fixture.ChanceShard, B);
+        var r = Capture(Fixture.ChanceShard, A with { X = A.X + Tolerance });
 
         Assert.Equal(CaptureOutcome.AlreadyRecorded, r.Outcome);
         Assert.Single(_tracker.Log);
@@ -119,7 +134,7 @@ public class SessionTrackerTests
     {
         Capture(Fixture.BodyArmourRare, A);                                    // item added
         Capture(Fixture.Transmutation, A);                                     // stackable added (2)
-        _tracker.Apply(Fixture.Load(Fixture.Transmutation).Replace("2/40", "7/40"), B); // updated to 7
+        _tracker.Apply(Fixture.Load(Fixture.Transmutation).Replace("2/40", "7/40"), A); // same stack, updated to 7
 
         var u1 = _tracker.Undo()!;
         Assert.Equal(CaptureOutcome.Undone, u1.Outcome);

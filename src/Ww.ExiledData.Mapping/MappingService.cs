@@ -133,6 +133,9 @@ public sealed class MappingService
 
     public Task<bool> SetRunExcluded(Guid sessionId, Guid runId, bool excluded) => Edit(sessionId, s => s.SetRunExcluded(runId, excluded));
 
+    /// <summary>Deletes a run (not undoable; the caller asks first).</summary>
+    public Task<bool> DeleteRun(Guid sessionId, Guid runId) => Edit(sessionId, s => s.DeleteRun(runId));
+
     public Task<bool> SetSetupItemKind(Guid sessionId, Guid itemId, SetupItemKind kind) => Edit(sessionId, s => s.SetSetupItemKind(itemId, kind));
 
     public Task<MappingEdit?> Undo(Guid sessionId) => Edit(sessionId, s => s.Undo());

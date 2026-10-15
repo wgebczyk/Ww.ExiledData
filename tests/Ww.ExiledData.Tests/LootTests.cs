@@ -302,6 +302,57 @@ public sealed class LootTests
         Assert.Throws<InvalidOperationException>(() => Session.RemoveScan(scan.Id));
     }
 
+    // --- deleting runs --------------------------------------------------------------------------------
+
+    [Fact]
+    public void A_deleted_run_takes_its_scans_and_loot_and_leaves_the_others_as_they_are()
+    {
+        _feed.Copy(MapItems.Waystone(15));
+        _feed.Stash((Chaos, 15));
+        _feed.Copy(MapItems.Waystone(16));
+        var scan = _feed.Stash((Chaos, 11));
+        var second = Session.Runs[1];
+        Session.AddTag(second.Id, "juiced");
+        Session.SetNote(second.Id, "bad rolls");
+        _feed.Copy(MapItems.Waystone(17));
+        _feed.Stash((Chaos, 4));
+
+        Assert.True(Session.DeleteRun(second.Id));
+
+        Assert.Equal([1, 3], Session.Runs.Select(r => r.Number)); // numbers are kept
+        Assert.Null(Session.FindScan(scan.Id));
+        Assert.Empty(Session.TagsOf(second.Id));
+        Assert.Null(Session.NoteOf(second.Id));
+        Assert.Equal(19, Loot.OfSession(Session).Single(c => c.Name == Chaos).Count);
+    }
+
+    [Fact]
+    public void Deleting_a_run_drops_its_edits_from_the_undo_history()
+    {
+        _feed.Copy(MapItems.Waystone(15));
+        var kept = _feed.Stash((Chaos, 15));
+        Session.SetScanKind(kept.Id, ScanKind.Swipe);
+        _feed.Copy(MapItems.Waystone(16));
+        var deleted = Session.Runs[1];
+        Session.SetNote(deleted.Id, "outlier");
+        Session.SetRunExcluded(deleted.Id, true);
+
+        Session.DeleteRun(deleted.Id);
+
+        Assert.IsType<ScanKindEdit>(Session.Undo()); // the edits of the deleted run are gone
+        Assert.Null(Session.Undo());
+    }
+
+    [Fact]
+    public void A_run_with_a_running_scan_cannot_be_deleted()
+    {
+        _feed.Copy(MapItems.Waystone(15));
+        _feed.StartScan(ScanKind.Stash);
+
+        Assert.Throws<InvalidOperationException>(() => Session.DeleteRun(Session.Runs[0].Id));
+        Assert.Single(Session.Runs);
+    }
+
     // --- summary -------------------------------------------------------------------------------------
 
     [Fact]

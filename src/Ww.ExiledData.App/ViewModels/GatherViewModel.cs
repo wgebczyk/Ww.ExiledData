@@ -181,6 +181,11 @@ public sealed partial class GatherViewModel : ObservableObject
     [NotifyCanExecuteChangedFor(nameof(EndRunCommand))]
     public partial bool CanEndRun { get; set; }
 
+    /// <summary>The shown run can be deleted: none of its scans is running.</summary>
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(DeleteRunCommand))]
+    public partial bool CanDeleteRun { get; set; }
+
     /// <summary>The run a scan would go to has no Initial yet (or no run is open: a swipe starts one).</summary>
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(InitialScanCommand))]
@@ -389,6 +394,7 @@ public sealed partial class GatherViewModel : ObservableObject
         SummaryWarnings.Clear();
         SummaryTitle = "";
         CanEndRun = run is { IsOpen: true } && run == _session.CurrentRun;
+        CanDeleteRun = run is not null && !_session.ScansOf(run).Any(s => s.Status == ScanStatus.Active);
         CanUsePreviousTablets = run is not null && _session.PreviousRun(run) is { } previous && previous.Tablets.Any();
         if (run is null)
         {
@@ -623,6 +629,22 @@ public sealed partial class GatherViewModel : ObservableObject
 
     [RelayCommand(CanExecute = nameof(CanEndRun))]
     private Task EndRun() => Do("Ending the run", () => _mapping.EndRun(SessionId));
+
+    /// <summary>Deletes the shown run after asking: it cannot be undone.</summary>
+    [RelayCommand(CanExecute = nameof(CanDeleteRun))]
+    private async Task DeleteRun()
+    {
+        if (ShownRun() is not { } run || Confirm is null)
+            return;
+        var scans = _session.ScansOf(run).Count(s => !s.IsDiscarded);
+        var what = scans switch { 0 => "Its setup", 1 => "Its setup, 1 scan", _ => $"Its setup, {scans} scans" };
+        if (!await Confirm($"Delete run {run.Number}? {what}, adjustments, tags and note are deleted, and its loot leaves the session. "
+                + "This cannot be undone. Its captures stay in the session.", "Delete run"))
+            return;
+        if (_pickedRunId == run.Id)
+            _pickedRunId = null;
+        await Do("Deleting the run", () => _mapping.DeleteRun(SessionId, run.Id));
+    }
 
     [RelayCommand(CanExecute = nameof(CanUndo))]
     private Task Undo() => Do("Undo", () => _mapping.Undo(SessionId));
