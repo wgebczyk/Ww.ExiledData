@@ -54,6 +54,52 @@
             <Button Classes="ui link" Content="‹ Back to the current run" Command="{Binding ShowCurrentRunCommand}"
                     IsVisible="{Binding IsPickedRun}" HorizontalAlignment="Left" Margin="-4,-8,0,0" />
 
+            <!-- Run controls: stop / start first, then a separator and the rest -->
+            <StackPanel Orientation="Horizontal" Spacing="12">
+              <Panel IsVisible="{Binding CanEndRun}">
+                <Button Classes="ui stop" Command="{Binding EndRunCommand}">
+                  <ToolTip.Tip>
+                    <StackPanel Spacing="2">
+                      <TextBlock Text="End this run" />
+                      <TextBlock Classes="mono amber" Text="{Binding Hotkeys.EndRun.Full}" />
+                    </StackPanel>
+                  </ToolTip.Tip>
+                  <StackPanel Orientation="Horizontal" Spacing="6">
+                    <c:StrokeIcon Classes="small" Width="14" Height="14" Data="{StaticResource IconStop}" />
+                    <TextBlock Text="End run" VerticalAlignment="Center" />
+                  </StackPanel>
+                </Button>
+                <c:KeyBadge Hint="{Binding Hotkeys.EndRun}" />
+              </Panel>
+              <Panel IsVisible="{Binding IsRecording}">
+                <Button Classes="ui play" Command="{Binding StartNewRunCommand}">
+                  <ToolTip.Tip>
+                    <StackPanel Spacing="2">
+                      <TextBlock Text="Start a new run without copying a waystone; it ends the open run" />
+                      <TextBlock Classes="mono amber" Text="{Binding Hotkeys.StartRun.Full}" />
+                    </StackPanel>
+                  </ToolTip.Tip>
+                  <StackPanel Orientation="Horizontal" Spacing="6">
+                    <c:StrokeIcon Classes="small" Width="14" Height="14" Data="{StaticResource IconPlay}" />
+                    <TextBlock Text="New run" VerticalAlignment="Center" />
+                  </StackPanel>
+                </Button>
+                <c:KeyBadge Hint="{Binding Hotkeys.StartRun}" />
+              </Panel>
+              <Rectangle Width="1" Height="24" Fill="{DynamicResource LineBrush}" Margin="2,0" VerticalAlignment="Center">
+                <Rectangle.IsVisible>
+                  <MultiBinding Converter="{x:Static BoolConverters.Or}">
+                    <Binding Path="CanEndRun" />
+                    <Binding Path="IsRecording" />
+                  </MultiBinding>
+                </Rectangle.IsVisible>
+              </Rectangle>
+              <Button Classes="ui icon small danger" Command="{Binding DeleteRunCommand}" VerticalAlignment="Center"
+                      ToolTip.Tip="Delete this run with its setup, scans and loot (asks first; cannot be undone)" AutomationProperties.Name="Delete run">
+                <c:StrokeIcon Classes="small" Data="{StaticResource IconDelete}" />
+              </Button>
+            </StackPanel>
+
             <!-- Waystone, with a change button (recall list) -->
             <StackPanel Spacing="6">
               <TextBlock Classes="label" Text="WAYSTONE" />
@@ -123,7 +169,86 @@
 
             <!-- Scans: Initial swipe, stash scans, swipes, Final -->
             <StackPanel Spacing="8">
-              <TextBlock Classes="label" Text="SCANS" />
+              <!-- The common hotkey prefix, once: the badges below show only the key -->
+              <Grid ColumnDefinitions="*,Auto">
+                <TextBlock Classes="label" Text="SCANS" VerticalAlignment="Center" />
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4" IsVisible="{Binding IsRecording}"
+                            ToolTip.Tip="Hotkeys: hold these and press the key on a button's badge">
+                  <ItemsControl ItemsSource="{Binding Hotkeys.PrefixKeys}">
+                    <ItemsControl.ItemsPanel>
+                      <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" Spacing="4" />
+                      </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate x:DataType="x:String">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                          <Border Classes="keycap">
+                            <TextBlock Text="{Binding}" />
+                          </Border>
+                          <TextBlock Classes="muted small" Text="+" VerticalAlignment="Center" />
+                        </StackPanel>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ItemsControl>
+                  <TextBlock Classes="muted small" Text="key" VerticalAlignment="Center" />
+                </StackPanel>
+              </Grid>
+
+              <!-- Scan actions first, each with its key badge (or finish / cancel the running scan) -->
+              <Panel IsVisible="{Binding IsRecording}" Margin="0,4,0,4">
+                <StackPanel Orientation="Horizontal" Spacing="12" IsVisible="{Binding IsNotScanning}">
+                  <Panel>
+                    <Button Classes="ui" Content="Initial" Command="{Binding InitialScanCommand}">
+                      <ToolTip.Tip>
+                        <StackPanel Spacing="2">
+                          <TextBlock Text="Swipe what you keep in the inventory before the map: the run's Initial (once per run)" />
+                          <TextBlock Classes="mono amber" Text="{Binding Hotkeys.InitialScan.Full}" />
+                        </StackPanel>
+                      </ToolTip.Tip>
+                    </Button>
+                    <c:KeyBadge Hint="{Binding Hotkeys.InitialScan}" />
+                  </Panel>
+                  <Panel>
+                    <Button Classes="ui primary" Content="Stash" Command="{Binding StashScanCommand}" Padding="14,8" FontSize="13">
+                      <ToolTip.Tip>
+                        <StackPanel Spacing="2">
+                          <TextBlock Text="Scan the inventory right before stashing it: counts toward the loot" />
+                          <TextBlock Classes="mono amber" Text="{Binding Hotkeys.StashScan.Full}" />
+                        </StackPanel>
+                      </ToolTip.Tip>
+                    </Button>
+                    <c:KeyBadge Hint="{Binding Hotkeys.StashScan}" />
+                  </Panel>
+                  <Panel>
+                    <Button Classes="ui" Content="Swipe" Command="{Binding SwipeCommand}">
+                      <ToolTip.Tip>
+                        <StackPanel Spacing="2">
+                          <TextBlock Text="Swipe: a snapshot, not counted" />
+                          <TextBlock Classes="mono amber" Text="{Binding Hotkeys.Swipe.Full}" />
+                        </StackPanel>
+                      </ToolTip.Tip>
+                    </Button>
+                    <c:KeyBadge Hint="{Binding Hotkeys.Swipe}" />
+                  </Panel>
+                  <Panel>
+                    <Button Classes="ui" Content="Final" Command="{Binding FinalScanCommand}">
+                      <ToolTip.Tip>
+                        <StackPanel Spacing="2">
+                          <TextBlock Text="Final scan: compared with the Initial as a consistency check" />
+                          <TextBlock Classes="mono amber" Text="{Binding Hotkeys.FinalScan.Full}" />
+                        </StackPanel>
+                      </ToolTip.Tip>
+                    </Button>
+                    <c:KeyBadge Hint="{Binding Hotkeys.FinalScan}" />
+                  </Panel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding IsScanning}">
+                  <Button Classes="ui primary" Content="Finish scan" Command="{Binding FinishScanNowCommand}" />
+                  <Button Classes="ui danger" Content="Cancel…" Command="{Binding CancelScanNowCommand}" />
+                </StackPanel>
+              </Panel>
+
               <ItemsControl ItemsSource="{Binding ScanRows}">
                 <ItemsControl.ItemTemplate>
                   <DataTemplate x:DataType="vm:ScanRowViewModel">
@@ -158,40 +283,8 @@
               </ItemsControl>
               <TextBlock Classes="muted small" TextWrapping="Wrap" IsVisible="{Binding HasNoScans}"
                          Text="No scan yet. Swipe what you keep (the Initial), then take a stash scan right before each stash trip." />
-
-              <!-- Scan actions (or finish / cancel the running scan) -->
-              <Panel IsVisible="{Binding IsRecording}">
-                <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding IsNotScanning}">
-                  <Button Classes="ui" Content="Initial" Command="{Binding InitialScanCommand}"
-                          ToolTip.Tip="Swipe what you keep in the inventory before the map: the run's Initial (once per run)" />
-                  <Button Classes="ui primary" Content="Stash" Command="{Binding StashScanCommand}"
-                          ToolTip.Tip="Scan the inventory right before stashing it: counts toward the loot" />
-                  <Button Classes="ui" Content="Swipe" Command="{Binding SwipeCommand}"
-                          ToolTip.Tip="Swipe: a snapshot, not counted" />
-                  <Button Classes="ui" Content="Final" Command="{Binding FinalScanCommand}"
-                          ToolTip.Tip="Final scan: compared with the Initial as a consistency check" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding IsScanning}">
-                  <Button Classes="ui primary" Content="Finish scan" Command="{Binding FinishScanNowCommand}" />
-                  <Button Classes="ui danger" Content="Cancel…" Command="{Binding CancelScanNowCommand}" />
-                </StackPanel>
-              </Panel>
             </StackPanel>
 
-            <!-- Run actions -->
-            <StackPanel Orientation="Horizontal" Spacing="8">
-              <Button Classes="ui" Content="Start new run" Command="{Binding StartNewRunCommand}" IsVisible="{Binding IsRecording}"
-                      ToolTip.Tip="Start a run without copying a waystone (it ends this one)" />
-              <Button Classes="ui" Content="End run" Command="{Binding EndRunCommand}" />
-              <Button Classes="ui danger" Content="Delete run…" Command="{Binding DeleteRunCommand}"
-                      ToolTip.Tip="Delete this run with its setup, scans and loot (asks first; cannot be undone)" />
-              <Button Classes="ui icon" Command="{Binding UndoCommand}" ToolTip.Tip="Undo the last mapping edit" AutomationProperties.Name="Undo">
-                <c:StrokeIcon Data="{StaticResource IconUndo}" />
-              </Button>
-              <Button Classes="ui icon" Command="{Binding RedoCommand}" ToolTip.Tip="Redo" AutomationProperties.Name="Redo">
-                <c:StrokeIcon Data="{StaticResource IconRedo}" />
-              </Button>
-            </StackPanel>
 
             <!-- Summary of the last scan: totals (or, for a Final, the differences from the Initial), warnings -->
             <Border Classes="raised" IsVisible="{Binding HasSummary}">

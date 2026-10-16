@@ -12,17 +12,18 @@ public sealed record CaptureOptions
 
     public IReadOnlyDictionary<HotkeyAction, Hotkey> Hotkeys { get; init; } = new Dictionary<HotkeyAction, Hotkey>
     {
-        [HotkeyAction.NewSession] = Hotkey.Parse("Ctrl+Alt+N"),
-        [HotkeyAction.Undo] = Hotkey.Parse("Ctrl+Alt+Z"),
-        [HotkeyAction.Redo] = Hotkey.Parse("Ctrl+Alt+Y"),
-        [HotkeyAction.SweepStart] = Hotkey.Parse("Ctrl+Alt+G"),
-        [HotkeyAction.SweepFinish] = Hotkey.Parse("Ctrl+Alt+F"),
-        [HotkeyAction.SkipCell] = Hotkey.Parse("Ctrl+Alt+K"),
-        [HotkeyAction.MapStashScan] = Hotkey.Parse("Ctrl+Alt+D"),
-        [HotkeyAction.MapSwipe] = Hotkey.Parse("Ctrl+Alt+W"),
-        [HotkeyAction.MapFinalScan] = Hotkey.Parse("Ctrl+Alt+Q"),
-        [HotkeyAction.MapStartRun] = Hotkey.Parse("Ctrl+Alt+R"),
-        [HotkeyAction.MapEndRun] = Hotkey.Parse("Ctrl+Alt+T"),
+        [HotkeyAction.NewSession] = Hotkey.Parse("Ctrl+Shift+N"),
+        [HotkeyAction.Undo] = Hotkey.Parse("Ctrl+Shift+U"),
+        [HotkeyAction.Redo] = Hotkey.Parse("Ctrl+Shift+Y"),
+        [HotkeyAction.SweepStart] = Hotkey.Parse("Ctrl+Shift+G"),
+        [HotkeyAction.SweepFinish] = Hotkey.Parse("Ctrl+Shift+F"),
+        [HotkeyAction.SkipCell] = Hotkey.Parse("Ctrl+Shift+K"),
+        [HotkeyAction.MapInitialScan] = Hotkey.Parse("Ctrl+Shift+Z"),
+        [HotkeyAction.MapStashScan] = Hotkey.Parse("Ctrl+Shift+X"),
+        [HotkeyAction.MapSwipe] = Hotkey.Parse("Ctrl+Shift+C"),
+        [HotkeyAction.MapFinalScan] = Hotkey.Parse("Ctrl+Shift+V"),
+        [HotkeyAction.MapStartRun] = Hotkey.Parse("Ctrl+Shift+R"),
+        [HotkeyAction.MapEndRun] = Hotkey.Parse("Ctrl+Shift+T"),
     };
 }
 
@@ -105,8 +106,11 @@ public interface IInputSource : IDisposable
     /// </summary>
     bool HotkeysSuspended { get; set; }
 
-    /// <summary>Starts listening; returns the hotkeys that could not be registered (taken by another app).</summary>
-    IReadOnlyList<HotkeyAction> Start(IReadOnlyDictionary<HotkeyAction, Hotkey> hotkeys);
+    /// <summary>
+    /// Starts listening; returns the hotkeys that could not be registered (taken by another app). The hotkeys are held
+    /// only while this app's own window, or a window whose title passes <paramref name="hotkeyWindow"/>, is in front.
+    /// </summary>
+    IReadOnlyList<HotkeyAction> Start(IReadOnlyDictionary<HotkeyAction, Hotkey> hotkeys, Func<string?, bool> hotkeyWindow);
 }
 
 public interface IClipboard

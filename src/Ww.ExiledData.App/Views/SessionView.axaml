@@ -63,6 +63,17 @@
         </DockPanel>
 
         <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="6" VerticalAlignment="Bottom" Height="44">
+          <!-- Recording toggle, first and set apart: stop while recording (not in Analyze), play when ended -->
+          <Button Classes="ui icon stop" Command="{Binding EndSessionCommand}" IsVisible="{Binding ShowEndSession}"
+                  ToolTip.Tip="End session" AutomationProperties.Name="End session">
+            <c:StrokeIcon Data="{StaticResource IconStop}" />
+          </Button>
+          <Button Classes="ui icon play" Command="{Binding MakeRecordingCommand}" IsVisible="{Binding IsEnded}"
+                  ToolTip.Tip="Make this the recording session: captures go here from now on. The recording session, if any, ends."
+                  AutomationProperties.Name="Make this the recording session">
+            <c:StrokeIcon Data="{StaticResource IconPlay}" />
+          </Button>
+          <Rectangle Width="1" Height="24" Fill="{DynamicResource LineBrush}" Margin="6,0" IsVisible="{Binding ShowRecordingToggle}" />
           <Button Classes="ui icon bare" Command="{Binding RenameCommand}" ToolTip.Tip="Rename session" AutomationProperties.Name="Rename session">
             <c:StrokeIcon Data="{StaticResource IconRename}" />
           </Button>
@@ -77,17 +88,6 @@
           </Button>
           <Button Classes="ui icon bare" Command="{Binding DeleteCommand}" ToolTip.Tip="Delete session" AutomationProperties.Name="Delete session">
             <c:StrokeIcon Data="{StaticResource IconDelete}" />
-          </Button>
-          <!-- Recording toggle, set apart and last: stop while recording (not in Analyze), play when ended -->
-          <Rectangle Width="1" Height="24" Fill="{DynamicResource LineBrush}" Margin="6,0" IsVisible="{Binding ShowRecordingToggle}" />
-          <Button Classes="ui icon stop" Command="{Binding EndSessionCommand}" IsVisible="{Binding ShowEndSession}"
-                  ToolTip.Tip="End session" AutomationProperties.Name="End session">
-            <c:StrokeIcon Data="{StaticResource IconStop}" />
-          </Button>
-          <Button Classes="ui icon play" Command="{Binding MakeRecordingCommand}" IsVisible="{Binding IsEnded}"
-                  ToolTip.Tip="Make this the recording session: captures go here from now on. The recording session, if any, ends."
-                  AutomationProperties.Name="Make this the recording session">
-            <c:StrokeIcon Data="{StaticResource IconPlay}" />
           </Button>
         </StackPanel>
       </Grid>

@@ -109,22 +109,22 @@
   <Style Selector="Button.ui.icon.danger">
     <Setter Property="Foreground" Value="{DynamicResource DangerTextBrush}" />
   </Style>
-  <!-- Recording toggle, the header's last button: stop (red tint) while recording, play (green tint) when ended. -->
-  <Style Selector="Button.ui.icon.stop">
+  <!-- Start/stop toggles (session and run), placed first: stop (red tint) while running, play (green tint) to start. -->
+  <Style Selector="Button.ui.stop">
     <Setter Property="Background" Value="{DynamicResource DangerTintBrush}" />
     <Setter Property="BorderBrush" Value="{DynamicResource DangerLineBrush}" />
     <Setter Property="Foreground" Value="{DynamicResource DangerTextBrush}" />
   </Style>
-  <Style Selector="Button.ui.icon.stop:pointerover /template/ ContentPresenter#PART_Body">
+  <Style Selector="Button.ui.stop:pointerover /template/ ContentPresenter#PART_Body">
     <Setter Property="Background" Value="{DynamicResource DangerTintBrush}" />
     <Setter Property="BorderBrush" Value="{DynamicResource DangerTextBrush}" />
   </Style>
-  <Style Selector="Button.ui.icon.play">
+  <Style Selector="Button.ui.play">
     <Setter Property="Background" Value="{DynamicResource SuccessTintBrush}" />
     <Setter Property="BorderBrush" Value="{DynamicResource SuccessLineBrush}" />
     <Setter Property="Foreground" Value="{DynamicResource SuccessTextBrush}" />
   </Style>
-  <Style Selector="Button.ui.icon.play:pointerover /template/ ContentPresenter#PART_Body">
+  <Style Selector="Button.ui.play:pointerover /template/ ContentPresenter#PART_Body">
     <Setter Property="Background" Value="{DynamicResource SuccessTintBrush}" />
     <Setter Property="BorderBrush" Value="{DynamicResource SuccessTextBrush}" />
   </Style>
@@ -135,6 +135,29 @@
   <Style Selector="c|StrokeIcon.small">
     <Setter Property="Width" Value="16" />
     <Setter Property="Height" Value="16" />
+  </Style>
+  <!-- Keycaps: KeyBadge on a button's top right corner (overhanging it), Border.keycap in the prefix legend. -->
+  <Style Selector="c|KeyBadge, Border.keycap">
+    <Setter Property="Background" Value="{DynamicResource BgBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LineStrongBrush}" />
+    <Setter Property="BorderThickness" Value="1,1,1,2" />
+    <Setter Property="CornerRadius" Value="4" />
+    <Setter Property="MinWidth" Value="16" />
+    <Setter Property="Height" Value="16" />
+    <Setter Property="Padding" Value="3,0" />
+  </Style>
+  <Style Selector="c|KeyBadge">
+    <Setter Property="HorizontalAlignment" Value="Right" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="Margin" Value="0,-7,-7,0" />
+  </Style>
+  <Style Selector="c|KeyBadge > TextBlock, Border.keycap > TextBlock">
+    <Setter Property="FontFamily" Value="{StaticResource MonoFont}" />
+    <Setter Property="FontSize" Value="10" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Center" />
   </Style>
 
   <!-- FilterChip (Analyze scope): blue tint, with a small remove button -->

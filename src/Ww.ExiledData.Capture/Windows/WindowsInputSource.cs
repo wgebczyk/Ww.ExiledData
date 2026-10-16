@@ -8,8 +8,9 @@ namespace Ww.ExiledData.Capture.Windows;
 
 /// <summary>
 /// Global input on a dedicated message-loop thread: a low-level keyboard hook that observes (never blocks)
-/// plain Ctrl+C, and <c>RegisterHotKey</c> hotkeys, which Windows consumes so the game doesn't see them. While the
-/// grid editor is open, a low-level mouse hook also takes left presses on the editor's chrome away from the game.
+/// plain Ctrl+C, and <c>RegisterHotKey</c> hotkeys, which Windows consumes so the game doesn't see them. The hotkeys
+/// are registered only while the game or one of this app's windows is in front, so other apps keep those keys. While
+/// the grid editor is open, a low-level mouse hook also takes left presses on the editor's chrome away from the game.
 /// Only one instance can be started per process.
 /// </summary>
 [SupportedOSPlatform("windows")]
@@ -26,9 +27,12 @@ public sealed unsafe class WindowsInputSource(TimeProvider? time = null) : IInpu
     private readonly TimeProvider _time = time ?? TimeProvider.System;
     private readonly Dictionary<int, HotkeyAction> _hotkeyIds = [];
     private IReadOnlyDictionary<HotkeyAction, Hotkey> _hotkeys = new Dictionary<HotkeyAction, Hotkey>();
+    private Func<string?, bool> _hotkeyWindow = _ => true;
+    private bool _hotkeysArmed;
     private Thread? _thread;
     private uint _threadId;
     private nint _hook;
+    private nint _foregroundHook;
     private nint _mouseHook;
     private bool _dragging;
     private volatile IReadOnlyList<ScreenRect> _gridChrome = [];
@@ -75,8 +79,9 @@ public sealed unsafe class WindowsInputSource(TimeProvider? time = null) : IInpu
         }
     }
 
-    public IReadOnlyList<HotkeyAction> Start(IReadOnlyDictionary<HotkeyAction, Hotkey> hotkeys)
+    public IReadOnlyList<HotkeyAction> Start(IReadOnlyDictionary<HotkeyAction, Hotkey> hotkeys, Func<string?, bool> hotkeyWindow)
     {
+        _hotkeyWindow = hotkeyWindow;
         if (Interlocked.CompareExchange(ref s_active, this, null) is not null)
             throw new InvalidOperationException("A WindowsInputSource is already running in this process.");
 
@@ -96,7 +101,11 @@ public sealed unsafe class WindowsInputSource(TimeProvider? time = null) : IInpu
                     throw new Win32Exception(Marshal.GetLastPInvokeError(), "SetWindowsHookEx failed.");
 
                 _hotkeys = hotkeys;
+                // Register once to find the hotkeys another app holds, then follow the foreground window.
                 failed.AddRange(RegisterHotkeys());
+                _hotkeysArmed = true;
+                _foregroundHook = SetWinEventHook(EVENT_SYSTEM_FOREGROUND, EVENT_SYSTEM_FOREGROUND, 0, &ForegroundProc, 0, 0, WINEVENT_OUTOFCONTEXT);
+                UpdateHotkeys();
                 if (_gridEditing)
                     SetMouseHook(true);
             }
@@ -144,9 +153,7 @@ public sealed unsafe class WindowsInputSource(TimeProvider? time = null) : IInpu
                 }
                 else if (msg.message == WM_SUSPEND_HOTKEYS)
                 {
-                    UnregisterHotkeys();
-                    if (msg.wParam == 0)
-                        RegisterHotkeys();
+                    UpdateHotkeys();
                 }
                 else if (msg.message == WM_GRID_MOUSE)
                 {
@@ -157,6 +164,10 @@ public sealed unsafe class WindowsInputSource(TimeProvider? time = null) : IInpu
         finally
         {
             UnregisterHotkeys();
+            _hotkeysArmed = false;
+            if (_foregroundHook != 0)
+                UnhookWinEvent(_foregroundHook);
+            _foregroundHook = 0;
             SetMouseHook(false);
             if (_hook != 0)
                 UnhookWindowsHookEx(_hook);
@@ -176,6 +187,44 @@ public sealed unsafe class WindowsInputSource(TimeProvider? time = null) : IInpu
             UnhookWindowsHookEx(_mouseHook);
             _mouseHook = 0;
             _dragging = false;
+        }
+    }
+
+    /// <summary>
+    /// Input thread only. Holds the hotkeys while they are wanted: not suspended, and the game or one of this app's
+    /// windows in front (always, when the foreground hook could not be installed). Otherwise frees them for other apps.
+    /// </summary>
+    private void UpdateHotkeys()
+    {
+        var wanted = !_hotkeysSuspended && (_foregroundHook == 0 || IsHotkeyWindow(GetForegroundWindow()));
+        if (wanted == _hotkeysArmed)
+            return;
+        _hotkeysArmed = wanted;
+        if (wanted)
+            RegisterHotkeys();
+        else
+            UnregisterHotkeys();
+    }
+
+    private bool IsHotkeyWindow(nint hwnd)
+    {
+        if (hwnd == 0)
+            return false;
+        GetWindowThreadProcessId(hwnd, out var processId);
+        return processId == Environment.ProcessId || _hotkeyWindow(ForegroundTitle());
+    }
+
+    /// <summary>Input thread (out-of-context WinEvents arrive through its message loop): the foreground window changed.</summary>
+    [UnmanagedCallersOnly]
+    private static void ForegroundProc(nint hook, uint eventType, nint hwnd, int idObject, int idChild, uint threadId, uint time)
+    {
+        try
+        {
+            s_active?.UpdateHotkeys();
+        }
+        catch
+        {
+            // Never let an exception cross the native boundary.
         }
     }
 
@@ -300,8 +349,9 @@ public sealed unsafe class WindowsInputSource(TimeProvider? time = null) : IInpu
         _cDown = true;
         var ctrl = (GetAsyncKeyState(VK_CONTROL) & 0x8000) != 0;
         var alt = (GetAsyncKeyState(VK_MENU) & 0x8000) != 0;
-        if (!ctrl || alt)
-            return false; // plain Ctrl+C only; Ctrl+Alt+C (and AltGr+C) are ignored
+        var shift = (GetAsyncKeyState(VK_SHIFT) & 0x8000) != 0;
+        if (!ctrl || alt || shift)
+            return false; // plain Ctrl+C only; Ctrl+Shift+C (a hotkey) and Ctrl+Alt+C are ignored
 
         GetPhysicalCursorPos(out var pt);
         var press = new CopyPress(new ScreenPoint(pt.X, pt.Y), GetClipboardSequenceNumber(), ForegroundTitle(), _time.GetUtcNow());

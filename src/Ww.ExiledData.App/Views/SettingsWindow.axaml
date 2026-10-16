@@ -122,7 +122,7 @@
                 <TextBlock Classes="amber" FontSize="13" FontWeight="Medium" IsVisible="{Binding IsRecording}"
                            Text="● Press the new combination…  Esc cancels" />
                 <TextBox Classes="bare" Padding="0" MinWidth="180" FontFamily="{StaticResource MonoFont}" FontSize="13"
-                         Text="{Binding Text}" IsVisible="{Binding ShowTextBox}" PlaceholderText="for example Ctrl+Alt+Z"
+                         Text="{Binding Text}" IsVisible="{Binding ShowTextBox}" PlaceholderText="for example Ctrl+Shift+Z"
                          AutomationProperties.Name="{Binding Label, StringFormat='{}{0} hotkey'}" />
               </Panel>
             </c:KeyRecorderBox>
@@ -318,7 +318,7 @@
           <!-- Hotkeys -->
           <StackPanel IsVisible="{Binding HotkeysPage.IsSelected}">
             <Border Classes="info">
-              <TextBlock Text="Hotkeys are global: while registered, the game does not receive them. Use Ctrl, Alt, Shift or Win with A–Z, 0–9 or F1–F24, and keys the game doesn’t use. Ctrl+C is reserved for item capture." />
+              <TextBlock Text="Hotkeys work while the game or this app is in front; other apps keep these keys. The game does not receive them. Use Ctrl, Alt, Shift or Win with A–Z, 0–9 or F1–F24, and keys the game doesn’t use. Ctrl+C is reserved for item capture." />
             </Border>
             <TextBlock Classes="label" Text="SESSION" Margin="0,18,0,6" />
             <ItemsControl ItemsSource="{Binding SessionHotkeys}" />

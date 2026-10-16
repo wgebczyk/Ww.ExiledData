@@ -161,7 +161,7 @@ public sealed class SessionController(SqliteStore store, int positionTolerance, 
             case HotkeyAction.SweepStart or HotkeyAction.SweepFinish:
                 SweepHotkeyPressed?.Invoke(press);
                 break;
-            case HotkeyAction.MapStashScan or HotkeyAction.MapSwipe or HotkeyAction.MapFinalScan or HotkeyAction.MapStartRun or HotkeyAction.MapEndRun:
+            case HotkeyAction.MapInitialScan or HotkeyAction.MapStashScan or HotkeyAction.MapSwipe or HotkeyAction.MapFinalScan or HotkeyAction.MapStartRun or HotkeyAction.MapEndRun:
                 MappingHotkeyPressed?.Invoke(press);
                 break;
         }

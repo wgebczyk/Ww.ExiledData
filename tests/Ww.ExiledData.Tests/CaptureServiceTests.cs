@@ -68,6 +68,26 @@ public sealed class CaptureServiceTests : IDisposable
     }
 
     [Fact]
+    public void Hotkeys_are_held_only_for_the_game_window()
+    {
+        var window = _input.HotkeyWindow!;
+
+        Assert.True(window("Path of Exile 2"));
+        Assert.True(window("path of exile 2 (DX12)"));
+        Assert.False(window("Google Chrome"));
+        Assert.False(window(null));
+    }
+
+    [Fact]
+    public void Hotkeys_are_held_for_any_window_when_title_filter_is_off()
+    {
+        using var service = new CaptureService(new CaptureOptions { GameWindowTitle = null }, _input, _clipboard, _sleeper, _sink, _time);
+        service.Start();
+
+        Assert.True(_input.HotkeyWindow!("Google Chrome"));
+    }
+
+    [Fact]
     public async Task Times_out_when_clipboard_does_not_change()
     {
         Assert.Equal(CopyIgnoreReason.ClipboardTimeout, await PressAndWait());

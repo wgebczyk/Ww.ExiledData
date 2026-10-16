@@ -207,7 +207,7 @@ public sealed class ChoiceOption(ChoiceField owner, object value, string label) 
 
 public enum MessageKind { None, Note, Warning, Error }
 
-/// <summary>A global hotkey, recorded by pressing it or typed (spec 4.3). Stored as the canonical text (<c>Ctrl+Alt+Z</c>).</summary>
+/// <summary>A global hotkey, recorded by pressing it or typed (spec 4.3). Stored as the canonical text (<c>Ctrl+Shift+Z</c>).</summary>
 public sealed partial class HotkeyField : SettingField
 {
     private static long s_editCounter;

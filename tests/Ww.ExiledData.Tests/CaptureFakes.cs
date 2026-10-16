@@ -14,7 +14,13 @@ internal sealed class FakeInputSource : IInputSource
     public bool HotkeysSuspended { get; set; }
     public bool Disposed { get; private set; }
 
-    public IReadOnlyList<HotkeyAction> Start(IReadOnlyDictionary<HotkeyAction, Hotkey> hotkeys) => [];
+    public Func<string?, bool>? HotkeyWindow { get; private set; }
+
+    public IReadOnlyList<HotkeyAction> Start(IReadOnlyDictionary<HotkeyAction, Hotkey> hotkeys, Func<string?, bool> hotkeyWindow)
+    {
+        HotkeyWindow = hotkeyWindow;
+        return [];
+    }
     public void Press(CopyPress press) => CopyPressed?.Invoke(press);
     public void Hotkey(HotkeyAction action, ScreenPoint cursor = default) => HotkeyPressed?.Invoke(new HotkeyPress(action, cursor));
     public void GridKey(GridKeyPress key) => GridKeyPressed?.Invoke(key);

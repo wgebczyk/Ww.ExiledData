@@ -175,7 +175,7 @@ public sealed class SweepControllerTests : IDisposable
         var defaults = new AppSettings();
         Assert.Empty(defaults.Validate());
         Assert.Equal(GridKind.Presets, defaults.ParsedGridKinds());
-        Assert.Equal(11, defaults.ToCaptureOptions().Hotkeys.Count);
+        Assert.Equal(12, defaults.ToCaptureOptions().Hotkeys.Count);
 
         Assert.Contains(new AppSettings { HotkeySkipCell = defaults.HotkeyUndo }.Validate(), e => e.Contains("different"));
         Assert.Contains(new AppSettings { HotkeySweepStart = "Ctrl+C" }.Validate(), e => e.Contains("reserved"));

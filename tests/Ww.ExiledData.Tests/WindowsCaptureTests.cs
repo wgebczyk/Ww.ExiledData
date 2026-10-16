@@ -43,9 +43,9 @@ public class WindowsCaptureTests
         var pressed = new TaskCompletionSource<HotkeyPress>(TaskCreationOptions.RunContinuationsAsynchronously);
         input.HotkeyPressed += a => pressed.TrySetResult(a);
 
-        var failed = input.Start(new Dictionary<HotkeyAction, Hotkey> { [HotkeyAction.Redo] = Hotkey.Parse("Ctrl+Shift+F23") });
+        var failed = input.Start(new Dictionary<HotkeyAction, Hotkey> { [HotkeyAction.Redo] = Hotkey.Parse("Ctrl+Shift+F23") }, _ => true);
         Assert.Empty(failed);
-        Assert.Throws<InvalidOperationException>(() => new WindowsInputSource().Start(new Dictionary<HotkeyAction, Hotkey>()));
+        Assert.Throws<InvalidOperationException>(() => new WindowsInputSource().Start(new Dictionary<HotkeyAction, Hotkey>(), _ => true));
 
         SendKeys(0x11, 0x10, 0x86); // VK_CONTROL, VK_SHIFT, VK_F23
 
@@ -65,7 +65,7 @@ public class WindowsCaptureTests
                 keys.Add(k);
             got.TrySetResult();
         };
-        input.Start(new Dictionary<HotkeyAction, Hotkey>());
+        input.Start(new Dictionary<HotkeyAction, Hotkey>(), _ => true);
 
         SendKeys(0x25); // VK_LEFT, not editing: ignored (and passed on)
         input.GridEditing = true;

@@ -24,6 +24,8 @@ public enum HotkeyAction
     SweepFinish,
     /// <summary>Toggle "skipped" on the sweep cell under the cursor.</summary>
     SkipCell,
+    /// <summary>Mapping: the run's Initial, a swipe taken only while the run has none.</summary>
+    MapInitialScan,
     /// <summary>Mapping: a stash scan of the inventory (counts toward loot).</summary>
     MapStashScan,
     /// <summary>Mapping: a swipe of the inventory (a snapshot; the first of a run is its Initial).</summary>
@@ -34,7 +36,7 @@ public enum HotkeyAction
     MapEndRun,
 }
 
-/// <summary>A global hotkey such as <c>Ctrl+Alt+Z</c>. Keys: A-Z, 0-9, F1-F24.</summary>
+/// <summary>A global hotkey such as <c>Ctrl+Shift+Z</c>. Keys: A-Z, 0-9, F1-F24.</summary>
 public sealed record Hotkey(KeyModifiers Modifiers, int VirtualKey)
 {
     public static Hotkey Parse(string text) =>

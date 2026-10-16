@@ -27,11 +27,13 @@ public sealed partial class SessionViewModel : ObservableObject, IDisposable
     private readonly MappingService? _mapping;
     private CurrencyBook _currencies;
     private readonly Action<Guid> _onMappingChanged;
+    private readonly HotkeyHints? _hotkeys;
 
     public SessionViewModel(SessionController controller, SweepControlViewModel sweeps, Guid sessionId, ILogger<SessionViewModel> logger,
-        MappingService? mapping = null, CurrencyBook? currencies = null)
+        MappingService? mapping = null, CurrencyBook? currencies = null, HotkeyHints? hotkeys = null)
     {
         _controller = controller;
+        _hotkeys = hotkeys;
         _log = logger;
         _mapping = mapping;
         _currencies = currencies ?? CurrencyBook.Default;
@@ -166,6 +168,7 @@ public sealed partial class SessionViewModel : ObservableObject, IDisposable
     {
         var gather = new GatherViewModel(_mapping!, Id, _currencies, _log)
         {
+            Hotkeys = _hotkeys ?? new HotkeyHints(new AppSettings()),
             AskTag = (title, suggestions) => AskTag?.Invoke(title, suggestions) ?? Task.FromResult<string?>(null),
             AskNote = (title, initial) => AskNote?.Invoke(title, initial) ?? Task.FromResult<string?>(null),
             StartScan = StartInventoryScan,

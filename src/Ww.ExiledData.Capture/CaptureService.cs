@@ -85,7 +85,7 @@ public sealed class CaptureService : IDisposable
             _options.ClipboardTimeout.TotalMilliseconds, _options.PollInterval.TotalMilliseconds, _options.GameWindowTitle,
             string.Join(", ", _options.Hotkeys.Select(h => $"{h.Key}={h.Value}")));
 
-        var failed = _input.Start(_options.Hotkeys);
+        var failed = _input.Start(_options.Hotkeys, IsGameTitle);
         foreach (var action in failed)
             _log.LogWarning("Hotkey {Hotkey} for {Action} could not be registered (in use by another app?)", _options.Hotkeys[action], action);
         return failed;
@@ -104,9 +104,12 @@ public sealed class CaptureService : IDisposable
         _log.LogInformation("Capture stopped");
     }
 
-    private bool IsGameWindow(CopyPress press) =>
+    /// <summary>Whether a window title is the game's; with no title set, any window is.</summary>
+    private bool IsGameTitle(string? windowTitle) =>
         _options.GameWindowTitle is not { } title
-        || press.ForegroundTitle?.Contains(title, StringComparison.OrdinalIgnoreCase) == true;
+        || windowTitle?.Contains(title, StringComparison.OrdinalIgnoreCase) == true;
+
+    private bool IsGameWindow(CopyPress press) => IsGameTitle(press.ForegroundTitle);
 
     // Input thread: no logging or other slow work here.
     private void OnCopyPressed(CopyPress press)

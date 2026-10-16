@@ -31,21 +31,21 @@ public sealed record AppSettings
     public int PositionTolerance { get; init; } = 10;
     public int ClipboardTimeoutMs { get; init; } = 100;
     public string GameWindowTitle { get; init; } = "Path of Exile 2";
-    public string HotkeyNewSession { get; init; } = "Ctrl+Alt+N";
-    public string HotkeyUndo { get; init; } = "Ctrl+Alt+Z";
-    public string HotkeyRedo { get; init; } = "Ctrl+Alt+Y";
-    // Avoid letters that AltGr (= Ctrl+Alt) turns into characters on some layouts, e.g. Polish S, X, Z, C, N.
+    public string HotkeyNewSession { get; init; } = "Ctrl+Shift+N";
+    public string HotkeyUndo { get; init; } = "Ctrl+Shift+U";
+    public string HotkeyRedo { get; init; } = "Ctrl+Shift+Y";
     /// <summary>Opens the grid editor; while it is open, confirms the grid and starts the sweep.</summary>
-    public string HotkeySweepStart { get; init; } = "Ctrl+Alt+G";
+    public string HotkeySweepStart { get; init; } = "Ctrl+Shift+G";
     /// <summary>Finishes the running sweep; while the grid editor is open, cancels it.</summary>
-    public string HotkeySweepFinish { get; init; } = "Ctrl+Alt+F";
-    public string HotkeySkipCell { get; init; } = "Ctrl+Alt+K";
-    // Mapping (recording mapping session only). Ergonomics to be revisited; same AltGr caution as above.
-    public string HotkeyMapStashScan { get; init; } = "Ctrl+Alt+D";
-    public string HotkeyMapSwipe { get; init; } = "Ctrl+Alt+W";
-    public string HotkeyMapFinalScan { get; init; } = "Ctrl+Alt+Q";
-    public string HotkeyMapStartRun { get; init; } = "Ctrl+Alt+R";
-    public string HotkeyMapEndRun { get; init; } = "Ctrl+Alt+T";
+    public string HotkeySweepFinish { get; init; } = "Ctrl+Shift+F";
+    public string HotkeySkipCell { get; init; } = "Ctrl+Shift+K";
+    // Mapping (recording mapping session only). Ergonomics to be revisited.
+    public string HotkeyMapInitialScan { get; init; } = "Ctrl+Shift+Z";
+    public string HotkeyMapStashScan { get; init; } = "Ctrl+Shift+X";
+    public string HotkeyMapSwipe { get; init; } = "Ctrl+Shift+C";
+    public string HotkeyMapFinalScan { get; init; } = "Ctrl+Shift+V";
+    public string HotkeyMapStartRun { get; init; } = "Ctrl+Shift+R";
+    public string HotkeyMapEndRun { get; init; } = "Ctrl+Shift+T";
     /// <summary>Area kinds for sweeps, as <c>Name=CxR; ...</c>.</summary>
     public string GridKinds { get; init; } = GridKind.FormatList(GridKind.Presets);
     /// <summary>The area kind picked last for a sweep.</summary>
@@ -94,6 +94,7 @@ public sealed record AppSettings
         ("Sweep start", HotkeyAction.SweepStart, HotkeySweepStart),
         ("Sweep finish", HotkeyAction.SweepFinish, HotkeySweepFinish),
         ("Skip cell", HotkeyAction.SkipCell, HotkeySkipCell),
+        ("Initial scan", HotkeyAction.MapInitialScan, HotkeyMapInitialScan),
         ("Stash scan", HotkeyAction.MapStashScan, HotkeyMapStashScan),
         ("Swipe", HotkeyAction.MapSwipe, HotkeyMapSwipe),
         ("Final scan", HotkeyAction.MapFinalScan, HotkeyMapFinalScan),
@@ -123,7 +124,7 @@ public sealed record AppSettings
         foreach (var (name, _, value) in HotkeyEntries())
         {
             if (!Hotkey.TryParse(value, out _))
-                errors.Add($"{name} hotkey '{value}' is not valid (e.g. Ctrl+Alt+Z).");
+                errors.Add($"{name} hotkey '{value}' is not valid (e.g. Ctrl+Shift+Z).");
         }
         var hotkeys = HotkeyEntries()
             .Select(h => Hotkey.TryParse(h.Value, out var k) ? k : null).OfType<Hotkey>().ToList();

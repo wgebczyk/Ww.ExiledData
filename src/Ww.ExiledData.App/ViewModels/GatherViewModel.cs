@@ -26,6 +26,9 @@ public sealed partial class GatherViewModel : ObservableObject
     /// <summary>The run picked in the history; null follows the current (or last) run.</summary>
     private Guid? _pickedRunId;
 
+    /// <summary>The mapping hotkeys, shown under the buttons they press.</summary>
+    public HotkeyHints Hotkeys { get; init; } = new(new AppSettings());
+
     public GatherViewModel(MappingService mapping, Guid sessionId, CurrencyBook book, ILogger logger)
     {
         _mapping = mapping;

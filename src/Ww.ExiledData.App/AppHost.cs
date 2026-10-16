@@ -40,6 +40,7 @@ public sealed class AppHost : IDisposable
     private readonly bool _overlayDemo;
     private readonly string? _screenshotDir;
     private AppSettings _settings;
+    private readonly HotkeyHints _hotkeyHints;
     private CaptureService? _capture;
     private GridEditorWindow? _editor;
     private MainWindow? _mainWindow;
@@ -53,6 +54,7 @@ public sealed class AppHost : IDisposable
     {
         Directory.CreateDirectory(_paths.DataDirectory);
         _settings = SettingsFile.Load(_paths.Settings, out var settingsProblem);
+        _hotkeyHints = new HotkeyHints(_settings);
         _logging = new AppLogging(_paths.LogsDirectory, _settings.LogLevel);
         _log = _logging.Factory.CreateLogger<AppHost>();
         _log.LogInformation("Starting Ww.ExiledData {Version} on {OS}; data in {Dir}; settings {@Settings}",
@@ -83,7 +85,7 @@ public sealed class AppHost : IDisposable
         };
         // The window wires each session page's dialogs; pages are created only once the window exists.
         _main = new MainWindowViewModel(_list, _controller, id => _mainWindow!.Attach(
-            new SessionViewModel(_controller, _sweeps, id, _logging.Factory.CreateLogger<SessionViewModel>(), _mapping, _currencies)))
+            new SessionViewModel(_controller, _sweeps, id, _logging.Factory.CreateLogger<SessionViewModel>(), _mapping, _currencies, _hotkeyHints)))
         {
             OpenSettings = EditSettings,
             RefreshPrices = () => _prices.RefreshIfNeeded(force: true),
@@ -240,7 +242,7 @@ public sealed class AppHost : IDisposable
     }
 
     private SettingsViewModel CreateSettingsViewModel() =>
-        new(_settings, new SettingsEnvironment(_paths.DataDirectory, _failedHotkeys, _settingsUnreadable, AltGrKeys.CharacterOf, _currencies))
+        new(_settings, new SettingsEnvironment(_paths.DataDirectory, _failedHotkeys, _settingsUnreadable, _currencies))
         {
             PreviewTheme = theme =>
             {
@@ -269,6 +271,7 @@ public sealed class AppHost : IDisposable
 
         var previous = _settings;
         _settings = updated;
+        _hotkeyHints.Update(updated);
         _settingsUnreadable = false;
         try
         {
@@ -589,6 +592,14 @@ public sealed class AppHost : IDisposable
             }
             switch (press.Action)
             {
+                case HotkeyAction.MapInitialScan:
+                    // The run's first swipe is its Initial: offered only while the run has none.
+                    var session = await _mapping.Load(active.Id);
+                    if (session.CurrentRun is { } current && session.InitialOf(current) is not null)
+                        _overlay.ShowResult(new Feedback(FeedbackKind.Info, "This run already has its Initial"));
+                    else
+                        await StartMappingScan(ScanKind.Swipe, press.Cursor);
+                    break;
                 case HotkeyAction.MapStashScan or HotkeyAction.MapSwipe or HotkeyAction.MapFinalScan:
                     await StartMappingScan(press.Action switch
                     {

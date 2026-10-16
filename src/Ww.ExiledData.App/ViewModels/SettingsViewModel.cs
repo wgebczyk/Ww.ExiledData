@@ -11,13 +11,11 @@ namespace Ww.ExiledData.App.ViewModels;
 /// <summary>What the Settings dialog needs to know about the running app.</summary>
 /// <param name="FailedHotkeys">Hotkeys that another app held when capture last started.</param>
 /// <param name="SettingsUnreadable">settings.json could not be read at start, so the defaults are shown.</param>
-/// <param name="AltGrCharacter">What a hotkey types as AltGr on an installed layout (null: nothing).</param>
 /// <param name="Currencies">Codes and icons for the loot grid editor; the built-in book when null.</param>
 public sealed record SettingsEnvironment(
     string DataDirectory,
     IReadOnlyCollection<HotkeyAction> FailedHotkeys,
     bool SettingsUnreadable,
-    Func<Hotkey, string?> AltGrCharacter,
     CurrencyBook? Currencies = null);
 
 /// <summary>
@@ -67,6 +65,8 @@ public sealed partial class SettingsViewModel : ObservableObject
             "Finishes the running sweep. In the grid editor, cancels it.", saved.HotkeySweepFinish, defaults.HotkeySweepFinish);
         SkipCell = new HotkeyField(HotkeyAction.SkipCell, "Skip cell under cursor",
             "During a sweep, marks the cell under the cursor as skipped. Press again to undo.", saved.HotkeySkipCell, defaults.HotkeySkipCell);
+        MapInitialScan = new HotkeyField(HotkeyAction.MapInitialScan, "Initial scan",
+            "Scans what you keep in the inventory before the map: the run's Initial (once per run).", saved.HotkeyMapInitialScan, defaults.HotkeyMapInitialScan);
         MapStashScan = new HotkeyField(HotkeyAction.MapStashScan, "Stash scan",
             "Scans the inventory right before you stash it: counts toward the run's loot.", saved.HotkeyMapStashScan, defaults.HotkeyMapStashScan);
         MapSwipe = new HotkeyField(HotkeyAction.MapSwipe, "Swipe",
@@ -94,10 +94,10 @@ public sealed partial class SettingsViewModel : ObservableObject
             saved.PriceUnit, defaults.PriceUnit);
         LootGrid = new LootGridField(saved.ParsedLootGrid(), defaults.ParsedLootGrid(), env.Currencies ?? CurrencyBook.Default);
 
-        Hotkeys = [NewSession, Undo, Redo, SweepStart, SweepFinish, SkipCell, MapStashScan, MapSwipe, MapFinalScan, MapStartRun, MapEndRun];
+        Hotkeys = [NewSession, Undo, Redo, SweepStart, SweepFinish, SkipCell, MapInitialScan, MapStashScan, MapSwipe, MapFinalScan, MapStartRun, MapEndRun];
         SessionHotkeys = [NewSession, Undo, Redo];
         SweepHotkeys = [SweepStart, SweepFinish, SkipCell];
-        MappingHotkeys = [MapStashScan, MapSwipe, MapFinalScan, MapStartRun, MapEndRun];
+        MappingHotkeys = [MapInitialScan, MapStashScan, MapSwipe, MapFinalScan, MapStartRun, MapEndRun];
 
         const string onSave = "Changes apply when you save, without a restart.";
         General = new SettingsPage("general", "General", "Appearance and diagnostics.", onSave, [Theme, LogLevel], "data folder logs");
@@ -150,6 +150,7 @@ public sealed partial class SettingsViewModel : ObservableObject
     public HotkeyField SweepStart { get; }
     public HotkeyField SweepFinish { get; }
     public HotkeyField SkipCell { get; }
+    public HotkeyField MapInitialScan { get; }
     public HotkeyField MapStashScan { get; }
     public HotkeyField MapSwipe { get; }
     public HotkeyField MapFinalScan { get; }
@@ -276,7 +277,7 @@ public sealed partial class SettingsViewModel : ObservableObject
             h.Warning = null;
             h.Error = h.Parsed switch
             {
-                null => "Error: not a valid hotkey (for example Ctrl+Alt+Z).",
+                null => "Error: not a valid hotkey (for example Ctrl+Shift+Z).",
                 var k when k == new Hotkey(KeyModifiers.Ctrl, 'C') => "Error: Ctrl+C is reserved for item capture.",
                 _ => null,
             };
@@ -298,14 +299,10 @@ public sealed partial class SettingsViewModel : ObservableObject
             var k = h.Parsed!;
             if (!h.IsChanged && _env.FailedHotkeys.Contains(h.Action))
                 h.Warning = "Warning: already in use by another app. Change it here.";
-            else if (_env.AltGrCharacter(k) is { } typed)
-                h.Warning = $"Warning: {k} is AltGr+{KeyName(k)} on an installed keyboard layout and types {typed}. While registered, you cannot type it.";
             else if (k.Modifiers == KeyModifiers.None)
                 h.Warning = $"Warning: {k} has no modifier. While registered, the key no longer reaches the game or any other app.";
         }
     }
-
-    private static string KeyName(Hotkey k) => k.ToString().Split('+')[^1];
 
     // --- commands -------------------------------------------------------------------------------
 
@@ -385,6 +382,7 @@ public sealed partial class SettingsViewModel : ObservableObject
             HotkeySweepStart = SweepStart.Parsed!.ToString(),
             HotkeySweepFinish = SweepFinish.Parsed!.ToString(),
             HotkeySkipCell = SkipCell.Parsed!.ToString(),
+            HotkeyMapInitialScan = MapInitialScan.Parsed!.ToString(),
             HotkeyMapStashScan = MapStashScan.Parsed!.ToString(),
             HotkeyMapSwipe = MapSwipe.Parsed!.ToString(),
             HotkeyMapFinalScan = MapFinalScan.Parsed!.ToString(),

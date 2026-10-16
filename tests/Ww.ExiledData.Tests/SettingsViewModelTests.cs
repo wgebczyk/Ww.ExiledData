@@ -11,9 +11,8 @@ namespace Ww.ExiledData.Tests;
 /// <summary>The Settings dialog logic.</summary>
 public sealed class SettingsViewModelTests
 {
-    private static SettingsViewModel Create(AppSettings? saved = null, IReadOnlyCollection<HotkeyAction>? failed = null,
-        Func<Hotkey, string?>? altGr = null) =>
-        new(saved ?? new AppSettings(), new SettingsEnvironment("C:\\data", failed ?? [], false, altGr ?? (_ => null)));
+    private static SettingsViewModel Create(AppSettings? saved = null, IReadOnlyCollection<HotkeyAction>? failed = null) =>
+        new(saved ?? new AppSettings(), new SettingsEnvironment("C:\\data", failed ?? [], false));
 
     [Fact]
     public void Saved_settings_open_clean()
@@ -84,7 +83,7 @@ public sealed class SettingsViewModelTests
     {
         var vm = Create();
 
-        vm.SweepFinish.Text = "Ctrl+Alt+Y"; // Redo's
+        vm.SweepFinish.Text = "Ctrl+Shift+Y"; // Redo's
 
         Assert.Equal("Error: already used by Redo. Hotkeys must be different from each other.", vm.SweepFinish.Error);
         Assert.Null(vm.Redo.Error);
@@ -95,8 +94,8 @@ public sealed class SettingsViewModelTests
 
     [Theory]
     [InlineData("Ctrl+C", "Error: Ctrl+C is reserved for item capture.")]
-    [InlineData("Ctrl+Alt+", "Error: not a valid hotkey (for example Ctrl+Alt+Z).")]
-    [InlineData("Ctrl+Alt+F25", "Error: not a valid hotkey (for example Ctrl+Alt+Z).")]
+    [InlineData("Ctrl+Alt+", "Error: not a valid hotkey (for example Ctrl+Shift+Z).")]
+    [InlineData("Ctrl+Alt+F25", "Error: not a valid hotkey (for example Ctrl+Shift+Z).")]
     public void Invalid_hotkeys_are_errors(string text, string error)
     {
         var vm = Create();
@@ -110,12 +109,10 @@ public sealed class SettingsViewModelTests
     [Fact]
     public void Hotkey_warnings_do_not_block_saving()
     {
-        var vm = Create(failed: [HotkeyAction.SkipCell], altGr: k => k.ToString() == "Ctrl+Alt+N" ? "ń" : null);
+        var vm = Create(failed: [HotkeyAction.SkipCell]);
 
         vm.Undo.Text = "F9";
 
-        Assert.Equal("Warning: Ctrl+Alt+N is AltGr+N on an installed keyboard layout and types ń. While registered, you cannot type it.",
-            vm.NewSession.Warning);
         Assert.Equal("Warning: already in use by another app. Change it here.", vm.SkipCell.Warning);
         Assert.StartsWith("Warning: F9 has no modifier.", vm.Undo.Warning);
         Assert.True(vm.SaveCommand.CanExecute(null));
